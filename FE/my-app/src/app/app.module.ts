@@ -6,18 +6,17 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UsersComponent } from './admin/users/users.component';
-import { MenuComponent } from './menu/menu.component';
-import { MenuModule } from './menu/menu.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
-    MenuModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent
