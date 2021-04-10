@@ -6,7 +6,6 @@ export class User {
     ten: string;
     diachi: string;
     ngaysinh: string;
-    tenshop: string;
     ngaytao: string;
     trangthai: string;
 
