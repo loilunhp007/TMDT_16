@@ -12,6 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminMenuComponent } from './admin/admin-menu/admin-menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { CategoryComponent } from './category/category.component';
+import { LoginComponent } from './login/login.component';
+import { ShoplayoutComponent } from './shoplayout/shoplayout.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { ProductComponent } from './product/product.component';
+import { NotfoundexceptionComponent } from './notfoundexception/notfoundexception.component';
 
 
 @NgModule({
@@ -23,6 +28,11 @@ import { CategoryComponent } from './category/category.component';
     AdminMenuComponent,
     FooterComponent,
     CategoryComponent,
+    LoginComponent,
+    ShoplayoutComponent,
+    DashboardComponent,
+    ProductComponent,
+    NotfoundexceptionComponent,
   ],
   imports: [
     BrowserModule,

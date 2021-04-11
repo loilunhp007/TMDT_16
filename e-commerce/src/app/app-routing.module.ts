@@ -1,9 +1,35 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminMenuComponent } from './admin/admin-menu/admin-menu.component';
 import { UsersComponent } from './admin/users/users.component';
+import { CategoryComponent } from './category/category.component';
+import { LoginComponent } from './login/login.component';
+import { MenuComponent } from './menu/menu.component';
+import { NotfoundexceptionComponent } from './notfoundexception/notfoundexception.component';
+import { ShoplayoutComponent } from './shoplayout/shoplayout.component';
 
 const routes: Routes = [
-  {path:'admin/users',component:UsersComponent}
+  {path:'admin',
+  component: AdminMenuComponent,
+  children:[
+    {
+      path:"users",component:UsersComponent
+    }
+  ]
+},
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+
+  },
+  {
+    path:'home',component:ShoplayoutComponent,
+  },
+  {
+    path:'login',component: LoginComponent
+  },
+  {path:'**',component: NotfoundexceptionComponent}
 ];
 
 @NgModule({
