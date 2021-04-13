@@ -16,13 +16,9 @@ import { LoginComponent } from './login/login.component';
 import { ShoplayoutComponent } from './shoplayout/shoplayout.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { NotfoundexceptionComponent } from './notfoundexception/notfoundexception.component';
-<<<<<<< Updated upstream
 import { ProductComponent } from './admin/product/product.component';
 import { ControlMenuComponent } from './admin/control-menu/control-menu.component';
 import { AddproductComponent } from './admin/product/addproduct/addproduct.component';
-=======
-import { DELLINSPIRONComponent } from './dellinspiron/dellinspiron.component';
->>>>>>> Stashed changes
 
 
 @NgModule({
@@ -39,12 +35,8 @@ import { DELLINSPIRONComponent } from './dellinspiron/dellinspiron.component';
     DashboardComponent,
     ProductComponent,
     NotfoundexceptionComponent,
-<<<<<<< Updated upstream
     ControlMenuComponent,
     AddproductComponent,
-=======
-    DELLINSPIRONComponent,
->>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
