@@ -15,8 +15,10 @@ import { CategoryComponent } from './category/category.component';
 import { LoginComponent } from './login/login.component';
 import { ShoplayoutComponent } from './shoplayout/shoplayout.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { ProductComponent } from './product/product.component';
 import { NotfoundexceptionComponent } from './notfoundexception/notfoundexception.component';
+import { ProductComponent } from './admin/product/product.component';
+import { ControlMenuComponent } from './admin/control-menu/control-menu.component';
+import { AddproductComponent } from './admin/product/addproduct/addproduct.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { NotfoundexceptionComponent } from './notfoundexception/notfoundexceptio
     DashboardComponent,
     ProductComponent,
     NotfoundexceptionComponent,
+    ControlMenuComponent,
+    AddproductComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,31 +2,28 @@ package com.Entity;
 
 import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
-import java.sql.Blob;
 
+@Entity
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "SanPham")
-public class SanPham {
+@Table(name = "sanpham")
+public class Sanpham{
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long masp;
-    private long maloai;
+    private String masp;
+    private String maloai;
     private String tensp;
-    private String gia;
-    @Lob
-    private Blob hinhanh;
+    private int gia;
+    private String hinhanh;
     private String thongtinsanpham;
-    private String soluong;
-    private String danhgia;
-    private String luotxem;
-    private String trangthai;
+    private int soluong;
+    private int danhgia;
+    private int luotxem;
+    private int trangthai;
 }
