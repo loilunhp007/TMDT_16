@@ -35,8 +35,15 @@ import { LENOVOTHINKPADComponent } from './lenovothinkpad/lenovothinkpad.compone
 import { LENOVOYOGAComponent } from './lenovoyoga/lenovoyoga.component';
 import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
+import { MSIBRAVOComponent } from './msibravo/msibravo.component';
+import { MSIGEComponent } from './msige/msige.component';
+import { MSIGFComponent } from './msigf/msigf.component';
+import { MSIGLComponent } from './msigl/msigl.component';
+import { MSIGSComponent } from './msigs/msigs.component';
+import { MSIMODERNComponent } from './msimodern/msimodern.component';
+import { MSIPRESTIGEComponent } from './msiprestige/msiprestige.component';
 <<<<<<< Updated upstream
-import { NotfoundexceptionComponent } from './notfoundexception/notfoundexception.component';;
+import { NotfoundexceptionComponent } from './notfoundexception/notfoundexception.component';
 =======
 import { MSIBRAVOComponent } from './msibravo/msibravo.component';
 import { MSIGEComponent } from './msige/msige.component';
@@ -67,7 +74,7 @@ const routes: Routes = [
       }
     ]
   },
->>>>>>> Stashed changes
+
   {
     path: '',
     redirectTo: '/home',
