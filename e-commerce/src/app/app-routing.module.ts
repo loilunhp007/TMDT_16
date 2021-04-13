@@ -42,44 +42,30 @@ import { MSIGLComponent } from './msigl/msigl.component';
 import { MSIGSComponent } from './msigs/msigs.component';
 import { MSIMODERNComponent } from './msimodern/msimodern.component';
 import { MSIPRESTIGEComponent } from './msiprestige/msiprestige.component';
-<<<<<<< Updated upstream
 import { NotfoundexceptionComponent } from './notfoundexception/notfoundexception.component';
-=======
-import { MSIBRAVOComponent } from './msibravo/msibravo.component';
-import { MSIGEComponent } from './msige/msige.component';
-import { MSIGFComponent } from './msigf/msigf.component';
-import { MSIGLComponent } from './msigl/msigl.component';
-import { MSIGSComponent } from './msigs/msigs.component';
-import { MSIMODERNComponent } from './msimodern/msimodern.component';
-import { MSIPRESTIGEComponent } from './msiprestige/msiprestige.component';
-import { NotfoundexceptionComponent } from './notfoundexception/notfoundexception.component';
->>>>>>> Stashed changes
 import { ShoplayoutComponent } from './shoplayout/shoplayout.component';
 
 const routes: Routes = [
-  {path:'admin',
-<<<<<<< Updated upstream
-  component: DashboardComponent,
-  children:[
-    {
-      path:"product",component:ProductComponent
-    }
-  ]
-},
-=======
-    component: AdminMenuComponent,
+  {
+    path:'admin',component: DashboardComponent,
     children:[
       {
-        path:"users",component:UsersComponent
+        path:"product",component:ProductComponent
       }
     ]
   },
-
+  {
+    path:"admin",component: AdminMenuComponent,
+    children:[
+      {
+        path:"users",component:UsersComponent,
+      }
+    ]
+  },
   {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full',
-
   },
   {
     path:'home',component:ShoplayoutComponent,
@@ -3937,9 +3923,10 @@ const routes: Routes = [
     ]
   },
   {
-    path:'home/login',component: LoginComponent
+    path:'home/login', component: LoginComponent,
   },
-  {path:'**',component: NotfoundexceptionComponent}
+  {
+    path:'**', component: NotfoundexceptionComponent}
 ];
 
 @NgModule({
