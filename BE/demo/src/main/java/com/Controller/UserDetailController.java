@@ -13,7 +13,7 @@ import java.util.logging.*;
 @Controller
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping(path = "users")
+@RequestMapping(path = "userdetail")
 public class UserDetailController {
     @Autowired
     private UserService tvService;
@@ -23,11 +23,8 @@ public class UserDetailController {
         return ResponseEntity.status(HttpStatus.OK).body(lThanhVien);
     }
     @PostMapping({"/add"})
-    public ResponseEntity<UserDetail> addThanhVien(@RequestBody(required = false) UserDetail userDetail){
+    public ResponseEntity<UserDetail> addThanhVien(@RequestBody UserDetail userDetail){
         try {
-            Logger logg = Logger.getLogger("Controller");
-            logg.setLevel(Level.ALL);
-            logg.info("22 : "+userDetail.toString());
             UserDetail _userDetail= tvService.save(userDetail);
             return new ResponseEntity<UserDetail>(_userDetail,HttpStatus.CREATED);
         } catch (Exception e) {

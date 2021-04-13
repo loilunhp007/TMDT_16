@@ -34,9 +34,9 @@ export class UsersComponent implements OnInit {
   handleSuccessfulResponse(response): void {
     this.users = response;
   };
-  addUser(){
+  /*addUser(){
     this.selectedUser = new User();
     this.router.navigate(['admin','users'],{queryParams : {action : 'add'} })
-  }
+  }*/
 
 }

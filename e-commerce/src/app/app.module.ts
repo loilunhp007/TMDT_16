@@ -38,7 +38,8 @@ import { NotfoundexceptionComponent } from './notfoundexception/notfoundexceptio
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent

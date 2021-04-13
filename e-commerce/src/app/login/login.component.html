@@ -1,34 +1,68 @@
+<app-menu></app-menu>
 	<section id="form"><!--form-->
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
 						<h2>Login to your account</h2>
-						<form action="#">
-							<input type="text" placeholder="Name" />
-							<input type="email" placeholder="Email Address" />
+						<form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+							<input type="text" placeholder="Enter Email Address" formControlName="email"  
+							/>
+							<input type="password" placeholder="Password" formControlName="matkhau"/>
 							<span>
 								<input type="checkbox" class="checkbox"> 
 								Keep me signed in
 							</span>
-							<button type="submit" class="btn btn-default">Login</button>
+							<button type="submit"  class="btn btn-default">Login</button>
 						</form>
-					</div><!--/login form-->
-				</div>
-				<div class="col-sm-1">
-					<h2 class="or">OR</h2>
-				</div>
-				<div class="col-sm-4">
-					<div class="signup-form"><!--sign up form-->
-						<h2>New User Signup!</h2>
-						<form action="#">
-							<input type="text" placeholder="Name"/>
-							<input type="email" placeholder="Email Address"/>
-							<input type="password" placeholder="Password"/>
-							<button type="submit" class="btn btn-default">Signup</button>
-						</form>
+						</div><!--/login form-->
+						</div>
+						<div class="col-sm-1">
+						<h2 class="or">OR</h2>
+						</div>
+						<div class="col-sm-4">
+						<div class="signup-form"><!--sign up form-->
+							<h2>New User Signup!</h2>
+							<form action="#">
+								<input type="text" placeholder="Name"/>
+								<input type="email" placeholder="Email Address"/>
+								<input type="password" placeholder="Password"/>
+								<button type="submit" class="btn btn-default">Signup</button>
+							</form>
 					</div><!--/sign up form-->
 				</div>
 			</div>
 		</div>
 	</section><!--/form-->
+<app-footer></app-footer>
+<!--
+	<form #loginform="ngForm">
+							{{loginform.form.valid}}
+							<input type="email" placeholder="Enter Email Address" [(ngModel)]= "user.email" require #email="ngModel" 
+							[class.is-invalid]="email.invalid && email.touch"  
+							/>
+							<div *ngIf="email.errors && (email.invalid && email.touch)">
+								<small class = "text-danger"[class.d-none]="email.invalid || email.touch">Email is require</small>
+							</div>
+							<input type="password" placeholder="Password" [(ngModel)]= "user.matkhau" />
+							<span>
+								<input type="checkbox" class="checkbox"> 
+								Keep me signed in
+							</span>
+							<button type="submit"  class="btn btn-default" (click)="loginUser()">Login</button>
+						</form>
+						</div><!--/login form
+						</div>
+						<div class="col-sm-1">
+						<h2 class="or">OR</h2>
+						</div>
+						<div class="col-sm-4">
+						<div class="signup-form"><!--sign up form-->
+							<h2>New User Signup!</h2>
+							<form action="#">
+								<input type="text" placeholder="Name"/>
+								<input type="email" placeholder="Email Address"/>
+								<input type="password" placeholder="Password"/>
+								<button type="submit" class="btn btn-default">Signup</button>
+							</form>
+-->

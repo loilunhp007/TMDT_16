@@ -1,12 +1,10 @@
 export class User {
-    matv : number;
-    sdt : string;
-    loaithanhvien: string;
-    ho: string;
-    ten: string;
-    diachi: string;
-    ngaysinh: string;
-    ngaytao: string;
+    uid : number;
+    email: String;
+    matkhau : String;
     trangthai: string;
+    matv: String;
+    constructor(){
 
+    }
 }
