@@ -48,13 +48,19 @@ public class AccountController {
         
     }
     @GetMapping("/get/{id}") 
-    public ResponseEntity<User> findUserByID(@PathVariable(name = "id")long id){
-        User taiKhoan = accountService.findAccountByID(id);
-        return ResponseEntity.status(HttpStatus.OK).body(taiKhoan);
+    public ResponseEntity<User> findUserByID(@PathVariable(name = "id")Long id) throws Exception{
+        User taiKhoan =null;
+        
+        if (id !=  null){
+            taiKhoan = accountService.findAccountByID(id);
+            return ResponseEntity.status(HttpStatus.OK).body(taiKhoan);
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(taiKhoan);
     }
     
     @PutMapping("/put")
-    public ResponseEntity<User> updateThanhVienByID(@PathVariable(name = "id")long id, @RequestBody User taiKhoan){
+    public ResponseEntity<User> updateThanhVienByID(@PathVariable(name = "id")Long id, @RequestBody User taiKhoan){
         User  _taikhoan =accountService.findAccountByID(id);
         _taikhoan.setMatkhau(taiKhoan.getMatkhau());
         _taikhoan.setEmail(taiKhoan.getEmail());

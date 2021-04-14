@@ -18,14 +18,9 @@ const routes: Routes = [
     children:[
       {
         path:"product",component:ProductComponent
-      }
-    ]
-  },
-  {
-    path:"admin",component: AdminMenuComponent,
-    children:[
+      },
       {
-        path:"users",component:UsersComponent,
+        path:"users",component:UsersComponent
       }
     ]
   },

@@ -34,8 +34,13 @@ export class HttpClientService {
    }
    logOut(){
      sessionStorage.removeItem("user");
+     return false;
    }
-   getUserbyEmail(){
-     
+   getUserbyEmail():Observable<any>{ let user = JSON.parse(sessionStorage.getItem("user")); 
+    return this.httpClient.get<User>("http://localhost:8080/users/getemail/{"+user.email+"}");
+   }
+   getUserByID(){
+     let user = JSON.parse(sessionStorage.getItem("user"));     
+    return this.httpClient.get<User>("http://localhost:8080/users/get/{"+user.uid+"}");
    }
 }

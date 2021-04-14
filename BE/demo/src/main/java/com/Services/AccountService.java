@@ -18,7 +18,7 @@ public class AccountService {
     public User addAccount(User taikhoan){
         return accountRepository.save(taikhoan);
     }
-    public User findAccountByID(long id){
+    public User findAccountByID(Long id){
         return accountRepository.findById(id).get();
     }
     public User findAccountByEmail(String email){
