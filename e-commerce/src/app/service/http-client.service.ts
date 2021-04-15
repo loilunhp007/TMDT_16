@@ -21,9 +21,9 @@ export class HttpClientService {
    addUser(newUser: User) {
    return this.httpClient.post<User>('http://localhost:8080/users/add', newUser);   
   }
-   public loginUserFromRemote(email:string,matkhau:string ): Observable<any> {
+   public loginUserFromRemote(user:User ): Observable<any> {
       
-      return this.httpClient.post<User>("http://localhost:8080/user/login",{email,matkhau});
+      return this.httpClient.post<User>("http://localhost:8080/user/login",user);
    }
    isLogged(){
        let sesson = sessionStorage.getItem("user");
