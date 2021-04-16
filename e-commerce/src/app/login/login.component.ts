@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../model/user';
-import { HttpClientService } from '../service/http-client.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     matkhau: ''
   })
 
-  constructor(private httpClientService : HttpClientService,
+  constructor(private userService : UserService,
     private route : Router,
     private formBuilder: FormBuilder) { }
 
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     let role = "admin";
     this.user.email=  this.f.email.value;
     this.user.matkhau = this.f.matkhau.value;
-    this.httpClientService.loginUserFromRemote(this.user).subscribe(
+    this.userService.loginUserFromRemote(this.user).subscribe(
       response => {this.user=response;
         console.log(this.user);
         sessionStorage.setItem("user",JSON.stringify(this.user));

@@ -19,7 +19,10 @@ import { UsersComponent } from './admin/users/users.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ProductComponent } from './admin/product/product.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ProductDetailComponent } from './product-detail/product-detail.component'
+import { ModalModule, WavesModule, InputsModule, ButtonsModule, MDBBootstrapModule, IconsModule } from 'angular-bootstrap-md';
+
 
 
 @NgModule({
@@ -38,6 +41,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
     NotfoundexceptionComponent,
     ControlMenuComponent,
     AddproductComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
     FormsModule,
     ReactiveFormsModule,
     MatSidenavModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalModule,
+    WavesModule,
+    InputsModule,
+    ButtonsModule,
+    MDBBootstrapModule.forRoot(),
+    IconsModule
   ],
   providers: [],
   bootstrap: [AppComponent

@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user';
-import { HttpClientService } from 'src/app/service/http-client.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-users',
@@ -14,12 +14,12 @@ export class UsersComponent implements OnInit {
   users : Array<User>
   selectedUser : User
   action : String
-  constructor(private httpClientService: HttpClientService,
+  constructor(private userService: UserService,
     private router : Router,
     private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
-   this.httpClientService.getUsers().subscribe(
+   this.userService.getUsers().subscribe(
      response => this.handleSuccessfulResponse(response),
    )
    this.activatedRoute.queryParams.subscribe(

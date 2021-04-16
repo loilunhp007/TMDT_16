@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../model/user';
-import { HttpClientService } from '../service/http-client.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-menu',
@@ -11,7 +11,7 @@ import { HttpClientService } from '../service/http-client.service';
 export class MenuComponent implements OnInit {
     isLogged = false;
      user = JSON.parse(sessionStorage.getItem("user"));
-  constructor(private httpClientService : HttpClientService,
+  constructor(private userService : UserService,
     private router:Router) {     
   }
 
@@ -19,11 +19,11 @@ export class MenuComponent implements OnInit {
 
   }
   isLoggedIn(){
-    this.isLogged = this.httpClientService.isLogged();
+    this.isLogged = this.userService.isLogged();
     return this.isLogged;
   }
   logout(){
-    this.isLogged = this.httpClientService.logOut();
+    this.isLogged = this.userService.logOut();
     return this.router.navigate(["/home/login"]);
   }
 

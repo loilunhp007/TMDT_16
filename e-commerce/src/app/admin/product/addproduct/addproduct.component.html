@@ -1,1 +1,90 @@
-<p>addproduct works!</p>
+<button type="button" class="btn btn-warning mb-20"  rounded="true" data-toggle="modal" data-target="#basicExample"
+        (click)="frame.show()" mdbWavesEffect>Thêm sản phẩm mới
+</button>
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add Product</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <label for="orangeForm-ID">Ma San Pham</label>
+          <input type="text" id="orangeForm-ID" class="form-control" [formControl]="ProductFormModalID"
+                 mdbInput mdbValidate>
+
+          <mdb-error *ngIf="ProductFormModalName.invalid && (ProductFormModalName.dirty || ProductFormModalName.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="ProductFormModalName.valid && (ProductFormModalName.dirty || ProductFormModalName.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+        <div class="md-form mb-5">
+          <label for="orangeForm-Name">Ten San Pham</label>
+          <input type="text" id="orangeForm-Name" class="form-control" [formControl]="ProductFormModalName"
+                 mdbInput mdbValidate>
+          <mdb-error
+            *ngIf="ProductFormModalName.invalid && (ProductFormModalName.dirty || ProductFormModalName.touched)">Input
+            invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="ProductFormModalName.valid && (ProductFormModalName.dirty || ProductFormModalName.touched)">Input
+            valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-4">
+          <label for="orangeForm-pass">Thong tin san pham</label>       
+          <input type="text" id="orangeForm-Info" class="form-control" [formControl]="ProductFormModalInfo"
+                 mdbInput mdbValidate>
+
+          <mdb-error
+            *ngIf="ProductFormModalInfo.invalid && (ProductFormModalInfo.dirty || ProductFormModalInfo.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="ProductFormModalInfo.valid && (ProductFormModalInfo.dirty || ProductFormModalInfo.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+         <div class="md-form mb-4">
+          <label for="orangeForm-price">Gia</label>     
+          <input type="" id="orangeForm-price" class="form-control" [formControl]="ProductFormModalPrice"
+                 mdbInput mdbValidate>
+
+          <mdb-error
+            *ngIf="ProductFormModalPrice.invalid && (ProductFormModalPrice.dirty || ProductFormModalPrice.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="ProductFormModalPrice.valid && (ProductFormModalPrice.dirty || ProductFormModalPrice.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+         <div class="md-form mb-4">
+          <label for="orangeForm-quan">So Luong</label>       
+          <input type="text" id="orangeForm-quan" class="form-control" [formControl]="ProductFormModalQuantity"
+                 mdbInput mdbValidate>
+
+          <mdb-error
+            *ngIf="ProductFormModalQuantity.invalid && (ProductFormModalQuantity.dirty || ProductFormModalQuantity.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="ProductFormModalQuantity.valid && (ProductFormModalQuantity.dirty || ProductFormModalQuantity.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button [disabled]="!ProductFormModalQuantity.valid || !ProductFormModalName.valid || !ProductFormModalID.valid" mdbBtn color="deep-orange" class="waves-light" mdbWavesEffect (click)="addProduct()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>

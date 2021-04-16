@@ -17,8 +17,11 @@ export class ProductService {
   addProduct(product: Product){
    return this.httpClient.post<Product>("http://localhost:8080/product/add",{product});
   }
-  getProductByName(){
-   return this.httpClient.get<Product[]>("http://localhost:8080/product/get{name}");
+  getProductByName(tensp:String){
+   return this.httpClient.get<Product[]>("http://localhost:8080/product/get{"+tensp+"}");
+  }
+  getProductByID(masp:String){
+    return this.httpClient.get<Product>("http://localhost:8080/product/get/{"+masp+"}");
   }
   updateProduct(product : Product){
     return  this.httpClient.post<Product>("http://localhost:8080/product/put",{product});

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
-import { HttpClientService } from 'src/app/service/http-client.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-adduser',
@@ -13,14 +13,14 @@ export class AdduserComponent implements OnInit {
     @Input()
     user : User
     
-  constructor(private httpClientService : HttpClientService,
+  constructor(private userService : UserService,
     private route : Router) { }
 
   ngOnInit(): void {
 
   }
   addUser(){
-    this.httpClientService.addUser(this.user).subscribe(
+    this.userService.addUser(this.user).subscribe(
       (user) => {
         this.route.navigate(['admin',['user']]);
       }

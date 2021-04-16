@@ -10,6 +10,7 @@ import { CategoryComponent } from './category/category.component';
 import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { NotfoundexceptionComponent } from './notfoundexception/notfoundexception.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ShoplayoutComponent } from './shoplayout/shoplayout.component';
 
 const routes: Routes = [
@@ -31,6 +32,12 @@ const routes: Routes = [
   },
   {
     path:'home',component:ShoplayoutComponent,
+    children:[
+        {
+          path:"product-detail",
+          component:ProductDetailComponent
+        }
+    ]
   
   },
   {

@@ -7,8 +7,10 @@ import com.Repository.SanPhamRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class SanPhamService {
     @Autowired
     private SanPhamRepository sanPhamRepository;
@@ -17,6 +19,12 @@ public class SanPhamService {
     }
     public Sanpham addProduct(Sanpham product){
         return sanPhamRepository.save(product);
+    }
+    public Sanpham findAccountByID(String id){
+        return sanPhamRepository.findById(id).get();
+    }
+    public void deteleProductByID(String id){
+        sanPhamRepository.deleteById(id);
     }
 
 
