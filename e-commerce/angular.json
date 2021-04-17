@@ -28,7 +28,7 @@
             ],
             "styles": [
               "src/styles.css"
-              "https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js"

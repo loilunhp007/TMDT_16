@@ -37,7 +37,11 @@ export class ProductComponent implements OnInit {
       (response)=>{ this.products =response;
           console.log(this.products);
         
+      },
+      (error)=>{
+        alert(error);
       })
+
   }
   getProductByName(tensp:string){
     this.productService.getProduct().subscribe(

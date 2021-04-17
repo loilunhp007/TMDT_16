@@ -4,6 +4,7 @@ import { AdminMenuComponent } from './admin/admin-menu/admin-menu.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ProductComponent } from './admin/product/product.component';
 import { UsersComponent } from './admin/users/users.component';
+import { CartComponent } from './cart/cart.component';
 
 import { CategoryComponent } from './category/category.component';
 
@@ -36,6 +37,9 @@ const routes: Routes = [
         {
           path:"product-detail",
           component:ProductDetailComponent
+        },
+        {
+          path:"cart",component:CartComponent
         }
     ]
   
