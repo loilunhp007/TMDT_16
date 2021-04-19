@@ -2,7 +2,7 @@ package com.Services;
 
 import java.util.List;
 
-import com.Entity.User;
+import com.Entity.taikhoan;
 import com.Repository.AccountRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,22 +12,24 @@ import org.springframework.stereotype.Service;
 public class AccountService {
     @Autowired
     AccountRepository accountRepository;
-    public List<User> getAllAccount(){
+    public List<taikhoan> getAllAccount(){
         return accountRepository.findAll();
     }
-    public User addAccount(User taikhoan){
+    public taikhoan addAccount(taikhoan taikhoan){
         return accountRepository.save(taikhoan);
     }
-    public User findAccountByID(Long id){
+    public taikhoan findAccountByID(Long id){
         return accountRepository.findById(id).get();
     }
-    public User findAccountByEmail(String email){
+    public taikhoan findAccountByEmail(String email){
         return accountRepository.findAccountByEmail(email);
     }
-    public User findAccountByEmailAndMatkhau(String email,String password){
+    public taikhoan findAccountByEmailAndMatkhau(String email,String password){
         return accountRepository.findAccountByEmailAndMatkhau(email,password);
     }
-    
+    public long count(){
+        return accountRepository.count();
+    }
     
     
 }

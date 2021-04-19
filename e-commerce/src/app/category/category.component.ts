@@ -15,7 +15,7 @@ export class CategoryComponent implements OnInit {
     private cartService : CartService,
     private route: ActivatedRoute) { }
     products : Array<Product>
-    selectedProduct : Product
+    product : Product
   ngOnInit(): void {
     const masp = +this.route.snapshot.params['masp'];
     this.getProduct();
@@ -26,6 +26,13 @@ export class CategoryComponent implements OnInit {
           console.log(this.products);
         
       })
+  }
+  getProductByID(id:String){
+    this.productService.getProductByID(id).subscribe(
+      Response=>{this.product = Response;
+
+      }
+    )
   }
   addToCart(product:Product){
     let len = localStorage.length;

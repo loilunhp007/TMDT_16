@@ -23,10 +23,12 @@
 						<div class="col-sm-4">
 						<div class="signup-form"><!--sign up form-->
 							<h2>New User Signup!</h2>
-							<form action="#">
-								<input type="text" placeholder="Name"/>
-								<input type="email" placeholder="Email Address"/>
-								<input type="password" placeholder="Password"/>
+							<form [formGroup]="registerForm"  (ngSubmit)="registerNewUser()">
+								<input type="text" placeholder="FirstName" formControlName="regisFirstName"/>
+								<input type="text" placeholder="LastName" formControlName="regisLastName"/>
+								<input type="text" placeholder="Phone" formControlName="regisPhone"/>
+								<input type="email" placeholder="Email Address"formControlName="regisEmail"/>
+								<input type="password" placeholder="Password"formControlName="regisPassword"/>
 								<button type="submit" class="btn btn-default">Signup</button>
 							</form>
 					</div><!--/sign up form-->
@@ -58,11 +60,5 @@
 						</div>
 						<div class="col-sm-4">
 						<div class="signup-form"><!--sign up form-->
-							<h2>New User Signup!</h2>
-							<form action="#">
-								<input type="text" placeholder="Name"/>
-								<input type="email" placeholder="Email Address"/>
-								<input type="password" placeholder="Password"/>
-								<button type="submit" class="btn btn-default">Signup</button>
-							</form>
+							
 -->

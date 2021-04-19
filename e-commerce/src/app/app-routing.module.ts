@@ -13,10 +13,13 @@ import { MenuComponent } from './menu/menu.component';
 import { NotfoundexceptionComponent } from './notfoundexception/notfoundexception.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ShoplayoutComponent } from './shoplayout/shoplayout.component';
-
+import { 
+  AuthGuardService as AuthGuard 
+} from './service/auth-guard.service';
 const routes: Routes = [
   {
     path:'admin',component: DashboardComponent,
+    canActivate:[AuthGuard],
     children:[
       {
         path:"product",component:ProductComponent
@@ -39,7 +42,8 @@ const routes: Routes = [
           component:ProductDetailComponent
         },
         {
-          path:"cart",component:CartComponent
+          path:"cart",component:CartComponent,
+          canActivate:[AuthGuard]
         }
     ]
   

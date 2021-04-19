@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @AllArgsConstructor
@@ -13,14 +12,14 @@ import org.hibernate.annotations.ForeignKey;
 @Getter
 @Data
 @Table(name = "taikhoan")
-public class User {
+public class taikhoan {
     @Id
     private long uid;
     private String email;
     private String matkhau;
     private String trangthai;
     private String matv;
-    public User(String email,String matkhau){
+    public taikhoan(String email,String matkhau){
         this.email=email;
         this.matkhau=matkhau;
     }

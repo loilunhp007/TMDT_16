@@ -182,7 +182,7 @@
 										<span style="display:'none'">{{product.masp}}</span>
 										<h2>${{product.gia}}</h2>
 										<p>{{product.tensp}}</p>
-										<a href="#" class="btn btn-default add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										<a routerLink="product-detail/{{product.masp}}" class="btn btn-default add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">

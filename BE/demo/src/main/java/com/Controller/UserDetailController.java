@@ -24,22 +24,27 @@ public class UserDetailController {
     }
     @PostMapping({"/add"})
     public ResponseEntity<UserDetail> addThanhVien(@RequestBody UserDetail userDetail){
-        try {
-            UserDetail _userDetail= tvService.save(userDetail);
-            return new ResponseEntity<UserDetail>(_userDetail,HttpStatus.CREATED);
+        try {   String matv = userDetail.getMatv();
+              UserDetail existUser = tvService.getUserDetailById(matv);
+              UserDetail _userDetail = null;
+              if(existUser == null){
+                _userDetail= tvService.save(userDetail); 
+              }               
+               return ResponseEntity.status(HttpStatus.OK).body(_userDetail);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<UserDetail>(userDetail, HttpStatus.EXPECTATION_FAILED);
         }
 
     }
     @GetMapping("/get/{id}")
-    public ResponseEntity<UserDetail> getThanhVienByID(@PathVariable(name = "id")long id){
-        UserDetail thanhvien = tvService.getThanhVien(id);
+    public ResponseEntity<UserDetail> getThanhVienByID(@PathVariable(name = "id")String id){
+        UserDetail thanhvien = tvService.getUserDetailById(id);
         return ResponseEntity.status(HttpStatus.OK).body(thanhvien);
     }
     @PutMapping("/put")
-    public ResponseEntity<UserDetail> updateThanhVienByID(@PathVariable(name = "id")long id, @RequestBody UserDetail tvDetails ){
-        UserDetail thanhvien = tvService.getThanhVien(id);
+    public ResponseEntity<UserDetail> updateThanhVienByID(@PathVariable(name = "id")String id, @RequestBody UserDetail tvDetails ){
+        UserDetail thanhvien = tvService.getUserDetailById(id);
         thanhvien.setDiachi(tvDetails.getSdt());
         thanhvien.setLoaithanhvien(tvDetails.getLoaithanhvien());
         thanhvien.setHo(tvDetails.getHo());

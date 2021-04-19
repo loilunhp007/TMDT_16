@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
+import { UserDetail } from '../model/user-detail';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,10 @@ export class UserService {
   constructor(private httpClient:HttpClient) { }
   getUsers()
    {
-     return this.httpClient.get<User[]>("http://localhost:8080/users/get");
+     return this.httpClient.get<User[]>("http://localhost:8080/user/get");
    }
-   addUser(newUser: User) {
-   return this.httpClient.post<User>('http://localhost:8080/users/add', newUser);   
+   addUser(newUser: User):Observable<any> {
+   return this.httpClient.post<User>('http://localhost:8080/user/add', newUser);   
   }
    public loginUserFromRemote(user:User ): Observable<any> {
       
@@ -32,10 +33,19 @@ export class UserService {
      return false;
    }
    getUserbyEmail():Observable<any>{ let user = JSON.parse(sessionStorage.getItem("user")); 
-    return this.httpClient.get<User>("http://localhost:8080/users/getemail/{"+user.email+"}");
+    return this.httpClient.get<User>("http://localhost:8080/user/getemail/{"+user.email+"}");
    }
    getUserByID(){
      let user = JSON.parse(sessionStorage.getItem("user"));     
-    return this.httpClient.get<User>("http://localhost:8080/users/get/{"+user.uid+"}");
+    return this.httpClient.get<User>("http://localhost:8080/user/get/{"+user.uid+"}");
+   }
+   addUserDetail(UserDetail: UserDetail):Observable<any> {
+    return this.httpClient.post<UserDetail>('http://localhost:8080/userdetail/add', UserDetail);   
+   }
+   getUserDetailByID(id:String){
+    return this.httpClient.get<UserDetail>('http://localhost:8080/userdetail/get/{'+id+'}');   
+   }
+   getMaxUser(){
+    return this.httpClient.get<number>('http://localhost:8080/user/getMax'); 
    }
 }
