@@ -13,13 +13,12 @@ import { MenuComponent } from './menu/menu.component';
 import { NotfoundexceptionComponent } from './notfoundexception/notfoundexception.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ShoplayoutComponent } from './shoplayout/shoplayout.component';
-import { 
-  AuthGuardService as AuthGuard 
-} from './service/auth-guard.service';
+import { AuthGuardService as AuthGuard } from './service/auth-guard.service';
+import { BlogComponent } from './blog/blog.component';
 const routes: Routes = [
   {
     path:'admin',component: DashboardComponent,
-    canActivate:[AuthGuard],
+    //canActivate:[AuthGuard],
     children:[
       {
         path:"product",component:ProductComponent
@@ -43,16 +42,20 @@ const routes: Routes = [
         },
         {
           path:"cart",component:CartComponent,
-          canActivate:[AuthGuard]
-        }
+          //canActivate:[AuthGuard]
+        },
     ]
   
+  },
+  {
+    path:"home/blog",component:BlogComponent,
   },
   {
     path:'home/login', component: LoginComponent,
   },
   {
-    path:'**', component: NotfoundexceptionComponent}
+    path:'**', component: NotfoundexceptionComponent},
+    
 ];
 
 @NgModule({

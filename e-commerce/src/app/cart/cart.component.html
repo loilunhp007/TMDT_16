@@ -3,18 +3,18 @@
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
 				  <li><a href="#">Home</a></li>
-				  <li class="active">Shopping Cart</li>
+				  <li class="active">Giỏ hàng</li>
 				</ol>
 			</div>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
+							<td class="image">Hình ảnh</td>
 							<td class="description"></td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
-							<td class="total">Total</td>
+							<td class="price">Giá</td>
+							<td class="quantity">Số lượng</td>
+							<td class="total">Tổng</td>
 							<td></td>
 						</tr>
 					</thead>
@@ -53,8 +53,8 @@
 	<section id="do_action">
 		<div class="container">
 			<div class="heading">
-				<h3>What would you like to do next?</h3>
-				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+				<h3>Bạn cần gì ở shop?</h3>
+				<p>Bạn có thể kiểm tra xem mình có mã giảm giá hay điểm thưởng mà mình có thể sử dụng hoặc muốn ước tính chi phí dự toán của mình</p>
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
@@ -62,21 +62,22 @@
 						<ul class="user_option">
 							<li>
 								<input type="checkbox">
-								<label>Use Coupon Code</label>
+								<label>Sử dụng mã code giảm giá</label>
 							</li>
 							<li>
 								<input type="checkbox">
-								<label>Use Gift Voucher</label>
+								<label>Sử dụng Gift Voucher</label>
 							</li>
 							<li>
 								<input type="checkbox">
-								<label>Estimate Shipping & Taxes</label>
+								<label>Chi phí vận chuyển và thuế</label>
 							</li>
 						</ul>
 						<ul class="user_info">
 							<li class="single_field">
-								<label>Country:</label>
+								<label>Quốc gia:</label>
 								<select>
+									<option>Việt Nam</option>
 									<option>United States</option>
 									<option>Bangladesh</option>
 									<option>UK</option>
@@ -89,8 +90,10 @@
 								
 							</li>
 							<li class="single_field">
-								<label>Region / State:</label>
+								<label>Thành phố/ Thủ đô</label>
 								<select>
+									<option>TP. Hồ Chí Minh</option>
+									<option>Hà Nội</option>
 									<option>Select</option>
 									<option>Dhaka</option>
 									<option>London</option>
@@ -103,24 +106,24 @@
 							
 							</li>
 							<li class="single_field zip-field">
-								<label>Zip Code:</label>
+								<label>Mã code:</label>
 								<input type="text">
 							</li>
 						</ul>
-						<a class="btn btn-default update" href="">Get Quotes</a>
-						<a class="btn btn-default check_out" href="">Continue</a>
+						<a class="btn btn-default update" href="">Lấy dự toán</a>
+						<a class="btn btn-default check_out" href="">Tiếp tục</a>
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Cart Sub Total <span>{{cartTotal}}</span></li>
-							<li>Eco Tax <span>$0</span></li>
-							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>{{cartTotal}}</span></li>
+							<li>Tổng chi phí sản phẩm trong giỏ hàng <span>{{cartTotal}}</span></li>
+							<li>Thuế môi trường <span>$0</span></li>
+							<li>Chi phí vận chuyển  <span>Free</span></li>
+							<li>Tổng cộng <span>{{cartTotal}}</span></li>
 						</ul>
-							<a class="btn btn-default update" href="">Update</a>
-							<a class="btn btn-default check_out" href="">Check Out</a>
+							<a class="btn btn-default update" href="">Cập nhật</a>
+							<a class="btn btn-default check_out" href="">Thanh toán</a>
 					</div>
 				</div>
 			</div>

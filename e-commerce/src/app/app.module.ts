@@ -23,6 +23,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ProductDetailComponent } from './product-detail/product-detail.component'
 import { ModalModule, WavesModule, InputsModule, ButtonsModule, MDBBootstrapModule, IconsModule } from 'angular-bootstrap-md';
 import { CartComponent } from './cart/cart.component';
+import { BlogComponent } from './blog/blog.component';
 
 
 
@@ -44,6 +45,7 @@ import { CartComponent } from './cart/cart.component';
     AddproductComponent,
     ProductDetailComponent,
     CartComponent,
+    BlogComponent,
   ],
   imports: [
     BrowserModule,
