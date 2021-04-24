@@ -1,49 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
+  exportAs:'mdbModal',
   selector: 'app-update-product',
   templateUrl: './update-product.component.html',
   styleUrls: ['./update-product.component.css']
+  
 })
 export class UpdateProductComponent implements OnInit {
-  product:Product
+  
+  @Input() product:Product;
   selectedFile:File
-  validatingForm:FormGroup
   imgURL:any
-  modalOptions = {
-    class: 'modal-frame modal-top'
-}
+  validatingForm = this.formBuilder.group({
+    ProductFormModalID: ['', Validators.required],
+    ProductFormModalName: ['', Validators.required],
+    ProductFormModalPrice: ['', Validators.pattern('[0-9]')],
+    ProductFormModalQuantity:['', Validators.required],
+    ProductFormModalInfo: ['', Validators.required],
+    ProductFormModalImage: ['',Validators.required ]
+  });
     constructor(private productService:ProductService,
-      public modalRef:MDBModalRef ){ }
+      private formBuilder:FormBuilder){ }
 
   ngOnInit(): void {
-    this.product= new Product();
-    this.validatingForm = new FormGroup({
-      ProductFormModalID: new FormControl('', Validators.required),
-      ProductFormModalName: new FormControl('', Validators.required),
-      ProductFormModalPrice: new FormControl('', Validators.pattern('[0-9]')),
-      ProductFormModalQuantity: new FormControl('', Validators.required),
-      ProductFormModalInfo: new FormControl('', Validators.required),
-      ProductFormModalImage: new FormControl('',Validators.required )
-    });
+    
   }
   updateProduct(id:String){
-    this.productService.getProductByID(id).subscribe(
-      Response=>{
-        this.product=Response;
-        this.ProductFormModalID.setValue(this.product.masp)
-        this.ProductFormModalName.setValue(this.product.tensp)
-        this.ProductFormModalInfo.setValue(this.product.thongtinsanpham)
-        this.ProductFormModalPrice.setValue(this.product.gia)
-        this.ProductFormModalQuantity.setValue(this.product.soluong)
-        this.ProductFormModalImage.setValue(this.product.hinhanh)
-        console.log(this.product);
-      }
-    )
+    
+  
 
   }
   public onFileChanged(event) {
@@ -55,10 +44,9 @@ export class UpdateProductComponent implements OnInit {
       this.imgURL = reader.result
     }
   }
-  get ProductFormModalName() {
-    return this.validatingForm.get('ProductFormModalName');
+  get validatingControl(){
+    return  this.validatingForm.controls;
   }
-
   get ProductFormModalID() {
     return this.validatingForm.get('ProductFormModalID');
   }
@@ -76,4 +64,5 @@ export class UpdateProductComponent implements OnInit {
   get ProductFormModalImage() {
     return this.validatingForm.get('ProductFormModalImage');
   }
+      
 }

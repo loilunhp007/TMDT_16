@@ -18,15 +18,15 @@ export class ProductService {
    return this.httpClient.post<Product>("http://localhost:8080/products/add",product);
   }
   getProductByName(tensp:String){
-   return this.httpClient.get<Product[]>("http://localhost:8080/product/get{"+tensp+"}");
+   return this.httpClient.get<Product[]>("http://localhost:8080/product/get/"+tensp);
   }
-  getProductByID(masp:String){
-    return this.httpClient.get<Product>("http://localhost:8080/product/get/{"+masp+"}");
+  getProductByID(masp:String):Observable<any>{
+    return this.httpClient.get<Product>('http://localhost:8080/products/get/'+masp);
   }
-  updateProduct(product : Product){
-    return  this.httpClient.post<Product>("http://localhost:8080/product/put",{product});
+  updateProduct(product : Product):Observable<any>{
+    return  this.httpClient.put<Product>("http://localhost:8080/products/put/"+product.masp,product);
   }
-  deteleProductByID(matv:String):Observable<any>{
-    return this.httpClient.post<any>("http://localhost:8080/delete/{id}",{matv});
+  deteleProductByID(masp:String):Observable<any>{
+    return this.httpClient.delete<Product>("http://localhost:8080/products/delete/"+masp);
   }
 }

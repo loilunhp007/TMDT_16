@@ -38,8 +38,11 @@
 									<td data-sortable="true">{{product.luotxem}}</td>	
 									<td data-sortable="true">{{product.danhgia}}</td>
 									
-									<button class="btn btn-info btn-sm" name="edit" title="Chỉnh sửa thông tin sản phẩm" id="" (click)="editProduct(product)" [product]="selectedProduct"><i class="fa fa-edit"></i></button>
-									<button class="btn btn-danger btn-sm" name="delete" title="Xóa sản phẩm" onClick="" [product]="selectedProduct"><i class="fa fa-trash-o"></i></button>
+									
+									<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample" [product]="selectedProduct"
+        (click)="frame.show();editProduct(product)" mdbWavesEffect><i class="fa fa-edit"></i></button>									
+									<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#confirm-delete" [product]="selectedProduct"
+    		(click)="deleteProduct(product)"mdbWavesEffect><i class="fa fa-trash-o"></i></button>
 								</tr>
 							</tbody>
 							</table>
@@ -48,3 +51,67 @@
 				</div>
 			</div>
 		</div>
+		<!--modal-->
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  role="document"  aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Update</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form [formGroup]="validatingForm" (ngSubmit)="updateProduct()">
+        <div class="md-form mb-5">
+          <label for="ProductFormModalID">Ma San Pham</label>
+          <input type="text" id="ProductFormModalID" class="form-control" formControlName="ProductFormModalID" 
+                 mdbInput mdbValidate >
+        </div>
+        <div class="md-form mb-5">
+          <label for="ProductFormModalName">Ten San Pham</label>
+          <input type="text" id="ProductFormModalName" class="form-control" formControlName="ProductFormModalName"
+                 mdbInput mdbValidate value="product.tensp">
+        </div>
+        <div class="md-form mb-4">
+          <label for="ProductFormModalInfo">Thong tin san pham</label>       
+          <input type="text" id="ProductFormModalInfo" class="form-control" formControlName="ProductFormModalInfo"
+                 mdbInput mdbValidate >
+        </div>
+         <div class="md-form mb-4">
+          <label for="ProductFormModalPrice">Gia</label>     
+          <input type="text" id="ProductFormModalPrice" class="form-control" formControlName="ProductFormModalPrice"
+                 mdbInput mdbValidate>
+        </div>
+         <div class="md-form mb-4">
+          <label for="ProductFormModalQuantity">So Luong</label>       
+          <input type="text" id="ProductFormModalQuantity" class="form-control" formControlName="ProductFormModalQuantity"
+                 mdbInput mdbValidate >      
+          <div class="md-form mb-4">
+          <label for="ProductFormModalImage">Hinh anh</label>       
+          <input type="file" id="ProductFormModalImage" accept="image/*"  (change)="onFileChanged($event)" class="form-control" formControlName="ProductFormModalImage"
+                 mdbInput mdbValidate style="display:none" #fileInput>
+                 <br>
+          <button mdbBtn color="deep-orange" class="waves-light" (click)="fileInput.click()">Image</button>
+        
+          <div class="md-form mb-4">
+              
+              <img [src]="imgURL" height="200" width="200" >
+        
+        </div>
+		<input type="hidden" id="orangeForm-ml" class="form-control" formControlName="ProductFormModalMaloai"
+                 mdbInput mdbValidate>
+        <input type="hidden" id="orangeForm-tt" class="form-control" formControlName="ProductFormModalTrangThai"
+                 mdbInput mdbValidate>
+        
+    </div>
+     
+      <div class="modal-footer d-flex justify-content-center">
+        <button  mdbBtn color="deep-orange" class="waves-light"  >Update</button>
+      </div>
+  
+    </div>
+         </form>
+  </div>
+</div>

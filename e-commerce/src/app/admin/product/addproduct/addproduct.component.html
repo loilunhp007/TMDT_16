@@ -55,7 +55,7 @@
         </div>
          <div class="md-form mb-4">
           <label for="orangeForm-price">Gia</label>     
-          <input type="" id="orangeForm-price" class="form-control" [formControl]="ProductFormModalPrice"
+          <input type="text" id="orangeForm-price" class="form-control" [formControl]="ProductFormModalPrice"
                  mdbInput mdbValidate>
 
           <mdb-error
@@ -85,6 +85,7 @@
           <input type="file" id="orangeForm-image" accept="image/*"  (change)="onFileChanged($event)" class="form-control" [formControl]="ProductFormModalImage"
                  mdbInput mdbValidate style="display:none" #fileInput>
                  <br>
+
           <button mdbBtn color="deep-orange" class="waves-light" (click)="fileInput.click()">Image</button>
           <mdb-error
             *ngIf="ProductFormModalImage.invalid && (ProductFormModalImage.dirty || ProductFormModalImage.touched)">
@@ -99,6 +100,7 @@
               <img [src]="imgURL" height="200" width="200" *ngIf="imgURL">
         
         </div>
+        
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button [disabled]="!ProductFormModalQuantity.valid || !ProductFormModalName.valid || !ProductFormModalID.valid" mdbBtn color="deep-orange" class="waves-light" (click)="addProduct()">Add</button>

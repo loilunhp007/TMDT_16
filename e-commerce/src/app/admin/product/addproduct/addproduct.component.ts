@@ -84,7 +84,7 @@ export class AddproductComponent implements OnInit {
     return this.validatingForm.get('ProductFormModalInfo');
   }
   get ProductFormModalPrice() {
-    return this.validatingForm.get('ProductFormModalName');
+    return this.validatingForm.get('ProductFormModalPrice');
   }
 
   get ProductFormModalQuantity() {

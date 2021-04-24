@@ -41,6 +41,15 @@ public class SanPhamController {
     public List<Sanpham> getAllProduct(){
         return this.sanphamService.getAllProducts();
     }
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Sanpham> getProductById(@PathVariable(name = "id")String id){
+        Sanpham existSanpham = sanphamService.findProductByID(id);
+        if(existSanpham != null){
+            return ResponseEntity.status(HttpStatus.OK).body(existSanpham);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(existSanpham);
+
+    }
     @PostMapping("/add")
     public ResponseEntity<Sanpham> addProduct(@RequestBody Sanpham sanpham) throws IOException{
         Sanpham _sanpham = null;
@@ -63,22 +72,23 @@ public class SanPhamController {
       
     }
     @PutMapping("/put/{masp}")
-    public ResponseEntity<Sanpham> updateProductById(@PathVariable(name = "masp")String masp,@RequestBody Sanpham sanpham){
-        Sanpham _Product = this.sanphamService.findAccountByID(masp);
-        _Product.setMaloai(sanpham.getMaloai());
-        _Product.setTensp(sanpham.getTensp());
-        _Product.setThongtinsanpham(sanpham.getThongtinsanpham());
-        _Product.setGia(sanpham.getGia());
-        _Product.setSoluong(sanpham.getSoluong());
-        _Product.setLuotxem(sanpham.getLuotxem());
-        _Product.setHinhanh(sanpham.getHinhanh());
-        _Product.setDanhgia(sanpham.getDanhgia());
-        _Product.setTrangthai(sanpham.getTrangthai());
+    public ResponseEntity<Sanpham> updateProductById(@PathVariable(name = "masp")String masp,@RequestBody Sanpham product){
+        Sanpham _Product = this.sanphamService.findProductByID(masp);
+        System.out.println(product.toString());
+        _Product.setMaloai(product.getMaloai());
+        _Product.setTensp(product.getTensp());
+        _Product.setThongtinsanpham(product.getThongtinsanpham());
+        _Product.setGia(product.getGia());
+        _Product.setSoluong(product.getSoluong());
+        _Product.setLuotxem(product.getLuotxem());
+        _Product.setHinhanh(product.getHinhanh());
+        _Product.setDanhgia(product.getDanhgia());
+        _Product.setTrangthai(product.getTrangthai());
         Sanpham newProduct= this.sanphamService.addProduct(_Product);
         return ResponseEntity.status(HttpStatus.OK).body(newProduct);
     }
-    @DeleteMapping("/detele/{id}")
-    public ResponseEntity<?> deteleProductById(@PathVariable(name = "masp")String masp){
+    @DeleteMapping("/delete/{masp}")
+    public ResponseEntity<String> deteleProductById(@PathVariable(name = "masp")String masp){
         this.sanphamService.deteleProductByID(masp);
         return ResponseEntity.status(HttpStatus.OK).body("detele sucess");
     }
