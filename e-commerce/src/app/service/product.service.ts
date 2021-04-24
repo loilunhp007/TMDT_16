@@ -15,7 +15,7 @@ export class ProductService {
     return this.httpClient.get<Product[]>("http://localhost:8080/products/get");
   }
   addProduct(product: Product){
-   return this.httpClient.post<Product>("http://localhost:8080/product/add",{product});
+   return this.httpClient.post<Product>("http://localhost:8080/products/add",product);
   }
   getProductByName(tensp:String){
    return this.httpClient.get<Product[]>("http://localhost:8080/product/get{"+tensp+"}");

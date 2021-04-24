@@ -18,7 +18,6 @@ import { BlogComponent } from './blog/blog.component';
 const routes: Routes = [
   {
     path:'admin',component: DashboardComponent,
-    //canActivate:[AuthGuard],
     children:[
       {
         path:"product",component:ProductComponent

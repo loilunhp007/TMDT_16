@@ -24,6 +24,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ModalModule, WavesModule, InputsModule, ButtonsModule, MDBBootstrapModule, IconsModule } from 'angular-bootstrap-md';
 import { CartComponent } from './cart/cart.component';
 import { BlogComponent } from './blog/blog.component';
+import { UpdateProductComponent } from './admin/product/update-product/update-product.component';
+import { FileSaverModule } from 'ngx-filesaver';
 
 
 
@@ -46,6 +48,7 @@ import { BlogComponent } from './blog/blog.component';
     ProductDetailComponent,
     CartComponent,
     BlogComponent,
+    UpdateProductComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { BlogComponent } from './blog/blog.component';
     InputsModule,
     ButtonsModule,
     MDBBootstrapModule.forRoot(),
-    IconsModule
+    IconsModule,
+    FileSaverModule
   ],
   providers: [],
   bootstrap: [AppComponent

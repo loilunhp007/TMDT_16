@@ -26,4 +26,16 @@ export class CartComponent implements OnInit {
       })
 
   }
+  removeItem(masp:String){
+    for(let i =0;i<localStorage.length;i++){
+      const exist = this.products.forEach(item=>{
+        if(item.masp == masp){
+          localStorage.removeItem("item"+i);
+          console.log("item"+i)
+        }
+      })
+      
+    }
+
+  }
 }

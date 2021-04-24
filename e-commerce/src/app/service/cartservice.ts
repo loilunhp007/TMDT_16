@@ -25,12 +25,15 @@ export class CartService {
     for(var i =1;i<localStorage.length;i++)
       {
         let product = JSON.parse(localStorage.getItem("item"+i));
+        product[i]= new Product
+        product[i].soluong=1
         const exist = this.cartItems.find((item)=>{
           return item.masp == product.masp;
           
         })
         if(exist){
           exist.soluong++;
+          console.log(exist.soluong);
          }
          else{
            this.cartItems.push(product)
@@ -41,4 +44,15 @@ export class CartService {
       
 
   }
+  removeItem(){
+    const quantity=0
+    for(var i =1;i<localStorage.length;i++)
+      {
+        let product = JSON.parse(localStorage.getItem("item"+i));
+        const exist = this.cartItems.find((item)=>{
+          return item.masp == product.masp;
+          
+        })
+      }
+    }
 }

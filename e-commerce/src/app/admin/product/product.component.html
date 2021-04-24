@@ -34,15 +34,16 @@
 									<td data-sortable="true">{{product.soluong}}</td>
 									<td data-sortable="true">{{product.gia}}</td>
 									<td data-sortable="true">{{product.thongtinsanpham}}</td>
-									<td data-sortable="true"><img src="{{product.hinhanh}}" width="50px" height="50px"></td>
+									<td data-sortable="true"><img src="../../../../assets/images/{{product.hinhanh}}" width="50px" height="50px"></td>
 									<td data-sortable="true">{{product.luotxem}}</td>	
 									<td data-sortable="true">{{product.danhgia}}</td>
-									<td data-sortable="true">
-									<button class="btn btn-info btn-sm" name="edit" title="Chỉnh sửa thông tin sản phẩm" id="" onClick=""><i class="fa fa-edit"></i></button>
-									<button class="btn btn-danger btn-sm" name="delete" title="Xóa sản phẩm" onClick=""><i class="fa fa-trash-o"></i></button>
+									
+									<button class="btn btn-info btn-sm" name="edit" title="Chỉnh sửa thông tin sản phẩm" id="" (click)="editProduct(product)" [product]="selectedProduct"><i class="fa fa-edit"></i></button>
+									<button class="btn btn-danger btn-sm" name="delete" title="Xóa sản phẩm" onClick="" [product]="selectedProduct"><i class="fa fa-trash-o"></i></button>
 								</tr>
 							</tbody>
 							</table>
+							
 					</div>
 				</div>
 			</div>

@@ -1,6 +1,13 @@
 package com.Controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.ServletContext;
+
 import com.Entity.Sanpham;
 import com.Services.SanPhamService;
 
@@ -16,26 +23,44 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "products")
 public class SanPhamController {
+    private byte[] bytes;
     @Autowired
     private SanPhamService sanphamService;
+    private ServletContext context;
 
     @GetMapping("/get")
     public List<Sanpham> getAllProduct(){
         return this.sanphamService.getAllProducts();
     }
     @PostMapping("/add")
-    public ResponseEntity<Sanpham> addProduct(@RequestBody Sanpham sanpham){
+    public ResponseEntity<Sanpham> addProduct(@RequestBody Sanpham sanpham) throws IOException{
         Sanpham _sanpham = null;
         _sanpham = this.sanphamService.addProduct(sanpham);
         return ResponseEntity.status(HttpStatus.OK).body(_sanpham);
 
+    }
+    @PostMapping("/upload")
+    public void uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException{
+        this.bytes =file.getBytes() ;
+        String name = file.getOriginalFilename();
+        String folder= "C://Users//LENOVO//Desktop//TMDT//TMDT_16//e-commerce//src//assets//images//";
+        if (name != null && name.length() > 0) {
+                // Create the file at server
+                File serverFile = new File(folder + name);
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+                stream.write(bytes);
+                stream.close();                    
+            }
+      
     }
     @PutMapping("/put/{masp}")
     public ResponseEntity<Sanpham> updateProductById(@PathVariable(name = "masp")String masp,@RequestBody Sanpham sanpham){
@@ -52,9 +77,10 @@ public class SanPhamController {
         Sanpham newProduct= this.sanphamService.addProduct(_Product);
         return ResponseEntity.status(HttpStatus.OK).body(newProduct);
     }
-    @DeleteMapping("detele/{id}")
+    @DeleteMapping("/detele/{id}")
     public ResponseEntity<?> deteleProductById(@PathVariable(name = "masp")String masp){
         this.sanphamService.deteleProductByID(masp);
         return ResponseEntity.status(HttpStatus.OK).body("detele sucess");
     }
+    
 }
