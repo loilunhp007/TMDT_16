@@ -59,12 +59,12 @@
 					<div class="col-md-8 clearfix">
 						<div class="shop-menu clearfix pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-user"></i> Tài khoản</a></li>
+								<li><a *ngIf="!isLoggedIn()" routerLink="/home/login"><i class="fa fa-user"></i> Đăng nhập</a></li>
 								<li><a href=""><i class="fa fa-star"></i> Yêu thích</a></li>
 								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-								<li><a routerLink="/home/cart"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+								<li><a  routerLink="/home/cart"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 								<li><a *ngIf="isLoggedIn()"(click)="logout()" ><i class="fa fa-lock"></i> Đăng xuất</a></li>
-								<li><a *ngIf="isLoggedIn()" href="#">Hi {{user.email}}</a>
+								<li><a *ngIf="isLoggedIn()" routerLink="/home/{{user.email}}">{{user.email}}</a>
 							</ul>
 						</div>
 					</div>
