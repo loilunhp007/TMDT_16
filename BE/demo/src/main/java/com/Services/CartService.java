@@ -40,9 +40,8 @@ public class CartService {
         
         return soluong;
     }
-    public Cart updateCart(Sanpham product){
-        Cart  cart = new Cart();
-            return cart;
+    public Cart updateCart(UserDetail userDetail,String masp){
+        Sanpham product = sanPhamRepository.findById(masp).get();
             
     }
     

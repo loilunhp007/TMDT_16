@@ -14,7 +14,7 @@ export class CartService {
     return this.httpClient.get<Cart[]>('http://localhost:8080/cart/get/'+matv)
   }
   addToCart(matv:string,masp:String):Observable<any>{
-    return this.httpClient.post<Cart>('http://localhost:8080/cart/add/'+matv+'/'+masp,null)  
+    return this.httpClient.post<Cart>('http://localhost:8080/cart/add/'+masp+'/'+matv,null)  
   }
 
  /*addItem(product:Product){

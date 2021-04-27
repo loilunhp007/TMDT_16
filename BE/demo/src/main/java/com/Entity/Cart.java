@@ -21,11 +21,9 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
-
     @ManyToOne
     @JoinColumn(name = "masp")
     private Sanpham product;
-
     @ManyToOne
     @JoinColumn(name = "matv")
     private UserDetail userDetail;
