@@ -176,26 +176,26 @@
 				
 				<div class="features_items"><!--features_items-->
 					<h2 class="title text-center">Sản phẩm</h2>
-					<div class="col">
+					<!-- <div class="col">
 						<div class="search_box pull-right">
 							<input type="text" placeholder="Search" [(ngModel)]="searchText"/>
 						</div>
 					</div>
 					<div style="clear: both;"></div>
-					<br>
+					<br> -->
 					<div class="col-sm-4" *ngFor="let product of products | filter : searchText ">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
 									<img src="../../../../assets/images/{{product.hinhanh}}" alt="" />
 									<span style="display:'none'">{{product.masp}}</span>
-									<h2>${{product.gia}}</h2>
+									<h2>{{product.gia|currency:'VND':'symbol':'3.0'}} VNĐ</h2>
 									<p>{{product.tensp}}</p>
 									<a routerLink="product-detail/{{product.masp}}" class="btn btn-default add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
-										<h2>${{product.gia}}</h2>
+										<h2>{{product.gia}} VNĐ</h2>
 										<p>{{product.tensp}}</p>
 										<a href="#" class="btn btn-default add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 									</div>
@@ -203,8 +203,8 @@
 							</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										<li><a href=""><i class="fa fa-plus-square"></i>Thêm vào danh sách yêu thích</a></li>
+										<!--<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>-->
 									</ul>
 								</div>
 						</div>
