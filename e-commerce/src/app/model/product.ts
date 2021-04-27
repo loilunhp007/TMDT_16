@@ -9,5 +9,6 @@ export class Product {
     danhgia:number;
     luotxem:number;
     trangthai:number;
+    matv:string;
     constructor(){}
 }

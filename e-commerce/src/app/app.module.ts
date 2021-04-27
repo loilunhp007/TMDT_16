@@ -26,6 +26,7 @@ import { CartComponent } from './cart/cart.component';
 import { BlogComponent } from './blog/blog.component';
 import { UpdateProductComponent } from './admin/product/update-product/update-product.component';
 import { FileSaverModule } from 'ngx-filesaver';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -65,7 +66,8 @@ import { FileSaverModule } from 'ngx-filesaver';
     MDBBootstrapModule.forRoot(),
     IconsModule,
     FileSaverModule,
-    ModalModule
+    ModalModule,
+    Ng2SearchPipeModule
   ],
   providers: [ModalDirective],
   bootstrap: [AppComponent

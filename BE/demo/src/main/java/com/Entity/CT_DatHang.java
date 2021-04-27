@@ -2,18 +2,24 @@ package com.Entity;
 
 import lombok.*;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Setter
 @Getter
+@Entity
+@Table(name="ctdathang")
+@IdClass(DatHangId.class)
 public class CT_DatHang {
     @Id
-    private long mahdn;
+    private String mahdn;
     @Id
-    private long masp;
+    private String masp;
     private String soluong;
     private String gia;
     private String tongtien;
