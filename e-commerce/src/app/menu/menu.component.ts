@@ -9,6 +9,7 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+    searchText;
     isLogged = false;
      user = JSON.parse(sessionStorage.getItem("user"));
   constructor(private userService : UserService,

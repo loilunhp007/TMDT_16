@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../model/product';
+import { User } from '../model/user';
 import { CartService } from '../service/cartservice';
 import { ProductService } from '../service/product.service';
 
@@ -10,12 +11,13 @@ import { ProductService } from '../service/product.service';
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
-
+  searchText;
   constructor(private productService:ProductService,
     private cartService : CartService,
     private route: ActivatedRoute) { }
     products : Array<Product>
-    product : Product
+    product : Product;
+    user:User;
   ngOnInit(): void {
     const masp = +this.route.snapshot.params['masp'];
     this.getProduct();
@@ -35,9 +37,18 @@ export class CategoryComponent implements OnInit {
     )
   }
   addToCart(product:Product){
-    let len = localStorage.length;
-    len+=1;
-    localStorage.setItem("item"+len,JSON.stringify(product))
+     this.user = new User();
+     this.user = JSON.parse(sessionStorage.getItem("user"));
+     let s= this.user.matv+''
+    this.cartService.addToCart(s,product.masp).subscribe(
+      Response=>{
+
+      },
+      (error)=>{
+        console.log(s+"sp:"+product.masp)
+        alert(s+"sp:"+product.masp);
+      }
+    )
   }
 
 }

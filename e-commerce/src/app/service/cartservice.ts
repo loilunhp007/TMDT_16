@@ -1,15 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Cart } from '../model/cart';
 import { Product } from '../model/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  cartItems : Product[] =[]
-  cartTotal=0;
-  constructor() { 
+  constructor(private httpClient:HttpClient) { 
   }
+  getCartItems(matv:String):Observable<any>{
+    return this.httpClient.get<Cart[]>('http://localhost:8080/cart/get/'+matv)
+  }
+  addToCart(matv:string,masp:String):Observable<any>{
+    return this.httpClient.post<Cart>('http://localhost:8080/cart/add/'+matv+'/'+masp,null)  
+  }
+
  /*addItem(product:Product){
     const exist = this.cartItems.find((item)=>{
       return item.masp == product.masp;
@@ -20,39 +27,5 @@ export class CartService {
       this.cartItems.push(product)
       console.log(this.cartItems)
   }*/
-  getItem(){
-    const quantity=0
-    for(var i =1;i<localStorage.length;i++)
-      {
-        let product = JSON.parse(localStorage.getItem("item"+i));
-        product[i]= new Product
-        product[i].soluong=1
-        const exist = this.cartItems.find((item)=>{
-          return item.masp == product.masp;
-          
-        })
-        if(exist){
-          exist.soluong++;
-          console.log(exist.soluong);
-         }
-         else{
-           this.cartItems.push(product)
-         }
-      
-      }
-      return this.cartItems;
-      
-
-  }
-  removeItem(){
-    const quantity=0
-    for(var i =1;i<localStorage.length;i++)
-      {
-        let product = JSON.parse(localStorage.getItem("item"+i));
-        const exist = this.cartItems.find((item)=>{
-          return item.masp == product.masp;
-          
-        })
-      }
-    }
+  
 }
