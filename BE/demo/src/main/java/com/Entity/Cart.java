@@ -28,5 +28,10 @@ public class Cart {
     @JoinColumn(name = "matv")
     private UserDetail userDetail;
     private int soluong;
+    public int getSoluong() {
+        return 0;
+    }
+    public void setSoluong(int soluong2) {
+    }
 
 }

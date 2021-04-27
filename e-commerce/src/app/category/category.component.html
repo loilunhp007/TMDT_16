@@ -167,46 +167,47 @@
 							</div>
 						</div><!--/price-range-->
 						
-						<div class="shipping text-center"><!--shipping-->
+						<!-- <div class="shipping text-center">
 							<img src="../../assets/images/home/shipping.jpg" alt="" />
-						</div><!--/shipping-->
+						</div> -->
 						
 					</div>
 				</div>
 				
 				<div class="features_items"><!--features_items-->
-									
-						<h2 class="title text-center">Features Items</h2>
-						<div class="col">
-					<div class="search_box pull-right">
-						<input type="text" placeholder="Search" [(ngModel)]="searchText"/>
+					<h2 class="title text-center">Sản phẩm</h2>
+					<div class="col">
+						<div class="search_box pull-right">
+							<input type="text" placeholder="Search" [(ngModel)]="searchText"/>
+						</div>
 					</div>
-				</div>
-						<div class="col-sm-4" *ngFor="let product of products | filter : searchText ">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="../../../../assets/images/{{product.hinhanh}}" alt="" />
-										<span style="display:'none'">{{product.masp}}</span>
+					<div style="clear: both;"></div>
+					<br>
+					<div class="col-sm-4" *ngFor="let product of products | filter : searchText ">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="../../../../assets/images/{{product.hinhanh}}" alt="" />
+									<span style="display:'none'">{{product.masp}}</span>
+									<h2>${{product.gia}}</h2>
+									<p>{{product.tensp}}</p>
+									<a routerLink="product-detail/{{product.masp}}" class="btn btn-default add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
 										<h2>${{product.gia}}</h2>
 										<p>{{product.tensp}}</p>
-										<a routerLink="product-detail/{{product.masp}}" class="btn btn-default add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>${{product.gia}}</h2>
-											<p>{{product.tensp}}</p>
-											<a href="#" class="btn btn-default add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
+										<a href="#" class="btn btn-default add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 									</div>
 								</div>
+							</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
 										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
 										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
 									</ul>
 								</div>
-							</div>
+						</div>
 					</div><!--features_items-->
 						
 				</div>
