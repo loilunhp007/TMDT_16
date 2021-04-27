@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cart } from '../model/cart';
 import { Product } from '../model/product';
 import { User } from '../model/user';
@@ -16,7 +17,8 @@ export class CartComponent implements OnInit {
   cartTotal=0
   product:Product
   constructor(private cartService : CartService,
-    private productService:ProductService) { }
+    private productService:ProductService,
+    private router:Router) { }
   user:User
   ngOnInit(): void {
     this.user = new User()
@@ -65,5 +67,33 @@ export class CartComponent implements OnInit {
       
     }
 
+  }
+  plusCart(product:Product){
+    this.user = new User();
+    this.user = JSON.parse(sessionStorage.getItem("user"));
+    let s= this.user.matv+''
+    this.cartService.plusCart(s,product.masp).subscribe(
+      Response=>{
+          this.router.navigate(['home/cart'])
+      },
+      (error)=>{
+
+      }
+
+    )
+  }
+minusCart(product:Product){
+    this.user = new User();
+    this.user = JSON.parse(sessionStorage.getItem("user"));
+    let s= this.user.matv+''
+    this.cartService.minusCart(s,product.masp).subscribe(
+      Response=>{
+        this.router.navigate(['home/cart'])
+      },
+      (error)=>{
+        
+      }
+
+    )
   }
 }

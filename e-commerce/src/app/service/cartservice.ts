@@ -16,6 +16,12 @@ export class CartService {
   addToCart(matv:string,masp:String):Observable<any>{
     return this.httpClient.post<Cart>('http://localhost:8080/cart/add/'+masp+'/'+matv,null)  
   }
+  plusCart(matv:string,masp:String):Observable<any>{
+    return this.httpClient.put<Cart>('http://localhost:8080/cart/put/plus/'+masp+"/"+matv,null);
+  }
+  minusCart(matv:string,masp:String):Observable<any>{
+    return this.httpClient.put<Cart>('http://localhost:8080/cart/put/minus/'+masp+"/"+matv,null);
+  }
 
  /*addItem(product:Product){
     const exist = this.cartItems.find((item)=>{

@@ -22,6 +22,9 @@ public class CartService {
     public List<Cart> getCartItems(UserDetail userDetail){
         return this.cartRepository.findByUserDetail(userDetail);
     }
+    public Cart getCartById(int id){
+        return cartRepository.findById(id).get();
+    }
 
     public int addItem(UserDetail userDetail,String masp){
             int soluong=1;
@@ -40,9 +43,22 @@ public class CartService {
         
         return soluong;
     }
-    public Cart updateCart(UserDetail userDetail,String masp){
+    public int plusQuanCart(UserDetail userDetail,String masp){
         Sanpham product = sanPhamRepository.findById(masp).get();
-            
+        Cart cart = cartRepository.findByProductAndUserDetail(product, userDetail);
+        int soluong = cart.getSoluong()+1;
+        cart.setSoluong(soluong);
+        cartRepository.save(cart);
+        return soluong;
     }
+    public int minusQuanCart(UserDetail userDetail,String masp){
+        Sanpham product = sanPhamRepository.findById(masp).get();
+        Cart cart = cartRepository.findByProductAndUserDetail(product, userDetail);
+        int soluong = cart.getSoluong()-1;
+        cart.setSoluong(soluong);
+        cartRepository.save(cart);
+        return soluong;
+    }
+
     
 }

@@ -50,5 +50,32 @@ export class CategoryComponent implements OnInit {
       }
     )
   }
+  plusCart(product:Product){
+    this.user = new User();
+    this.user = JSON.parse(sessionStorage.getItem("user"));
+    let s= this.user.matv+''
+    this.cartService.plusCart(s,product.masp).subscribe(
+      Response=>{
 
+      },
+      (error)=>{
+
+      }
+
+    )
+  }
+minusCart(product:Product){
+    this.user = new User();
+    this.user = JSON.parse(sessionStorage.getItem("user"));
+    let s= this.user.matv+''
+    this.cartService.minusCart(s,product.masp).subscribe(
+      Response=>{
+
+      },
+      (error)=>{
+        
+      }
+
+    )
+  }
 }

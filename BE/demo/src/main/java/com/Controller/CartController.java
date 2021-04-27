@@ -7,6 +7,7 @@ import com.Entity.Cart;
 import com.Entity.Sanpham;
 import com.Entity.UserDetail;
 import com.Services.CartService;
+import com.Services.SanPhamService;
 import com.Services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,5 +44,17 @@ public class CartController {
         int qt = cartService.addItem(userDetail, masp);
         return ResponseEntity.status(HttpStatus.OK).body(qt+"add success");
     }
+    @PutMapping("/put/plus/{masp}/{matv}")
+    public ResponseEntity<String> plusCart(@PathVariable(name = "masp")String masp,@PathVariable(name = "matv")String matv){
+        UserDetail userDetail = userService.getUserDetailById(matv);
+        int qt = cartService.plusQuanCart(userDetail, masp);
+        return ResponseEntity.status(HttpStatus.OK).body(qt+"update success");
+    }
+    @PutMapping("/put/minus/{masp}/{matv}")
+    public ResponseEntity<String> minusCart(@PathVariable(name = "masp")String masp,@PathVariable(name = "matv")String matv){
+        UserDetail userDetail = userService.getUserDetailById(matv);
+        int qt = cartService.minusQuanCart(userDetail, masp);
+        return ResponseEntity.status(HttpStatus.OK).body(qt+"update success");
+    }      
 }
  
