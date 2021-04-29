@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, setTestabilityGetter, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MDBModalRef, MDBModalService, ModalDirective } from 'angular-bootstrap-md';
 import { Product } from 'src/app/model/product';
+import { User } from 'src/app/model/user';
 import { ProductService } from 'src/app/service/product.service';
 import { UpdateProductComponent } from './update-product/update-product.component';
 
@@ -17,7 +18,10 @@ export class ProductComponent implements OnInit {
   selectedProduct : Product
   action : String
   selectedFile:File
-  imgURL:any
+  imgURL:any;
+  private userDetailId:String;
+  status:String
+  status2:String;
   validatingForm = this.formBuilder.group({
     ProductFormModalID: ['', Validators.required],
     ProductFormModalName: ['', Validators.required],
@@ -36,17 +40,23 @@ export class ProductComponent implements OnInit {
     private httpClient:HttpClient) { }
 
   ngOnInit(): void {
-    this.getProduct();
-  }
-  getProduct(){
-    this.productService.getProduct().subscribe(
-      (response)=>{ this.products =response;
-          console.log(this.products);
+    this.userDetailId = JSON.parse(sessionStorage.getItem("user"));
+    this.getProduct(this.userDetailId);
+    this.status="Đang hoạt động";
+    this.status2="Tạm ẩn";
 
-      })
   }
-  getProductByID(matv:String){
-    this.productService.getProduct().subscribe(
+  getProduct(matv:String){
+    if(this.userDetailId !=null){
+      this.productService.getProduct(matv).subscribe(
+        (response)=>{ this.products =response;
+          console.log(this.products)
+        })
+    }
+    
+  }
+  getProductByID(masp:String){
+    this.productService.getProductByID(masp).subscribe(
       (response)=>{ this.products =response;
           console.log(this.products);
         
@@ -57,10 +67,9 @@ export class ProductComponent implements OnInit {
 
   }
   getProductByName(tensp:string){
-    this.productService.getProduct().subscribe(
+    this.productService.getProductByName(tensp).subscribe(
       (response)=>{ this.products =response;
           console.log(this.products);
-        
       })
   }
   editProduct(product:Product){
@@ -133,7 +142,6 @@ export class ProductComponent implements OnInit {
               )
             }
         })
-       
      
   
 
@@ -177,10 +185,40 @@ export class ProductComponent implements OnInit {
     if(confirm("Are you sure to delete "+product.tensp)) {
       this.productService.deteleProductByID(product.masp).subscribe(
         Response=>{
-            this.router.navigate(['admin/products'])
+            this.router.navigate(['admin/product'])
         }
       )
     }
     
   }
+  statusProduct(product:Product){
+      let product2 = new Product();
+      this.productService.getProductByID(product.masp).subscribe(
+        Response=>{
+          product2=Response
+          if(product2.trangthai == 1){
+            product2.trangthai=0
+            this.productService.updateProduct(product2).subscribe(
+              Response1=>{
+                this.exit();
+              }
+            )
+          }
+          else{
+            if(product2.trangthai == 0){
+              product2.trangthai= 1
+            this.productService.updateProduct(product2).subscribe(
+              Response1=>{
+                this.exit()
+              }
+            )
+            }
+          }
+        }
+      )
+  }
+  exit() {
+    location.reload();
+  }
+
 }

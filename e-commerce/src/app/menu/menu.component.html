@@ -156,7 +156,10 @@
 					</div>
 					<div class="col-sm-3">
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search" [(ngModel)]="searchText"/>
+							<form [formGroup]="formSearch"  (ngSubmit)="searchProduct()">
+							<input type="text"  class="form-control" placeholder="Search" display="text-align:center" formControlName="searchValue" />
+							 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+							</form>
 						</div>
 					</div>
 				</div>

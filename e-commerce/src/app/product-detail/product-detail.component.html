@@ -1,3 +1,4 @@
+<app-menu></app-menu>	
 	<section>
 		<div class="container">
 			<div class="row">
@@ -145,7 +146,7 @@
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
 							<div class="view-product">
-								<img src="../../assets/images/product-details/1.jpg" alt="" />
+								<img src="../../assets/images/{{product.hinhanh}}" alt="" />
 								<h3>ZOOM</h3>
 							</div>
 							<div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -153,19 +154,19 @@
 								  <!-- Wrapper for slides -->
 								    <div class="carousel-inner">
 										<div class="item active">
-										  <a href=""><img src="../../assets/images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="../../assets/images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="../../assets/images/product-details/similar3.jpg" alt=""></a>
+										  <a href=""><img src="../../assets/images/{{product.hinhanh}}" alt="" width="84px" height="84px"></a>
+										  <a href=""><img src="../../assets/images/{{product.hinhanh}}" alt=""width="84px" height="84px"></a>
+										  <a href=""><img src="../../assets/images/{{product.hinhanh}}" alt=""width="84px" height="84px"></a>
 										</div>
 										<div class="item">
-										  <a href=""><img src="../../assets/images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="../../assets/images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="../../assets/images/product-details/similar3.jpg" alt=""></a>
+										  <a href=""><img src="../../assets/images/{{product.hinhanh}}" alt=""width="84px" height="84px"></a>
+										  <a href=""><img src="../../assets/images/{{product.hinhanh}}" alt=""width="84px" height="84px"></a>
+										  <a href=""><img src="../../assets/images/{{product.hinhanh}}" alt=""width="84px" height="84px"></a>
 										</div>
 										<div class="item">
-										  <a href=""><img src="../../assets/images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="../../assets/images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="../../assets/images/product-details/similar3.jpg" alt=""></a>
+										  <a href=""><img src="../../assets/images/{{product.hinhanh}}" alt=""width="84px" height="84px"></a>
+										  <a href=""><img src="../../assets/images/{{product.hinhanh}}" alt=""width="84px" height="84px"></a>
+										  <a href=""><img src="../../assets/images/{{product.hinhanh}}" alt=""width="84px" height="84px"></a>
 										</div>
 										
 									</div>
@@ -183,21 +184,23 @@
 						<div class="col-sm-7">
 							<div class="product-information"><!--/product-information-->
 								<img src="../../assets/images/product-details/new.jpg" class="newarrival" alt="" />
-								<h2>Anne Klein Sleeveless Colorblock Scuba</h2>
-								<p>Web ID: 1089772</p>
+								<h2>{{product.tensp}}</h2>
+								<p>Web ID: {{product.masp}}</p>
 								<img src="../../assets/images/product-details/rating.png" alt="" />
 								<span>
-									<span>US $59</span>
-									<label>Quantity:</label>
-									<input type="text" value="3" />
-									<button type="button" class="btn btn-fefault cart">
+									<span>{{product.gia|currency:'VND':'symbol':'3.0'}}</span>
+	
+									<button *ngIf="!(this.product.trangthai==0 || this.product.soluong==0)"  type="button" class="btn btn-fefault cart" (click)="addToCart(product)" >
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
 									</button>
 								</span>
-								<p><b>Availability:</b> In Stock</p>
+								<p *ngIf="product.soluong==0||product.trangthai==0"><b>Availability:</b>Out of Stock</p>
+								
+								<p *ngIf="product.soluong>0&& product.trangthai==1"><b>Availability:</b>In Stock</p>
+								<p *ngIf="product.trangthai==0"><b>Status:</b>Bận</p>
 								<p><b>Condition:</b> New</p>
-								<p><b>Brand:</b> E-SHOPPER</p>
+								<p><b>Brand:</b> E-MALL</p>
 								<a href=""><img src="../../assets/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
 							</div><!--/product-information-->
 						</div>
@@ -382,7 +385,7 @@
 											<input type="email" placeholder="Email Address"/>
 										</span>
 										<textarea name="" ></textarea>
-										<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
+										<b>Rating: </b> <img src="../../assets/images/product-details/rating.png" alt="" />
 										<button type="button" class="btn btn-default pull-right">
 											Submit
 										</button>
@@ -488,4 +491,4 @@
 			</div>
 		</div>
 	</section>
-	
+<app-footer></app-footer>	

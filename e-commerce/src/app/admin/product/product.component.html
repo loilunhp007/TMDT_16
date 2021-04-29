@@ -21,8 +21,7 @@
 									<th scope="col">Giá</th>
 									<th scope="col">Thong tin SP</th>
 									<th scope="col">Hình ảnh</th>
-									<th scope="col">Lượt xem</th>
-									<th scope="col">Danh Gia</th>
+                  <th scope="col">Trạng thái</th>
 									<th scope="col">Thao tác</th>
 								</tr>
 							</thead>
@@ -35,17 +34,25 @@
 									<td data-sortable="true">{{product.gia}}</td>
 									<td data-sortable="true">{{product.thongtinsanpham}}</td>
 									<td data-sortable="true"><img src="../../../../assets/images/{{product.hinhanh}}" width="50px" height="50px"></td>
-									<td data-sortable="true">{{product.luotxem}}</td>	
-									<td data-sortable="true">{{product.danhgia}}</td>
+									<td data-sortable="true" *ngIf="product.trangthai=='1'">
+                          Đang hoạt động
+                  </td>
+                  <td data-sortable="true" *ngIf="product.trangthai=='0'">
+                          Tạm ẩn
+                  </td>
 									
 									
-									<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample" [product]="selectedProduct"
+									<td data-sortable="true">
+                  <button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample" [product]="selectedProduct"
         (click)="frame.show();editProduct(product)" mdbWavesEffect><i class="fa fa-edit"></i></button>									
 									<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#confirm-delete" [product]="selectedProduct"
     		(click)="deleteProduct(product)"mdbWavesEffect><i class="fa fa-trash-o"></i></button>
-								</tr>
+         <button mdbBtn color="default"mdbWavesEffect rounded="true"[product]="selectedProduct"
+         (click)="statusProduct(product)">Enable/Disable</button></td>
+
 							</tbody>
 							</table>
+              
 							
 					</div>
 				</div>

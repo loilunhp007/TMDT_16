@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Data
 @Getter
 @Setter
-@Table(name = "thanhvien")
+@Table(name = "userdetail")
 public class UserDetail {
     @Id
     @Column(name = "matv")

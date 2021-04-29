@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
     this.userService.loginUserFromRemote(this.user).subscribe(
       response => {this.user=response;
         console.log(this.user);
-        sessionStorage.setItem("user",JSON.stringify(this.user));
+        sessionStorage.setItem("user",JSON.stringify(this.user.matv));
         if(this.f.matkhau.value == this.user.matkhau){
             if(role == "admin"){
               this.route.navigate(["/admin"]);

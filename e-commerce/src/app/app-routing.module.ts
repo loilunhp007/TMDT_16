@@ -15,6 +15,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ShoplayoutComponent } from './shoplayout/shoplayout.component';
 import { AuthGuardService as AuthGuard } from './service/auth-guard.service';
 import { BlogComponent } from './blog/blog.component';
+import { SearchComponent } from './search/search.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 const routes: Routes = [
   {
     path:'admin',component: DashboardComponent,
@@ -34,20 +36,25 @@ const routes: Routes = [
   },
   {
     path:'home',component:ShoplayoutComponent,
-    children:[
-        {
-          path:"product-detail",
-          component:ProductDetailComponent
-        },
-        {
-          path:"cart",component:CartComponent,
-          //canActivate:[AuthGuard]
-        },
-    ]
+    
   
   },
   {
+    path:"home/cart",
+    component:CartComponent,
+  },
+  {
+    path:'home/product-detail',
+    component:ProductDetailComponent
+  },
+  {
     path:"home/blog",component:BlogComponent,
+  },
+  {
+    path:"home/checkout",component:CheckoutComponent,
+  },
+  {
+    path:"home/search",component:SearchComponent,
   },
   {
     path:'home/login', component: LoginComponent,

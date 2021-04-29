@@ -9,7 +9,9 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import com.Entity.Sanpham;
+import com.Entity.UserDetail;
 import com.Services.SanPhamService;
+import com.Services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +37,8 @@ public class SanPhamController {
     private byte[] bytes;
     @Autowired
     private SanPhamService sanphamService;
-    private ServletContext context;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/get")
     public List<Sanpham> getAllProduct(){
@@ -50,6 +53,35 @@ public class SanPhamController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(existSanpham);
 
     }
+    @GetMapping("/get/trangthai/{trangthai}")
+    public ResponseEntity<List<Sanpham>> getProductByTrangthai(@PathVariable(name = "trangthai")int trangthai){
+        List<Sanpham> listProduct= sanphamService.getProductByTrangthai(trangthai); 
+        if(listProduct != null){
+            return ResponseEntity.status(HttpStatus.OK).body(listProduct);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+
+    }
+    @GetMapping("/get/matv/{matv}")
+    public ResponseEntity<List<Sanpham>> getProductByMatv(@PathVariable(name = "matv")String matv){
+        UserDetail userDetail =  userService.getUserDetailById(matv);
+        List<Sanpham> listProduct= sanphamService.getProductByUserDetail(userDetail); 
+        if(listProduct != null){
+            return ResponseEntity.status(HttpStatus.OK).body(listProduct);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+
+    }
+    @GetMapping("/get/tensp/{tensp}")
+    public ResponseEntity<List<Sanpham>> getProductByTensp(@PathVariable(name = "tensp")String tensp){
+        List<Sanpham> listProduct= sanphamService.getProductByLikeTensp(tensp);
+        if(listProduct != null){
+            return ResponseEntity.status(HttpStatus.OK).body(listProduct);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Sanpham> addProduct(@RequestBody Sanpham sanpham) throws IOException{
         Sanpham _sanpham = null;
@@ -74,7 +106,6 @@ public class SanPhamController {
     @PutMapping("/put/{masp}")
     public ResponseEntity<Sanpham> updateProductById(@PathVariable(name = "masp")String masp,@RequestBody Sanpham product){
         Sanpham _Product = this.sanphamService.findProductByID(masp);
-        System.out.println(product.toString());
         _Product.setMaloai(product.getMaloai());
         _Product.setTensp(product.getTensp());
         _Product.setThongtinsanpham(product.getThongtinsanpham());
@@ -84,6 +115,7 @@ public class SanPhamController {
         _Product.setHinhanh(product.getHinhanh());
         _Product.setDanhgia(product.getDanhgia());
         _Product.setTrangthai(product.getTrangthai());
+        _Product.setUserDetail(product.getUserDetail());
         Sanpham newProduct= this.sanphamService.addProduct(_Product);
         return ResponseEntity.status(HttpStatus.OK).body(newProduct);
     }

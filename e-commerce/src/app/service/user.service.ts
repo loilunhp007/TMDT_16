@@ -43,7 +43,7 @@ export class UserService {
     return this.httpClient.post<UserDetail>('http://localhost:8080/userdetail/add', UserDetail);   
    }
    getUserDetailByID(id:String){
-    return this.httpClient.get<UserDetail>('http://localhost:8080/userdetail/get/{'+id+'}');   
+    return this.httpClient.get<UserDetail>('http://localhost:8080/userdetail/get/'+id);   
    }
    getMaxUser(){
     return this.httpClient.get<number>('http://localhost:8080/user/getMax'); 

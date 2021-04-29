@@ -39,8 +39,7 @@ public class CartService {
                 cart.setUserDetail(userDetail);
                 cart.setSoluong(soluong);
             }
-        cartRepository.save(cart);
-        
+        cartRepository.save(cart); 
         return soluong;
     }
     public int plusQuanCart(UserDetail userDetail,String masp){

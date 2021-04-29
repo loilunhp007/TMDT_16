@@ -1,3 +1,5 @@
+import { UserDetail } from "./user-detail";
+
 export class Product {
     masp: string;
     maloai : string;
@@ -9,6 +11,6 @@ export class Product {
     danhgia:number;
     luotxem:number;
     trangthai:number;
-    matv:string;
+    userDetail:UserDetail;
     constructor(){}
 }

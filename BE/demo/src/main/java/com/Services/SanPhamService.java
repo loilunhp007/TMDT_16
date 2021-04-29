@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.Entity.Sanpham;
+import com.Entity.UserDetail;
 import com.Repository.SanPhamRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,13 @@ public class SanPhamService {
     public void deteleProductByID(String id){
         sanPhamRepository.deleteById(id);
     }
-
-
+    public List<Sanpham> getProductByUserDetail(UserDetail userDetail){
+        return sanPhamRepository.findByUserDetail(userDetail);
+    }
+    public List<Sanpham> getProductByTrangthai(int trangthai){
+        return sanPhamRepository.findByTrangthai(trangthai);
+    }   public List<Sanpham> getProductByLikeTensp(String tensp){
+        return sanPhamRepository.findByTenspContains(tensp);
+    }
 
 }

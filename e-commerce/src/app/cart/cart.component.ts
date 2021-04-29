@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cart } from '../model/cart';
 import { Product } from '../model/product';
 import { User } from '../model/user';
@@ -15,31 +15,36 @@ export class CartComponent implements OnInit {
   carts: Array<Cart>
   products : Array<Product>;
   cartTotal=0
+  cartTotal2=0
   product:Product
+  Shipping = 25000;
+  flag =true
   constructor(private cartService : CartService,
     private productService:ProductService,
-    private router:Router) { }
-  user:User
+    private router:Router,
+    private actRoute:ActivatedRoute) { }
+  userId:String
   ngOnInit(): void {
-    this.user = new User()
+    this.userId = JSON.parse(sessionStorage.getItem("user"));
+    if(sessionStorage.getItem("user")!=null){
+      this.userId = JSON.parse(sessionStorage.getItem("user"));
+    }
     this.product = new Product()
     this.getCart();
     this.getTotal();
-    console.log(this.products)
   }
   getCart(){
     
-    this.user =JSON.parse(sessionStorage.getItem("user"));
-    this.cartService.getCartItems(this.user.matv).subscribe(
+    
+    this.cartService.getCartItems(this.userId).subscribe(
       Response =>{
-        console.log()
         this.carts = Response
-        console.log(this.carts)
+
       })
     }
   getTotal(){
-      this.user =JSON.parse(sessionStorage.getItem("user"));
-      this.cartService.getCartItems(this.user.matv).subscribe(
+      
+      this.cartService.getCartItems(this.userId).subscribe(
       Response =>{
         this.carts = Response
         if(this.carts !=null){
@@ -49,51 +54,51 @@ export class CartComponent implements OnInit {
                 this.product = Response1
                 console.log(this.product)
                 this.cartTotal+=(this.product.gia*item.soluong)
+                this.cartTotal2+=(this.product.gia*item.soluong)+this.Shipping
               }
             )
           })
         }
       })
     }
-     
-  removeItem(masp:String){
-    for(let i =0;i<localStorage.length;i++){
-      const exist = this.products.forEach(item=>{
-        if(item.masp == masp){
-          localStorage.removeItem("item"+i);
-          console.log("item"+i)
-        }
-      })
-      
-    }
-
-  }
+    
   plusCart(product:Product){
-    this.user = new User();
-    this.user = JSON.parse(sessionStorage.getItem("user"));
-    let s= this.user.matv+''
+   
+    let s= this.userId+''
     this.cartService.plusCart(s,product.masp).subscribe(
       Response=>{
-          this.router.navigate(['home/cart'])
+        this.exit()
       },
       (error)=>{
-
+        this.exit()
       }
 
     )
   }
 minusCart(product:Product){
-    this.user = new User();
-    this.user = JSON.parse(sessionStorage.getItem("user"));
-    let s= this.user.matv+''
+   
+    let s= this.userId+''
     this.cartService.minusCart(s,product.masp).subscribe(
       Response=>{
-        this.router.navigate(['home/cart'])
+        this.exit()
       },
       (error)=>{
-        
+        this.exit()
       }
 
     )
+  }
+  exit() {
+    location.reload();
+  }
+  goDetail(product:Product){
+    this.actRoute.queryParams.subscribe(
+      params=>{
+        const id=product.masp;
+        this.router.navigate(['home','product-detail'],{queryParams: {id}})
+        console.log(params)
+      }
+    )
+  
   }
 }

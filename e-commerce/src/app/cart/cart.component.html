@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 	<section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
@@ -24,21 +25,21 @@
 								<a href=""><img src="../../../../assets/images/{{cart.product.hinhanh}}" width="200" height="200" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">{{cart.product.tensp}}</a></h4>
+								<h4><a (click)="goDetail(cart.product)">{{cart.product.tensp}}</a></h4>
 								<p>{{cart.masp}}</p>
 							</td>
 							<td class="cart_price">
-								<p>{{cart.product.gia}}</p>
+								<p>{{cart.product.gia|currency:'VND':'symbol':'3.0'}}</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" (click)="plusCart(cart.product)" > + </a>
+									<a class="cart_quantity_up" (click)="plusCart(cart.product)" href="" > + </a>
 									<input class="cart_quantity_input" type="text" name="quantity" value="{{cart.soluong}}" autocomplete="on" size="2">
 									<a class="cart_quantity_down" (click)="minusCart(cart.product)"> - </a>
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">{{cart.product.gia*cart.soluong}}</p>
+								<p class="cart_total_price">{{cart.product.gia*cart.soluong|currency:'VND':'symbol':'3.0'}}</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href="#" (click)="removeItem()"> <i class="fa fa-times"></i></a>
@@ -117,15 +118,16 @@
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Tổng chi phí sản phẩm trong giỏ hàng <span>{{cartTotal}}</span></li>
-							<li>Thuế môi trường <span>$0</span></li>
-							<li>Chi phí vận chuyển  <span>Free</span></li>
-							<li>Tổng cộng <span>{{cartTotal}}</span></li>
+							<li>Tổng chi phí sản phẩm trong giỏ hàng <span>{{cartTotal|currency:'VND':'symbol':'3.0'}}</span></li>
+							<li>Thuế môi trường <span>0</span></li>
+							<li>Chi phí vận chuyển  <span>{{Shipping|currency:'VND':'symbol':'3.0'}}</span></li>
+							<li>Tổng cộng <span>{{cartTotal2|currency:'VND':'symbol':'3.0'}}</span></li>
 						</ul>
 							<a class="btn btn-default update" href="">Cập nhật</a>
-							<a class="btn btn-default check_out" href="">Thanh toán</a>
+							<a class="btn btn-default check_out" >Thanh toán</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section><!--/#do_action-->
+	<app-footer></app-footer>

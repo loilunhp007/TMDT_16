@@ -14,16 +14,20 @@ export class CategoryComponent implements OnInit {
   searchText;
   constructor(private productService:ProductService,
     private cartService : CartService,
-    private route: ActivatedRoute) { }
+    private Actroute: ActivatedRoute,
+    private router:Router) { }
     products : Array<Product>
     product : Product;
-    user:User;
+    userId:String
+    productId:String;
+    p:number=1
   ngOnInit(): void {
-    const masp = +this.route.snapshot.params['masp'];
-    this.getProduct();
+
+    // status 1 product can be bought 
+    this.getProduct(1);
   }
-  getProduct(){
-    this.productService.getProduct().subscribe(
+  getProduct(trangthai:number){
+    this.productService.getProductByTrangthai(trangthai).subscribe(
       (response)=>{ this.products =response;
           console.log(this.products);
         
@@ -37,45 +41,31 @@ export class CategoryComponent implements OnInit {
     )
   }
   addToCart(product:Product){
-     this.user = new User();
-     this.user = JSON.parse(sessionStorage.getItem("user"));
-     let s= this.user.matv+''
-    this.cartService.addToCart(s,product.masp).subscribe(
-      Response=>{
-
-      },
-      (error)=>{
-        console.log(s+"sp:"+product.masp)
-        alert(s+"sp:"+product.masp);
-      }
-    )
+    if(sessionStorage.getItem("user")!=null){
+      this.userId = JSON.parse(sessionStorage.getItem("user"));
+      let s= this.userId+''
+     this.cartService.addToCart(s,product.masp).subscribe(
+       Response=>{
+          console.log(Response)
+       },
+       (error)=>{
+         console.log(s+"sp:"+product.masp)
+         alert("Add to cart Sucess")
+       }
+     )
+    }
+     
   }
-  plusCart(product:Product){
-    this.user = new User();
-    this.user = JSON.parse(sessionStorage.getItem("user"));
-    let s= this.user.matv+''
-    this.cartService.plusCart(s,product.masp).subscribe(
-      Response=>{
 
-      },
-      (error)=>{
-
+  goDetail(product:Product){
+    this.Actroute.queryParams.subscribe(
+      params=>{
+        const id=product.masp;
+        this.router.navigate(['home','product-detail'],{queryParams: {id}})
+        console.log(params)
+        alert(params)
       }
-
     )
-  }
-minusCart(product:Product){
-    this.user = new User();
-    this.user = JSON.parse(sessionStorage.getItem("user"));
-    let s= this.user.matv+''
-    this.cartService.minusCart(s,product.masp).subscribe(
-      Response=>{
-
-      },
-      (error)=>{
-        
-      }
-
-    )
+  
   }
 }

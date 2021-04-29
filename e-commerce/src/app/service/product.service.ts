@@ -11,8 +11,8 @@ export class ProductService {
   constructor(private httpClient : HttpClient) { 
     
   }
-  getProduct():Observable<Product[]>{
-    return this.httpClient.get<Product[]>("http://localhost:8080/products/get");
+  getProduct(matv:String):Observable<Product[]>{
+    return this.httpClient.get<Product[]>("http://localhost:8080/products/get/matv/"+matv);
   }
   addProduct(product: Product){
    return this.httpClient.post<Product>("http://localhost:8080/products/add",product);
@@ -28,5 +28,11 @@ export class ProductService {
   }
   deteleProductByID(masp:String):Observable<any>{
     return this.httpClient.delete<Product>("http://localhost:8080/products/delete/"+masp);
+  }
+  getProductByTrangthai(trangthai:number):Observable<any>{
+    return this.httpClient.get<Product[]>('http://localhost:8080/products/get/trangthai/'+trangthai)
+  }
+  getProductByLikeName(k:String):Observable<any>{
+    return this.httpClient.get<Product[]>('http://localhost:8080/products/get/tensp/'+k)
   }
 }

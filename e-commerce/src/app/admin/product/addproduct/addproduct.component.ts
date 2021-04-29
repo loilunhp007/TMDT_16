@@ -5,6 +5,9 @@ import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service'; 
 import { FileSaverService } from 'ngx-filesaver';
 import { HttpClient } from '@angular/common/http';
+import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/service/user.service';
+import { Category } from 'src/app/model/category';
 // MDB Angular Free
 
 @Component({
@@ -13,17 +16,25 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./addproduct.component.css']
 })
 export class AddproductComponent implements OnInit {
+  date= new Date();
   validatingForm: FormGroup
   selectedFile : File
   @Input()
   product: Product;
-  imgURL:any
+  imgURL:any;
+  Categorys : Category[]
+  category1: Category
+  category2:Category
+  private userDetailId:String;
   constructor(private ProductService: ProductService,
     private route:Router,
     private fileSaver: FileSaverService,
-    private httpClient:HttpClient) { }
+    private httpClient:HttpClient,
+    private userService:UserService) { }
 
   ngOnInit(): void {
+  
+    this.userDetailId = JSON.parse(sessionStorage.getItem("user"));
     this.product= new Product();
     this.validatingForm = new FormGroup({
       ProductFormModalID: new FormControl('', Validators.required),
@@ -36,8 +47,11 @@ export class AddproductComponent implements OnInit {
   }
   addProduct(){
     const uploadData = new FormData();
-    const random2 = Math.floor(Math.random() * (9999 - 1000));
-    let imageName = random2+''+this.selectedFile.name;
+    const day=this.date.getDate();
+    const month = this.date.getMonth()+1;
+    const year = this.date.getFullYear();
+    const random2 = Math.floor(Math.random() * (999 - 100));
+    let imageName = random2+''+day+month+year+this.selectedFile.name;
     uploadData.append('imageFile', this.selectedFile, imageName);
     const random = Math.floor(Math.random() * (9999 - 1000));
     this.product.masp = this.ProductFormModalID.value;
@@ -47,27 +61,43 @@ export class AddproductComponent implements OnInit {
         this.product.gia = this.ProductFormModalPrice.value;
         this.product.soluong = this.ProductFormModalQuantity.value;
         this.product.trangthai=1;
-        this.product.hinhanh= imageName     
-    this.httpClient.post('http://localhost:8080/products/upload',uploadData,{ observe : "response"}).subscribe(
+        this.product.hinhanh= imageName
+        this.userService.getUserDetailByID(this.userDetailId).subscribe(
+          data=>{
+            this.product.userDetail = data;
+            
+            this.httpClient.post('http://localhost:8080/products/upload',uploadData,{ observe : "response"}).subscribe(
       (Response)=>{
         if(Response.status === 200){
           this.ProductService.addProduct(this.product).subscribe(
             (response)=>{
-              console.log(this.product);
-              alert(response)
-              this.route.navigate(['admin',['product']]);
+              this.route.navigate(['admin','product']);
             },
             (error)=>{ 
-                
+              console.log(this.product)
+              alert(this.product)
             }
       
-          )
+          ),
+          (error)=>{
+            console.log(this.product)
+              alert(this.product)
+          }
         console.log('Image upload Sucess');
         }
     },
   
     
 )
+
+          }
+        ),
+        (error)=>{
+            console.log(error);
+            console.log(this.product);
+            alert(this.product)
+        }    
+    
 
     
 

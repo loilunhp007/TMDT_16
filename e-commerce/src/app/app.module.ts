@@ -27,6 +27,12 @@ import { BlogComponent } from './blog/blog.component';
 import { UpdateProductComponent } from './admin/product/update-product/update-product.component';
 import { FileSaverModule } from 'ngx-filesaver';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SearchComponent } from './search/search.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 
@@ -49,7 +55,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ProductDetailComponent,
     CartComponent,
     BlogComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    SearchComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +75,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     IconsModule,
     FileSaverModule,
     ModalModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    NgxPaginationModule
   ],
   providers: [ModalDirective],
   bootstrap: [AppComponent
