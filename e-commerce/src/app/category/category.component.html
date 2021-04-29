@@ -188,13 +188,10 @@
 					</div>
 					<div style="clear: both;"></div>
 					<br> -->
-<<<<<<< Updated upstream
-					<div class="col-sm-4" *ngFor="let product of products | filter : searchText | paginate:{itemsPerPage:8,currentPage:p,totalItems:products.length} ">
-						<div class="product-image-wrapper">
-=======
 					<div class="col-sm-4" *ngFor="let product of products | filter : searchText ">
 						<div class="product-image-wrapper" routerLink="{{product.masp}}">
->>>>>>> Stashed changes
+					<div class="col-sm-4" *ngFor="let product of products | filter : searchText | paginate:{itemsPerPage:8,currentPage:p,totalItems:products.length} ">
+						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
 									<img src="../../../../assets/images/{{product.hinhanh}}" alt="" />
@@ -205,15 +202,12 @@
 								</div>
 								<div class="product-overlay" >
 									<div class="overlay-content">
-<<<<<<< Updated upstream
-										<h2>{{product.gia|currency:'VND':'symbol':'3.0'}} VNĐ</h2>
-										<p class="btn btn-sucess stretched-link" (click)="goDetail(product)">{{product.tensp}}</p>
-										<a  class="btn btn-default add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
-=======
 										<h2>{{product.gia|currency:'VND':'symbol':'3.0'}} </h2>
 										<p>{{product.tensp}}</p>
 										<a href="#" class="btn btn-default add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
->>>>>>> Stashed changes
+										<h2>{{product.gia|currency:'VND':'symbol':'3.0'}} VNĐ</h2>
+										<p class="btn btn-sucess stretched-link" (click)="goDetail(product)">{{product.tensp}}</p>
+										<a  class="btn btn-default add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 									</div>
 								</div>
 							</div>
@@ -226,11 +220,6 @@
 						</div>
 					</div><!--features_items-->
 						
-<<<<<<< Updated upstream
-				</div>
-				<pagination-controls (pageChange)="p = $event"></pagination-controls>
-=======
->>>>>>> Stashed changes
 			</div>
 			<ul class="pagination">
 				<li class="active"><a href="">1</a></li>
@@ -239,5 +228,10 @@
 				<li><a href="">&raquo;</a></li>
 			</ul>
 		</div>
-	</div>		
+	
+	
+	
+		</div>		
+	</div>
+	</div>
 </section>
