@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,6 +56,12 @@ public class CartController {
         UserDetail userDetail = userService.getUserDetailById(matv);
         int qt = cartService.minusQuanCart(userDetail, masp);
         return ResponseEntity.status(HttpStatus.OK).body(qt+"update success");
-    }      
+    }     
+    @DeleteMapping("/delete/{masp}/{matv}")
+    public ResponseEntity<String> deleteCartItem(@PathVariable(name = "masp")String masp,@PathVariable(name = "matv")String matv){
+        UserDetail userDetail = userService.getUserDetailById(matv);
+        String detele = cartService.deleteCartItem(userDetail, masp);
+        return ResponseEntity.status(HttpStatus.OK).body(detele+"delete success");
+    }       
 }
  

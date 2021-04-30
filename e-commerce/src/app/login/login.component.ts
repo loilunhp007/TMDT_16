@@ -54,18 +54,19 @@ export class LoginComponent implements OnInit {
     return str;
   }
   loginUser(){
-    let role = "admin";
+    let userDetail2 = new UserDetail();
     this.user.email=  this.f.email.value;
     this.user.matkhau = this.f.matkhau.value;
     this.userService.loginUserFromRemote(this.user).subscribe(
       response => {this.user=response;
-        console.log(this.user);
         sessionStorage.setItem("user",JSON.stringify(this.user.matv));
         if(this.f.matkhau.value == this.user.matkhau){
-            if(role == "admin"){
-              this.route.navigate(["/admin"]);
-            }else{this.route.navigate(["/home"]);}
+           
+          this.route.navigate(["/home"]);
+            
           
+        }else{
+          this.route.navigate(["/home/login"]);
         }
 
 

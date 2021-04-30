@@ -188,7 +188,7 @@
 				</div>
 				<div style="clear: both;"></div>
 				<br> -->
-				<div class="col-sm-4" *ngFor="let product of products | filter : searchText | paginate:{itemsPerPage:8,currentPage:p,totalItems:products.length} ">
+				<div class="col-sm-4" *ngFor="let product of products | filter : searchText | paginate:{itemsPerPage:6,currentPage:p} ">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -214,9 +214,9 @@
 							</div>
 					</div>
 				</div><!--features_items-->
-					
+					<pagination-controls (pageChange)="p = $event"></pagination-controls>
 			</div>
-			<pagination-controls (pageChange)="p = $event"></pagination-controls>
+			
 		</div>
 	</div>		
 </section>

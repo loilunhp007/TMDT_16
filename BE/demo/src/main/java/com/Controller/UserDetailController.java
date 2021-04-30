@@ -42,18 +42,18 @@ public class UserDetailController {
         UserDetail thanhvien = tvService.getUserDetailById(id);
         return ResponseEntity.status(HttpStatus.OK).body(thanhvien);
     }
-    @PutMapping("/put")
-    public ResponseEntity<UserDetail> updateThanhVienByID(@PathVariable(name = "id")String id, @RequestBody UserDetail tvDetails ){
-        UserDetail thanhvien = tvService.getUserDetailById(id);
-        thanhvien.setDiachi(tvDetails.getSdt());
-        thanhvien.setLoaithanhvien(tvDetails.getLoaithanhvien());
-        thanhvien.setHo(tvDetails.getHo());
-        thanhvien.setTen(tvDetails.getTen());
-        thanhvien.setDiachi(tvDetails.getDiachi());
-        thanhvien.setGmail(tvDetails.getGmail());
-        thanhvien.setNgaytao(tvDetails.getNgaytao());
-        thanhvien.setTrangthai(tvDetails.getTrangthai());
-        return ResponseEntity.status(HttpStatus.OK).body(thanhvien);
+    @PutMapping("/put/{matv}")
+    public ResponseEntity<UserDetail> updateThanhVienByID(@PathVariable(name = "matv")String matv, @RequestBody UserDetail userDetail ){
+        UserDetail thanhvien = tvService.getUserDetailById(matv);
+        thanhvien.setSdt(userDetail.getSdt());
+        thanhvien.setHo(userDetail.getHo());
+        thanhvien.setTen(userDetail.getTen());
+        thanhvien.setDiachi(userDetail.getDiachi());
+        thanhvien.setGmail(userDetail.getGmail());
+        thanhvien.setNgaysinh(userDetail.getNgaysinh());
+        thanhvien.setNgaytao(userDetail.getNgaytao());
+        UserDetail tv2 = tvService.save(thanhvien);
+        return ResponseEntity.status(HttpStatus.OK).body(tv2);
     }
     
 

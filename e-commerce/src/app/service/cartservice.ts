@@ -22,6 +22,9 @@ export class CartService {
   minusCart(matv:string,masp:String):Observable<any>{
     return this.httpClient.put<Cart>('http://localhost:8080/cart/put/minus/'+masp+"/"+matv,null);
   }
+  deleteCartItem(matv:string,masp:String):Observable<any>{
+    return this.httpClient.delete<Cart>('http://localhost:8080/cart/delete/'+masp+'/'+matv);
+  }
 
  /*addItem(product:Product){
     const exist = this.cartItems.find((item)=>{

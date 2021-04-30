@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../model/user';
+import { UserDetail } from '../model/user-detail';
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class MenuComponent implements OnInit {
   });
     searchText;
     isLogged = false;
-     user = JSON.parse(sessionStorage.getItem("user"));
+     userId = JSON.parse(sessionStorage.getItem("user"));
+     userDetail:UserDetail
   constructor(private userService : UserService,
     private router:Router,
     private actRoute:ActivatedRoute,
@@ -24,6 +26,12 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userDetail = new UserDetail();
+    if(this.userId!=null){
+      this.userService.getUserDetailByID(this.userId).subscribe(
+        Response=>{this.userDetail=Response}
+      )
+    }
      
   }
   isLoggedIn(){

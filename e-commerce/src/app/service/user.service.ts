@@ -42,7 +42,10 @@ export class UserService {
    addUserDetail(UserDetail: UserDetail):Observable<any> {
     return this.httpClient.post<UserDetail>('http://localhost:8080/userdetail/add', UserDetail);   
    }
-   getUserDetailByID(id:String){
+   updateUserDetail(id:String,UserDetail: UserDetail):Observable<any> {
+    return this.httpClient.put<UserDetail>('http://localhost:8080/userdetail/put/'+id, UserDetail);   
+   }
+   getUserDetailByID(id:String):Observable<any>{
     return this.httpClient.get<UserDetail>('http://localhost:8080/userdetail/get/'+id);   
    }
    getMaxUser(){

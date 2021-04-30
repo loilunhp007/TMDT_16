@@ -42,7 +42,7 @@
 								<p class="cart_total_price">{{cart.product.gia*cart.soluong|currency:'VND':'symbol':'3.0'}}</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href="#" (click)="removeItem()"> <i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete" href="#" (click)="deleteCartItem(cart.product)"> <i class="fa fa-times"></i></a>
 							</td>
 						</tr>
 					</tbody>
@@ -124,7 +124,7 @@
 							<li>Tổng cộng <span>{{cartTotal2|currency:'VND':'symbol':'3.0'}}</span></li>
 						</ul>
 							<a class="btn btn-default update" href="">Cập nhật</a>
-							<a class="btn btn-default check_out" >Thanh toán</a>
+							<a class="btn btn-default check_out" routerLink='/home/checkout' >Thanh toán</a>
 					</div>
 				</div>
 			</div>

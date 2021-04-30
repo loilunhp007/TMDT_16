@@ -17,6 +17,7 @@ import { AuthGuardService as AuthGuard } from './service/auth-guard.service';
 import { BlogComponent } from './blog/blog.component';
 import { SearchComponent } from './search/search.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 const routes: Routes = [
   {
     path:'admin',component: DashboardComponent,
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path:"home/cart",
     component:CartComponent,
+  },
+  {
+    path:"myprofile",
+    component:MyprofileComponent,
   },
   {
     path:'home/product-detail',

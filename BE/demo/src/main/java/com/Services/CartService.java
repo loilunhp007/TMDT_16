@@ -42,6 +42,12 @@ public class CartService {
         cartRepository.save(cart); 
         return soluong;
     }
+    public String deleteCartItem(UserDetail userDetail,String masp){
+            Sanpham product = sanPhamRepository.findById(masp).get();
+            Cart cart = cartRepository.findByProductAndUserDetail(product, userDetail);
+            cartRepository.delete(cart);
+            return "delete Sucess";
+    }
     public int plusQuanCart(UserDetail userDetail,String masp){
         Sanpham product = sanPhamRepository.findById(masp).get();
         Cart cart = cartRepository.findByProductAndUserDetail(product, userDetail);

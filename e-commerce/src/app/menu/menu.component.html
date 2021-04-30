@@ -64,7 +64,7 @@
 								<li><a routerLink="/home/checkout"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
 								<li><a  routerLink="/home/cart"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 								<li><a *ngIf="isLoggedIn()"(click)="logout()" ><i class="fa fa-lock"></i> Đăng xuất</a></li>
-								<li><a *ngIf="isLoggedIn()" routerLink="/home/{{user.email}}">{{user.email}}</a>
+								<li><a *ngIf="isLoggedIn()" routerLink="/myprofile">Hi {{ userDetail.ten}}</a>
 							</ul>
 						</div>
 					</div>

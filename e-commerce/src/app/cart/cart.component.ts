@@ -32,6 +32,7 @@ export class CartComponent implements OnInit {
     this.product = new Product()
     this.getCart();
     this.getTotal();
+    
   }
   getCart(){
     
@@ -47,6 +48,7 @@ export class CartComponent implements OnInit {
       this.cartService.getCartItems(this.userId).subscribe(
       Response =>{
         this.carts = Response
+        this.cartTotal2+=this.Shipping
         if(this.carts !=null){
           this.carts.forEach(item=>{
             this.productService.getProductByID(item.product.masp).subscribe(
@@ -54,7 +56,7 @@ export class CartComponent implements OnInit {
                 this.product = Response1
                 console.log(this.product)
                 this.cartTotal+=(this.product.gia*item.soluong)
-                this.cartTotal2+=(this.product.gia*item.soluong)+this.Shipping
+                this.cartTotal2+=(this.product.gia*item.soluong)
               }
             )
           })
@@ -79,6 +81,18 @@ minusCart(product:Product){
    
     let s= this.userId+''
     this.cartService.minusCart(s,product.masp).subscribe(
+      Response=>{
+        this.exit()
+      },
+      (error)=>{
+        this.exit()
+      }
+
+    )
+  }
+  deleteCartItem(product:Product){
+    let s= this.userId+''
+    this.cartService.deleteCartItem(s,product.masp).subscribe(
       Response=>{
         this.exit()
       },
