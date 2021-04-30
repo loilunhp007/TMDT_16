@@ -33,6 +33,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchComponent } from './search/search.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ChartComponent } from './chart/chart.component';
 
 
 
@@ -58,6 +59,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     UpdateProductComponent,
     SearchComponent,
     CheckoutComponent,
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
