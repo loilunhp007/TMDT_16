@@ -3,11 +3,11 @@ package com.Entity;
 import java.io.Serializable;
 
 public class DatHangId implements Serializable {
-    private String mahdn;
+    private String madh;
     private String masp;
     private DatHangId(){}
-    private DatHangId(String mahdn,String masp){
-        this.mahdn = mahdn;
+    private DatHangId(String madh,String masp){
+        this.madh = madh;
         this.masp = masp;
     }
     

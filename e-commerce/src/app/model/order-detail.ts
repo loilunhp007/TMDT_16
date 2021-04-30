@@ -1,7 +1,7 @@
 export class OrderDetail {
     madh:string
     masp:string;
-    soluong:string;
+    ngaytao:String;
     gia:number;
-    tonggia:number;
+    tongtien:number;
 }

@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @IdClass(DatHangId.class)
 public class CT_DatHang {
     @Id
-    private String mahdn;
+    private String madh;
     @Id
     private String masp;
     private String soluong;

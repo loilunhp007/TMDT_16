@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrderDetailRepository extends JpaRepository<CT_DatHang,String>{
-    public List<CT_DatHang> findByMahdn(String madhn);
+    public List<CT_DatHang> findByMadh(String madh);
 }

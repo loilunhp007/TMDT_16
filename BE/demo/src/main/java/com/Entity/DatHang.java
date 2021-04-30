@@ -22,7 +22,7 @@ public class DatHang {
     private String matvban;
     private String matvmua;
     private String ngaytao;
-    private int ongtien;
+    private int tongtien;
     private int trangthai;
 
 }

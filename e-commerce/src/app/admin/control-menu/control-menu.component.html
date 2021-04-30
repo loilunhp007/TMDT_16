@@ -9,14 +9,18 @@
 			<li id="lmn1"><a href="#"><span class="glyphicon glyphicon-stats"></span> Thống kê tình hình kinh doanh</a></li>
 			<li id="lmn2"><a routerLink="/admin/product"><span class="glyphicon glyphicon-list-alt"></span> Danh sách sản phẩm</a></li>
 			<li id="lmn3"><a routerLink="/admin/transports"><span class="glyphicon glyphicon-list-alt"></span> Van Chuyen</a></li>
-			<li class="dropdown"><a href="#" class="active">Danh Sach Don hang<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="#"class="active">Tat ca don Hang</a></li>
-										<li><a href="#">Don Hang Cho Xac Nhan</a></li> 
-										<li><a href="#">Don Hang Dang Giao</a></li> 
-										<li><a href="#">Don Hang Da Giao</a></li> 
-										<li><a href="#">Don Hang Da Huy</a></li> 
-                                    </ul>
-                                </li> 
+			<li>
+								
+				<a data-toggle="collapse" data-parent="#accordian" href="#ORDER">
+				<span class="glyphicon glyphicon-list-alt"></span>
+										Quản Lý Đơn Hàng
+				</a>
+				<div id="ORDER" class="panel-collapse collapse">
+						<ul>
+							<li><a routerLink="order">Tất cả</a></li>
+							<li><a routerLink="delllatitule">Đơn Hủy</a></li>
+						</ul>
+				</div>	
+			</li>	
 		</ul>
 	</div>

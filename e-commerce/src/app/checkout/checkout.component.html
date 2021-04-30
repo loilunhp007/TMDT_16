@@ -13,13 +13,12 @@
 						<div class="bill-to">
 							<p>Thông tin giao hàng</p>
 							<div class="form-one">
-								<form>
-									<input type="text" placeholder="Email*">
-									<input type="text" placeholder="Tên *">
-									<input type="text" placeholder="Họ">
-									<input type="text" placeholder="Địa chỉ giao hàng 1 *">
-									<input type="text" placeholder="Địa chỉ giao hàng 2">
-									<input type="text" placeholder="Số điện thoại">
+								<form [formGroup]="infoForm">
+									<input type="text" placeholder="Email*" formControlName="email" >
+									<input type="text" placeholder="Họ" formControlName="ho">
+									<input type="text" placeholder="Tên *"formControlName="ten">
+									<input type="text" placeholder="Địa chỉ giao hàng 1 *"formControlName="address">
+									<input type="text" placeholder="Số điện thoại"formControlName="phone">
 									<select>
 										<option>-- Thành Phố --</option>
 										<option>Thủ đô Hà Nội</option>
@@ -45,9 +44,12 @@
 									<input type="text" placeholder="Voucher giao hàng">
 									<br><br><br><br>
 									
-									<input type="text" value="Tổng tiền hàng" style="background-color:rgb(224, 220, 165); font-size: 13px;" disabled>
-									<input type="text" value="Tổng phí vận chuyển" style="background-color:rgb(224, 220, 165); font-size: 13px;" disabled>
-									<input type="text" value="Tổng thanh toán" style="background-color: rgb(230, 124, 49); font-size: 15px;" disabled>
+									<label for="ip1">Tổng tiền hàng</label>
+									<input type="text" id="ip1" placeholder="Tổng tiền hàng" value="{{cartTotal}}" style="background-color:rgb(224, 220, 165); font-size: 13px;" disabled>
+									<label for="ip2">Tổng tiền hàng</label>
+									<input type="text" id="ip2" placeholder="Tổng phí vận chuyển" value="{{Shipping}}" style="background-color:rgb(224, 220, 165); font-size: 13px;" disabled>
+									<label for="ip3">Tổng tiền hàng</label>
+									<input type="text" id="ip3" placeholder="Tổng thanh toán" value="{{cartTotal2}}" style="background-color: rgb(230, 124, 49); font-size: 15px;" disabled>
 
 								</form>
 							</div>

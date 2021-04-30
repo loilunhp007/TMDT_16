@@ -35,6 +35,9 @@ import { SearchComponent } from './search/search.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ChartComponent } from './chart/chart.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
+import { OrderComponent } from './admin/order/order.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { OrderDetailComponent } from './admin/order-detail/order-detail.component';
 
 
 
@@ -64,6 +67,8 @@ import { MyprofileComponent } from './myprofile/myprofile.component';
     CheckoutComponent,
     ChartComponent,
     MyprofileComponent,
+    OrderComponent,
+    OrderDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +89,8 @@ import { MyprofileComponent } from './myprofile/myprofile.component';
     Ng2SearchPipeModule,
     MatSelectModule,
     MatSlideToggleModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatTabsModule
   ],
   providers: [ModalDirective],
   bootstrap: [AppComponent

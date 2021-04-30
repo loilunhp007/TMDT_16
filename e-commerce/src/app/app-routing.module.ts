@@ -18,6 +18,8 @@ import { BlogComponent } from './blog/blog.component';
 import { SearchComponent } from './search/search.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
+import { OrderComponent } from './admin/order/order.component';
+import { OrderDetailComponent } from './admin/order-detail/order-detail.component';
 const routes: Routes = [
   {
     path:'admin',component: DashboardComponent,
@@ -27,9 +29,14 @@ const routes: Routes = [
       },
       {
         path:"users",component:UsersComponent
+      },
+      {
+          path:"order",component:OrderComponent
       }
     ]
   },
+  {path:'admin/orderdetail',
+component:OrderDetailComponent},
   {
     path: '',
     redirectTo: '/home',

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cart } from '../model/cart';
 import { Product } from '../model/product';
+import { UserDetail } from '../model/user-detail';
 import { CartService } from '../service/cartservice';
 import { ProductService } from '../service/product.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-checkout',
@@ -18,22 +21,49 @@ export class CheckoutComponent implements OnInit {
   product:Product
   Shipping = 25000;
   userId:String
+  info:UserDetail
+  infoForm = this.formBuilder.group({
+    ho:[''],
+    ten:[''],
+    address:[''],
+    phone:[''],
+    email:['']
+  })
   constructor(private cartService:CartService,
     private productService:ProductService,
     private actRoute:ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private userSerVice:UserService,
+    private formBuilder:FormBuilder
     ) { }
 
   ngOnInit(): void {
+    this.info = new UserDetail();
+    
     this.userId = JSON.parse(sessionStorage.getItem("user"));
     if(sessionStorage.getItem("user")!=null){
       this.userId = JSON.parse(sessionStorage.getItem("user"));
+      this.getUserInfo();
     }
     this.product = new Product()
+
     this.getCart();
     this.getTotal();
   }
 
+  getUserInfo(){
+    this.userSerVice.getUserDetailByID(this.userId).subscribe(
+      Response=>{
+       this.info=Response;
+       console.log(this.info)
+       this.Ho.setValue(this.info.ho)
+       this.Ten.setValue(this.info.ten)
+       this.SDT.setValue(this.info.sdt)
+       this.address.setValue(this.info.diachi)
+       this.Email.setValue(this.info.gmail)
+      }
+    )
+  }
   getCart(){
     
     
@@ -53,7 +83,6 @@ export class CheckoutComponent implements OnInit {
             this.productService.getProductByID(item.product.masp).subscribe(
               Response1=>{
                 this.product = Response1
-                console.log(this.product)
                 this.cartTotal+=(this.product.gia*item.soluong)
                 this.cartTotal2+=(this.product.gia*item.soluong)+this.Shipping
               }
@@ -100,5 +129,23 @@ export class CheckoutComponent implements OnInit {
         }
       )
     
+    }
+    getInfoForm(){
+      return this.infoForm.controls;
+    }
+    get Ho() {
+      return this.infoForm.get('ho');
+    }
+    get Ten() {
+      return this.infoForm.get('ten');
+    }
+    get SDT() {
+      return this.infoForm.get('phone');
+    }
+    get address() {
+      return this.infoForm.get('address');
+    }
+    get Email() {
+      return this.infoForm.get('email');
     }
 }
