@@ -33,11 +33,10 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchComponent } from './search/search.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-<<<<<<< Updated upstream
 import { ChartComponent } from './chart/chart.component';
-=======
 import { MyprofileComponent } from './myprofile/myprofile.component';
->>>>>>> Stashed changes
+
+
 
 
 
@@ -63,11 +62,8 @@ import { MyprofileComponent } from './myprofile/myprofile.component';
     UpdateProductComponent,
     SearchComponent,
     CheckoutComponent,
-<<<<<<< Updated upstream
     ChartComponent,
-=======
     MyprofileComponent,
->>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
