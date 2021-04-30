@@ -1,35 +1,65 @@
 <app-menu></app-menu>
 	<section id="form"><!--form-->
-		<div class="container">
+		<div class="container" >
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
-						<h2>Login to your account</h2>
+						<h2 style="margin-left: 27%;">ĐĂNG NHẬP</h2>
 						<form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-							<input type="text" placeholder="Enter Email Address" formControlName="email"
-							/>
+							
+							<label class="center-block">Email:</label>
+							<input type="text" placeholder="Nhập địa chỉ email" formControlName="email">
+							<div class="invalid-email">
+								<div style="color:#f86161;">Email không hợp lệ</div>
+							</div>
+							
+							<label class="center-block" >Mật khẩu:</label>
 							<input type="password" placeholder="Password" formControlName="matkhau" />
+							<div class="invalid-passwd">
+								<div style="color:#f86161;">Mật khẩu không hợp lệ</div>
+							</div>
+							
 							<span>
 								<input type="checkbox" class="checkbox"> 
 								Keep me signed in
 							</span>
-							<button type="submit"  class="btn btn-default">Login</button>
+							
+							<button style="margin-left: 26%;" type="submit"  class="btn btn-default">Đăng nhập</button>
 						</form>
 						</div><!--/login form-->
 						</div>
 						<div class="col-sm-1">
-						<h2 class="or">OR</h2>
+						<h2 class="or">Hoặc</h2>
 						</div>
 						<div class="col-sm-4">
 						<div class="signup-form"><!--sign up form-->
-							<h2>New User Signup!</h2>
+							<h2 style="margin-left: 31%;">ĐĂNG KÝ</h2>
 							<form [formGroup]="registerForm"  (ngSubmit)="registerNewUser()">
-								<input type="text" placeholder="FirstName" formControlName="regisFirstName"/>
-								<input type="text" placeholder="LastName" formControlName="regisLastName"/>
-								<input type="text" placeholder="Phone" formControlName="regisPhone"/>
-								<input type="email" placeholder="Email Address"formControlName="regisEmail"/>
+								<label class="center-block">Tên:</label>
+								<input type="text" placeholder="Tên" formControlName="regisFirstName"/>
+								
+								<label class="center-block">Họ:</label>
+								<input type="text" placeholder="Họ" formControlName="regisLastName"/>
+								
+								<label class="center-block">Số điện thoại:</label>
+								<input type="text" placeholder="Số điện thoại" formControlName="regisPhone"/>
+								<div class="invalid-phone">
+									<div style="color:#f86161;">Số điện thoại không hợp lệ</div>
+								</div>
+								
+								<label class="center-block">Email:</label>
+								<input type="email" placeholder="Địa chỉ email"formControlName="regisEmail"/>
+								<div class="invalid-email">
+									<div style="color:#f86161;">Email không hợp lệ</div>
+								</div>
+								
+								<label class="center-block" >Mật khẩu:</label>
 								<input type="password" placeholder="Password"formControlName="regisPassword"/>
-								<button type="submit" class="btn btn-default">Signup</button>
+								<div class="invalid-passwd">
+									<div style="color:#f86161;">Mật khẩu không hợp lệ</div>
+								</div>
+								<br>
+								<button style="margin-left: 31%;" type="submit" class="btn btn-default">Đăng ký</button>
 							</form>
 					</div><!--/sign up form-->
 				</div>

@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
   get f1(){ return this.registerForm.controls}
   validate( str:String){
     str.toLowerCase();
-    str = str.replace(/[^\w\s]/gi, "")
     return str;
   }
   loginUser(){
