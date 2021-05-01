@@ -4,13 +4,16 @@
     <div class="row" >
     <div class="col-sm-12" >
                 <div class="card">
-                    <div class="card-header">
-                        Tình Trạng
+                    <div class="card-header" *ngIf="order.trangthai == 1">
+                        Chờ xác nhận
+                    </div>
+					<div class="card-header" *ngIf="order.trangthai == 0">
+                        Bị hủy
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item" >Tình Trạng :  </li>
-                        <li class="list-group-item">Tình Trạng :  </li>
-                        <li class="list-group-item">Lý do :Khong biet </li>
+                        <li class="list-group-item" *ngIf="order.trangthai == 1" >Tình Trạng : Chờ Xác nhận </li>
+                        <li class="list-group-item" *ngIf="order.trangthai == 0" >Tình Trạng : Bị Hủy</li>
+                        <li class="list-group-item">Lý do : Chưa rõ</li>
                     
                     </ul>
                 </div>
@@ -28,20 +31,12 @@
                         Địa chỉ
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Tên,SĐT</li>
-                        <li class="list-group-item">Địa chỉ</li>
+                        <li class="list-group-item">{{userDetail.ho}} {{userDetail.ten}}, SĐT: {{userDetail.sdt}}</li>
+                        <li class="list-group-item">Địa chỉ: {{userDetail.diachi}}</li>
                     
                     </ul>
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        Người mua
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Tên</li>     
-                    </ul>
             
-        </div>
         <div class="review-payment">
 			<h2>Danh sách mua hàng</h2>
 			</div>
@@ -57,25 +52,25 @@
 						</tr>
 					</thead>
 					<tbody>
-                        <tr *ngFor="let product of products" >
+                        <tr *ngFor="let orderdetail of orderdetails" >
 							<td class="cart_product">
-								<a href=""><img src="../../assets/images/{{product.hinhanh}}" alt="" width="100px" height="100px"></a>
+								<a href=""><img src="../../assets/images/{{orderdetail.product.hinhanh}}" alt="" width="100px" height="100px"></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">{{product.tensp}}</a></h4>
-								<p>Web ID:{{product.masp}} </p>
+								<h4><a href="">{{orderdetail.product.tensp}}</a></h4>
+								<p>Web ID:{{orderdetail.product.masp}} </p>
 							</td>
 							<td class="cart_price">
-								<p></p>
+								<p>{{orderdetail.gia|currency:'VND':'symbol':'3.0'}}</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-								<p></p>	
+								<p>{{orderdetail.soluong}}</p>	
 									
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price"></p>
+								<p class="cart_total_price">{{orderdetail.gia*orderdetail.soluong|currency:'VND':'symbol':'3.0'}}</p>
 							</td>
 
 						</tr>
@@ -85,7 +80,7 @@
 								<table class="table table-condensed total-result">
 									<tr>
 										<td>Cart Sub Total</td>
-										<td></td>
+										<td>{{orderTotal|currency:'VND':'symbol':'3.0'}}</td>
 									</tr>
 									<tr>
 										<td>Tax</td>
@@ -93,11 +88,11 @@
 									</tr>
 									<tr class="shipping-cost">
 										<td>Shipping Cost</td>
-										<td>}</td>										
+										<td>{{Shipping|currency:'VND':'symbol':'3.0'}}</td>										
 									</tr>
 									<tr>
 										<td>Total</td>
-										<td><span>  </span></td>
+										<td><span>{{orderTotal2|currency:'VND':'symbol':'3.0'}}</span></td>
 									</tr>
 								</table>
 							</td>
@@ -106,9 +101,9 @@
 			</div>
                 </div>
       <div class="col-sm-12"> 
-       <div class="card">
+       <div class="card" style="font-size:2em">
                     <div class="card-header">
-                        Thanh toán của người mua : 
+                        Thanh toán của người mua : <span class="pull-right" >{{purchase|currency:'VND':'symbol':'3.0'}}</span>
                     </div>
             
         </div>

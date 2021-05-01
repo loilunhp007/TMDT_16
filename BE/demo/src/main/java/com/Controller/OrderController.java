@@ -28,7 +28,12 @@ public class OrderController {
     @Autowired
     private OrderDetailService orderDetailService;
 
-    @GetMapping("/get/{matv}")
+    @GetMapping("/get/{madh}")
+    public ResponseEntity<DatHang> getOrderById(@PathVariable(name = "madh")String madh) throws Exception{
+        DatHang order = orderService.getOrderById(madh);
+        return ResponseEntity.status(HttpStatus.OK).body(order);
+    }
+    @GetMapping("/get/tvban/{matv}")
     public ResponseEntity<List<DatHang>> getDonhangByTVBan(@PathVariable(name = "matv")String matv ){
         List<DatHang> orders = orderService.getAllOrderByTVBan(matv);
         if(orders!=null){

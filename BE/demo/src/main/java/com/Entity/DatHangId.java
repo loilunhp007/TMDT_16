@@ -2,13 +2,18 @@ package com.Entity;
 
 import java.io.Serializable;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class DatHangId implements Serializable {
     private String madh;
-    private String masp;
+    @ManyToOne
+    @JoinColumn(name = "masp")
+    private Sanpham product;
     private DatHangId(){}
-    private DatHangId(String madh,String masp){
+    private DatHangId(String madh,Sanpham product){
         this.madh = madh;
-        this.masp = masp;
+        this.product= product;
     }
     
 }

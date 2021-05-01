@@ -1,7 +1,7 @@
 package com.Services;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import com.Entity.DatHang;
 import com.Repository.OrderRepository;
@@ -14,6 +14,17 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
+
+    public DatHang getOrderById(String madh) throws Exception{
+        Optional<DatHang> op = orderRepository.findById(madh);
+        if(op.isEmpty()){
+            throw new Exception("not found");
+        }
+        else{
+           return  op.get();
+        }
+
+    }
     public List<DatHang> getAllOrderByTVBan(String matvban){
         return orderRepository.findByMatvban(matvban);
     }
