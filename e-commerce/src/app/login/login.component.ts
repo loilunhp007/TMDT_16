@@ -64,6 +64,26 @@ export class LoginComponent implements OnInit {
       )
     this.userDetail= new UserDetail();
     this.user = new User();
+    
+    this.registerForm = this.formBuilder.group({
+      regisFirstName: ['',Validators.required],
+      regisLastName: ['',Validators.required],
+      regisPhone: ['',[
+                      Validators.required,
+                      Validators.pattern('^((\\+84-?)|0)?[0-9]{10}$')
+                  ]],
+      regisEmail: ['',[
+                      //^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$
+                      //^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$
+                      Validators.required,
+                      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+                  ]],
+      regisPassword: ['',
+                      [Validators.minLength(6),
+                       Validators.required,
+                       Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$') 
+                      ]]
+                    })
   }
   get f(){return this.loginForm.controls}
   get f1(){ return this.registerForm.controls}
