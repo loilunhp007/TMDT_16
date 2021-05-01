@@ -62,8 +62,9 @@ export class LoginComponent implements OnInit {
                   ]],
       regisEmail: ['',[
                       //^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$
+                      //^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$
                       Validators.required,
-                      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
+                      Validators.email
                   ]],
       regisPassword: ['',
                       [Validators.minLength(6),
@@ -114,8 +115,8 @@ export class LoginComponent implements OnInit {
           this.matv= random+''+this.max; 
           this.userDetail.matv=this.matv;
           this.userDetail.loaithanhvien=loaithanhvien;
-          this.userDetail.ho = this.validate(this.f1.regisFirstName.value);
-          this.userDetail.ten = this.validate(this.f1.regisLastName.value);
+          this.userDetail.ho = this.validate(this.f1.regisLastName.value);
+          this.userDetail.ten = this.validate(this.f1.regisFirstName.value);
           this.userDetail.sdt = this.validate(this.f1.regisPhone.value);
           this.userDetail.ngaytao = year.toString()+'-'+month+'-'+day;
           this.userDetail.trangthai="1";

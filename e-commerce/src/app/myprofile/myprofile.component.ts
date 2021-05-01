@@ -40,10 +40,10 @@ export class MyprofileComponent implements OnInit {
     return this.userForm.controls;
   }
   get Ho() {
-    return this.userForm.get('firstName');
+    return this.userForm.get('lastName');
   }
   get Ten() {
-    return this.userForm.get('lastName');
+    return this.userForm.get('firstName');
   }
   get SDT() {
     return this.userForm.get('phone');
