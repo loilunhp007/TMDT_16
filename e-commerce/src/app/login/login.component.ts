@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../model/user';
 import { UserDetail } from '../model/user-detail';
 import { UserService } from '../service/user.service';
+import {FormGroup} from'@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -16,17 +17,21 @@ export class LoginComponent implements OnInit {
   max:number;
   userDetail:UserDetail;
   user:User;
+
+
   loginForm = this.formBuilder.group({
-    email: '',
-    matkhau: ''
+    email:['',Validators.required],
+    matkhau: ['',Validators.required]
   })
   registerForm = this.formBuilder.group({
-    regisFirstName:'',
-    regisLastName:'',
-    regisPhone:'',
-    regisEmail:'',
-    regisPassword:''
+    regisFirstName: '',
+    regisLastName: '',
+    regisPhone: '',
+    regisEmail: '',
+    regisPassword:'',
   })
+
+
   matv:String
   action:string
   constructor(private userService : UserService,
@@ -34,6 +39,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private activeRoute:ActivatedRoute) {
       
+    
+
      }
 
   ngOnInit( ): void {
@@ -45,7 +52,25 @@ export class LoginComponent implements OnInit {
       )
     this.userDetail= new UserDetail();
     this.user = new User();
-
+    
+    this.registerForm = this.formBuilder.group({
+      regisFirstName: ['',Validators.required],
+      regisLastName: ['',Validators.required],
+      regisPhone: ['',[
+                      Validators.required,
+                      Validators.pattern('^((\\+84-?)|0)?[0-9]{10}$')
+                  ]],
+      regisEmail: ['',[
+                      //^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$
+                      Validators.required,
+                      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
+                  ]],
+      regisPassword: ['',
+                      [Validators.minLength(6),
+                       Validators.required,
+                       Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$') 
+                      ]]
+                    })
   }
   get f(){return this.loginForm.controls}
   get f1(){ return this.registerForm.controls}
@@ -54,19 +79,18 @@ export class LoginComponent implements OnInit {
     return str;
   }
   loginUser(){
-    let userDetail2 = new UserDetail();
+    let role = "admin";
     this.user.email=  this.f.email.value;
     this.user.matkhau = this.f.matkhau.value;
     this.userService.loginUserFromRemote(this.user).subscribe(
       response => {this.user=response;
+        console.log(this.user);
         sessionStorage.setItem("user",JSON.stringify(this.user.matv));
         if(this.f.matkhau.value == this.user.matkhau){
-           
-          this.route.navigate(["/home"]);
-            
+            if(role == "admin"){
+              this.route.navigate(["/admin"]);
+            }else{this.route.navigate(["/home"]);}
           
-        }else{
-          this.route.navigate(["/home/login"]);
         }
 
 

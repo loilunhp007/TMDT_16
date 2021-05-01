@@ -9,14 +9,14 @@
 							
 							<label class="center-block">Email:</label>
 							<input type="text" placeholder="Nhập địa chỉ email" formControlName="email">
-							<div class="invalid-email">
-								<div style="color:#f86161;">Email không hợp lệ</div>
+							<div *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid" class="invalid-email">
+								<div *ngIf="loginForm.get('email').errors.required" style="color:#f86161;">Email đang rỗng</div>
 							</div>
 							
 							<label class="center-block" >Mật khẩu:</label>
 							<input type="password" placeholder="Password" formControlName="matkhau" />
-							<div class="invalid-passwd">
-								<div style="color:#f86161;">Mật khẩu không hợp lệ</div>
+							<div *ngIf="loginForm.get('matkhau').touched && loginForm.get('matkhau').invalid" class="invalid-passwd">
+								<div *ngIf="loginForm.get('matkhau').errors.required" style="color:#f86161;">Mật khẩu không hợp lệ</div>
 							</div>
 							
 							<span>
@@ -36,28 +36,38 @@
 							<h2 style="margin-left: 31%;">ĐĂNG KÝ</h2>
 							<form [formGroup]="registerForm"  (ngSubmit)="registerNewUser()">
 								<label class="center-block">Tên:</label>
-								<input type="text" placeholder="Tên" formControlName="regisFirstName"/>
+								<input type="text" placeholder="Tên" formControlName="regisFirstName" [ngClass]="{'is-invalid':registerForm.get('regisFirstName').touched && registerForm.get('regisFirstName').invalid}"/>
+								<div *ngIf="registerForm.get('regisFirstName').touched && registerForm.get('regisFirstName').invalid" class="invalid-firstName">
+									<div *ngIf="registerForm.get('regisFirstName').errors.required" style="color:#f86161;">Tên đang rỗng</div>
+								</div>
 								
 								<label class="center-block">Họ:</label>
-								<input type="text" placeholder="Họ" formControlName="regisLastName"/>
-								
-								<label class="center-block">Số điện thoại:</label>
-								<input type="text" placeholder="Số điện thoại" formControlName="regisPhone"/>
-								<div class="invalid-phone">
-									<div style="color:#f86161;">Số điện thoại không hợp lệ</div>
+								<input type="text" placeholder="Họ" formControlName="regisLastName" [ngClass]="{'is-invalid':registerForm.get('regisLastName').touched && registerForm.get('regisLastName').invalid}"/>
+								<div *ngIf="registerForm.get('regisLastName').touched && registerForm.get('regisLastName').invalid" class="invalid-lastName">
+									<div *ngIf="registerForm.get('regisLastName').errors.required" style="color:#f86161;">Họ đang rỗng</div>
 								</div>
+
+								<label class="center-block">Số điện thoại:</label>
+								<input type="text" placeholder="Số điện thoại" formControlName="regisPhone" [ngClass]="{'is-invalid':registerForm.get('regisPhone').touched && registerForm.get('regisPhone').invalid}"/>
+								<mat-error style="color:#f86161;" *ngIf="registerForm.get('regisPhone').touched && registerForm.get('regisPhone').invalid" class="invalid-phone">
+									<div *ngIf="registerForm.get('regisPhone').errors.required" style="color:#f86161;">Số điện thoại đang rỗng</div>
+									Số điện thoại không hợp lệ
+								</mat-error>
 								
 								<label class="center-block">Email:</label>
-								<input type="email" placeholder="Địa chỉ email"formControlName="regisEmail"/>
-								<div class="invalid-email">
-									<div style="color:#f86161;">Email không hợp lệ</div>
-								</div>
+								<input type="email" placeholder="Địa chỉ email"formControlName="regisEmail" [ngClass]="{'is-invalid':registerForm.get('regisEmail').touched && registerForm.get('regisEmail').invalid}"/>
+								<mat-error style="color:#f86161;" *ngIf="registerForm.get('regisEmail').touched && registerForm.get('regisEmail').invalid" class="invalid-email">
+									<div *ngIf="registerForm.get('regisEmail').errors.required" style="color:#f86161;">Email đang rỗng</div>
+									Email không hợp lệ
+								</mat-error>
 								
 								<label class="center-block" >Mật khẩu:</label>
-								<input type="password" placeholder="Password"formControlName="regisPassword"/>
-								<div class="invalid-passwd">
-									<div style="color:#f86161;">Mật khẩu không hợp lệ</div>
-								</div>
+								<input type="password" placeholder="Password"formControlName="regisPassword" [ngClass]="{'is-invalid':registerForm.get('regisPassword').touched && registerForm.get('regisPassword').invalid}"/>
+								<mat-error style="color:#f86161;" *ngIf="registerForm.get('regisPassword').touched && registerForm.get('regisPassword').invalid" class="invalid-passwd">
+									<div *ngIf="registerForm.get('regisPassword').errors.required" style="color:#f86161;">Mật khẩu đang rỗng</div>
+									Mật khẩu không hợp lệ		
+								</mat-error>
+								
 								<br>
 								<button style="margin-left: 31%;" type="submit" class="btn btn-default">Đăng ký</button>
 							</form>
