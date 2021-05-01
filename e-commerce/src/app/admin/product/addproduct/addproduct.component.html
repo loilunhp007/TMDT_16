@@ -7,95 +7,97 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Add Product</h4>
+        <h3 class="modal-title w-100 font-weight-bold" style="color:cadetblue">Thêm sản phẩm</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
-          <label for="orangeForm-ID">Ma San Pham</label>
+          <label for="orangeForm-ID">Mã sản phẩm</label>
           <input type="text" id="orangeForm-ID" class="form-control" [formControl]="ProductFormModalID"
                  mdbInput mdbValidate>
-
-          <mdb-error *ngIf="ProductFormModalName.invalid && (ProductFormModalName.dirty || ProductFormModalName.touched)">
-            Input invalid
-          </mdb-error>
-          <mdb-success *ngIf="ProductFormModalName.valid && (ProductFormModalName.dirty || ProductFormModalName.touched)">
-            Input valid
-          </mdb-success>
+          <div>
+            <mat-error style="color:#f86161;" *ngIf="ProductFormModalName.invalid && (ProductFormModalName.dirty || ProductFormModalName.touched)">
+              Input invalid
+            </mat-error>
+            <mat-success style="color:#33cc33;" *ngIf="ProductFormModalName.valid && (ProductFormModalName.dirty || ProductFormModalName.touched)">
+              Input valid
+            </mat-success>
+          </div>
         </div>
         <div class="md-form mb-5">
-          <label for="orangeForm-Name">Ten San Pham</label>
+          <label for="orangeForm-Name">Tên sản phẩm</label>
           <input type="text" id="orangeForm-Name" class="form-control" [formControl]="ProductFormModalName"
                  mdbInput mdbValidate>
-          <mdb-error
+          <mat-error style="color:#f86161;"
             *ngIf="ProductFormModalName.invalid && (ProductFormModalName.dirty || ProductFormModalName.touched)">Input
             invalid
-          </mdb-error>
-          <mdb-success
+          </mat-error>
+          <mat-success style="color:#33cc33;"
             *ngIf="ProductFormModalName.valid && (ProductFormModalName.dirty || ProductFormModalName.touched)">Input
             valid
-          </mdb-success>
+          </mat-success>
         </div>
-
+        
       
         <div class="md-form mb-4">
-          <label for="orangeForm-pass">Thong tin san pham</label>       
+          <label for="orangeForm-pass">Thông tin sản phẩm</label>       
           <input type="text" id="orangeForm-Info" class="form-control" [formControl]="ProductFormModalInfo"
                  mdbInput mdbValidate>
 
-          <mdb-error
+          <mat-error style="color:#f86161;"
             *ngIf="ProductFormModalInfo.invalid && (ProductFormModalInfo.dirty || ProductFormModalInfo.touched)">
             Input invalid
-          </mdb-error>
-          <mdb-success
+          </mat-error>
+          <mat-success style="color:#33cc33;"
             *ngIf="ProductFormModalInfo.valid && (ProductFormModalInfo.dirty || ProductFormModalInfo.touched)">
             Input valid
-          </mdb-success>
+          </mat-success>
         </div>
+        
          <div class="md-form mb-4">
-          <label for="orangeForm-price">Gia</label>     
+          <label for="orangeForm-price">Giá</label>     
           <input type="text" id="orangeForm-price" class="form-control" [formControl]="ProductFormModalPrice"
                  mdbInput mdbValidate>
 
-          <mdb-error
+          <mat-error style="color:#f86161;"
             *ngIf="ProductFormModalPrice.invalid && (ProductFormModalPrice.dirty || ProductFormModalPrice.touched)">
             Input invalid
-          </mdb-error>
-          <mdb-success
+          </mat-error>
+          <mat-success style="color:#33cc33;"
             *ngIf="ProductFormModalPrice.valid && (ProductFormModalPrice.dirty || ProductFormModalPrice.touched)">
             Input valid
-          </mdb-success>
+          </mat-success>
         </div>
          <div class="md-form mb-4">
-          <label for="orangeForm-quan">So Luong</label>       
+          <label for="orangeForm-quan">Số lượng</label>       
           <input type="text" id="orangeForm-quan" class="form-control" [formControl]="ProductFormModalQuantity"
                  mdbInput mdbValidate>
 
-          <mdb-error
+          <mat-error style="color:#f86161;"
             *ngIf="ProductFormModalQuantity.invalid && (ProductFormModalQuantity.dirty || ProductFormModalQuantity.touched)">
             Input invalid
-          </mdb-error>
-          <mdb-success
+          </mat-error>
+          <mat-success style="color:#33cc33;"
             *ngIf="ProductFormModalQuantity.valid && (ProductFormModalQuantity.dirty || ProductFormModalQuantity.touched)">
             Input valid
-          </mdb-success>
+          </mat-success>
           <div class="md-form mb-4">
-          <label for="orangeForm-image">Hinh anh</label>       
+          <label for="orangeForm-image">Hình ảnh</label>       
           <input type="file" id="orangeForm-image" accept="image/*"  (change)="onFileChanged($event)" class="form-control" [formControl]="ProductFormModalImage"
                  mdbInput mdbValidate style="display:none" #fileInput>
                  <br>
 
           <button mdbBtn color="deep-orange" class="waves-light" (click)="fileInput.click()">Image</button>
-          <mdb-error
+          <mat-error style="color:#f86161;"
             *ngIf="ProductFormModalImage.invalid && (ProductFormModalImage.dirty || ProductFormModalImage.touched)">
             Input invalid
-          </mdb-error>
-          <mdb-success
+          </mat-error>
+          <mat-success style="color:#33cc33;"
             *ngIf="ProductFormModalImage.valid && (ProductFormModalImage.dirty || ProductFormModalImage.touched)">
             Input valid
-          </mdb-success>
+          </mat-success>
           <div class="md-form mb-4">
               
               <img [src]="imgURL" height="200" width="200" *ngIf="imgURL">
