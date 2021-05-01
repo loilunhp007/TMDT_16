@@ -142,4 +142,25 @@ export class LoginComponent implements OnInit {
 
               }
         }
+        get email(){
+          return this.loginForm.get('email')
+        }
+        get matkhau(){
+          return this.loginForm.get('matkhau')
+        }
+        get regisFirstName(){
+          return this.registerForm.get('regisFirstName')
+        }
+        get regisLastName(){
+          return this.registerForm.get('regisLastName')
+        }
+        get regisPhone(){
+          return this.registerForm.get('regisPhone')
+        }
+        get regisEmail(){
+          return this.registerForm.get('regisEmail')
+        }
+        get regisPassword(){
+          return this.registerForm.get('regisPassword')
+        }
       }
