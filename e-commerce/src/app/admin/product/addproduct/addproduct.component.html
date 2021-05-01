@@ -90,13 +90,13 @@
                  <br>
 
           <button mdbBtn color="deep-orange" class="waves-light" (click)="fileInput.click()">Image</button>
-          <mat-error style="color:#f86161;"
-            *ngIf="ProductFormModalImage.invalid && (ProductFormModalImage.dirty || ProductFormModalImage.touched)">
-            Input invalid
-          </mat-error>
-          <mat-success style="color:#33cc33;"
+          <mat-error style="color:#33cc33;"
             *ngIf="ProductFormModalImage.valid && (ProductFormModalImage.dirty || ProductFormModalImage.touched)">
             Input valid
+          </mat-error>
+          <mat-success style="color:#f86161;"
+            *ngIf="ProductFormModalImage.invalid && (ProductFormModalImage.dirty || ProductFormModalImage.touched)">
+            Input invalid
           </mat-success>
           <div class="md-form mb-4">
               

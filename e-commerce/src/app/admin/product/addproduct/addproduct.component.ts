@@ -39,7 +39,7 @@ export class AddproductComponent implements OnInit {
     this.validatingForm = new FormGroup({
       ProductFormModalID: new FormControl('', Validators.required),
       ProductFormModalName: new FormControl('', Validators.required),
-      ProductFormModalPrice: new FormControl('', Validators.pattern('[0-9]')),
+      ProductFormModalPrice: new FormControl('', [Validators.required, Validators.pattern('[0-9]'), Validators.min(1000000)]),
       ProductFormModalQuantity: new FormControl('', Validators.required),
       ProductFormModalInfo: new FormControl('', Validators.required),
       ProductFormModalImage: new FormControl('',Validators.required )
