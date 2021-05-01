@@ -110,7 +110,7 @@ export class LoginComponent implements OnInit {
     const loaithanhvien="02";
     this.userService.getMaxUser().subscribe(
       response=>{ this.max=response;     
-        const random = Math.floor(Math.random() * (9999 - 1000)) + 1;
+        const random = Math.floor(Math.random() * (99 - 10))+1;
         //userDetail
           this.matv= random+''+this.max; 
           this.userDetail.matv=this.matv;
@@ -128,7 +128,8 @@ export class LoginComponent implements OnInit {
               this.user.matv= this.matv;
               this.userService.addUser(this.user).subscribe(
                       (user)=>{
-                        sessionStorage.setItem("user",JSON.stringify(this.user));
+                        console.log(user.matv);
+                        sessionStorage.setItem("user",JSON.stringify(this.user.matv));
                           this.route.navigate(['/home']);
                       },
                       (error)=>{}
