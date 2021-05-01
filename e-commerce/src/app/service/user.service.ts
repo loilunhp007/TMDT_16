@@ -37,7 +37,7 @@ export class UserService {
    }
    getUserByID(){
      let user = JSON.parse(sessionStorage.getItem("user"));     
-    return this.httpClient.get<User>("http://localhost:8080/user/get/{"+user.uid+"}");
+    return this.httpClient.get<User>("http://localhost:8080/user/get/"+user.uid);
    }
    addUserDetail(UserDetail: UserDetail):Observable<any> {
     return this.httpClient.post<UserDetail>('http://localhost:8080/userdetail/add', UserDetail);   

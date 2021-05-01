@@ -12,6 +12,7 @@ import { ProductService } from '../service/product.service';
 })
 export class CategoryComponent implements OnInit {
   searchText;
+  amount=0;
   constructor(private productService:ProductService,
     private cartService : CartService,
     private Actroute: ActivatedRoute,
@@ -62,8 +63,6 @@ export class CategoryComponent implements OnInit {
       params=>{
         const id=product.masp;
         this.router.navigate(['home','product-detail'],{queryParams: {id}})
-        console.log(params)
-        alert(params)
       }
     )
   

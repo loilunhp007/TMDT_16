@@ -1,1 +1,121 @@
-<p>order-detail works!</p>
+<app-admin-menu></app-admin-menu>
+
+<div class="container">
+    <div class="row" >
+    <div class="col-sm-12" >
+                <div class="card">
+                    <div class="card-header">
+                        Tình Trạng
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" >Tình Trạng :  </li>
+                        <li class="list-group-item">Tình Trạng :  </li>
+                        <li class="list-group-item">Lý do :Khong biet </li>
+                    
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        Id đơn hàng
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item "><span class="text-warning">#{{madh}}</span></li>
+                    
+                    </ul>
+                </div>
+                   <div class="card">
+                    <div class="card-header">
+                        Địa chỉ
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Tên,SĐT</li>
+                        <li class="list-group-item">Địa chỉ</li>
+                    
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        Người mua
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Tên</li>     
+                    </ul>
+            
+        </div>
+        <div class="review-payment">
+			<h2>Danh sách mua hàng</h2>
+			</div>
+              <div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu" style="background-color: rgb(230, 124, 49);">
+							<td class="image">Sản phẩm</td>
+							<td class="description"></td>
+							<td class="price">Giá</td>
+							<td class="quantity">Số lượng</td>
+							<td class="total">Tổng</td>
+						</tr>
+					</thead>
+					<tbody>
+                        <tr *ngFor="let product of products" >
+							<td class="cart_product">
+								<a href=""><img src="../../assets/images/{{product.hinhanh}}" alt="" width="100px" height="100px"></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">{{product.tensp}}</a></h4>
+								<p>Web ID:{{product.masp}} </p>
+							</td>
+							<td class="cart_price">
+								<p></p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+								<p></p>	
+									
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price"></p>
+							</td>
+
+						</tr>
+
+							<td colspan="4">&nbsp;</td>
+							<td colspan="2">
+								<table class="table table-condensed total-result">
+									<tr>
+										<td>Cart Sub Total</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Tax</td>
+										<td>0</td>
+									</tr>
+									<tr class="shipping-cost">
+										<td>Shipping Cost</td>
+										<td>}</td>										
+									</tr>
+									<tr>
+										<td>Total</td>
+										<td><span>  </span></td>
+									</tr>
+								</table>
+							</td>
+					</tbody>
+				</table>
+			</div>
+                </div>
+      <div class="col-sm-12"> 
+       <div class="card">
+                    <div class="card-header">
+                        Thanh toán của người mua : 
+                    </div>
+            
+        </div>
+      </div>        
+
+    </div>
+</div>
+          <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">

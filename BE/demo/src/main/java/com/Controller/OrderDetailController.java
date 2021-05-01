@@ -22,7 +22,7 @@ public class OrderDetailController {
     @Autowired
     private OrderDetailService orderDetailService;
 
-    @GetMapping("/get/{{madh}}}")
+    @GetMapping("/get/{madh}")
     public List<CT_DatHang> getOrderDetail(@PathVariable(name = "madh")String madh){
             return orderDetailService.getAllOrderDetailByMahd(madh);
     }

@@ -11,6 +11,7 @@ import { ProductService } from '../service/product.service';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
+  products:Array<Product>
   product : Product
   s:String
   pId:String
@@ -20,9 +21,10 @@ export class ProductDetailComponent implements OnInit {
     private router: Router,
     private actRoute: ActivatedRoute,
     private cartService:CartService) { }
-
+    idx=0;
   ngOnInit(): void {
     this.product = new Product();
+    this.getProduct(1);
     this.actRoute.queryParams.subscribe(data=>{
       this.s = data.id
       console.log(data)
@@ -33,6 +35,13 @@ export class ProductDetailComponent implements OnInit {
     })
     
 
+  }
+  getProduct(trangthai:number){
+    this.productService.getProductByTrangthai(trangthai).subscribe(
+      (response)=>{ this.products =response;
+          console.log(this.products);
+        
+      })
   }
   getProductById(masp:String){
     this.productService.getProductByID(masp).subscribe(
