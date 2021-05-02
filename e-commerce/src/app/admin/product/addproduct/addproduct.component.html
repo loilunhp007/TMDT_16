@@ -19,10 +19,10 @@
                  mdbInput mdbValidate>
           <div>
             <mat-error style="color:#f86161;" *ngIf="ProductFormModalName.invalid && (ProductFormModalName.dirty || ProductFormModalName.touched)">
-              Input invalid
+              Mã sản phẩm không hợp lệ
             </mat-error>
             <mat-success style="color:#33cc33;" *ngIf="ProductFormModalName.valid && (ProductFormModalName.dirty || ProductFormModalName.touched)">
-              Input valid
+              Mã sản phẩm hợp lệ
             </mat-success>
           </div>
         </div>
@@ -31,12 +31,12 @@
           <input type="text" id="orangeForm-Name" class="form-control" [formControl]="ProductFormModalName"
                  mdbInput mdbValidate>
           <mat-error style="color:#f86161;"
-            *ngIf="ProductFormModalName.invalid && (ProductFormModalName.dirty || ProductFormModalName.touched)">Input
-            invalid
+            *ngIf="ProductFormModalName.invalid && (ProductFormModalName.dirty || ProductFormModalName.touched)">
+             Tên sản phẩm không hợp lệ
           </mat-error>
           <mat-success style="color:#33cc33;"
-            *ngIf="ProductFormModalName.valid && (ProductFormModalName.dirty || ProductFormModalName.touched)">Input
-            valid
+            *ngIf="ProductFormModalName.valid && (ProductFormModalName.dirty || ProductFormModalName.touched)">
+            Tên sản phẩm hợp lệ
           </mat-success>
         </div>
         
@@ -48,11 +48,11 @@
 
           <mat-error style="color:#f86161;"
             *ngIf="ProductFormModalInfo.invalid && (ProductFormModalInfo.dirty || ProductFormModalInfo.touched)">
-            Input invalid
+            Thông tin sản phẩm không hợp lệ
           </mat-error>
           <mat-success style="color:#33cc33;"
             *ngIf="ProductFormModalInfo.valid && (ProductFormModalInfo.dirty || ProductFormModalInfo.touched)">
-            Input valid
+            Thông tin sản phẩm hợp lệ
           </mat-success>
         </div>
         
@@ -63,11 +63,11 @@
 
           <mat-error style="color:#f86161;"
             *ngIf="ProductFormModalPrice.invalid && (ProductFormModalPrice.dirty || ProductFormModalPrice.touched)">
-            Input invalid
+            Giá không hợp lệ, giá nhỏ nhất là 1000000
           </mat-error>
           <mat-success style="color:#33cc33;"
             *ngIf="ProductFormModalPrice.valid && (ProductFormModalPrice.dirty || ProductFormModalPrice.touched)">
-            Input valid
+            Giá hợp lệ
           </mat-success>
         </div>
          <div class="md-form mb-4">
@@ -77,11 +77,11 @@
 
           <mat-error style="color:#f86161;"
             *ngIf="ProductFormModalQuantity.invalid && (ProductFormModalQuantity.dirty || ProductFormModalQuantity.touched)">
-            Input invalid
+            Số lượng không hợp lệ
           </mat-error>
           <mat-success style="color:#33cc33;"
             *ngIf="ProductFormModalQuantity.valid && (ProductFormModalQuantity.dirty || ProductFormModalQuantity.touched)">
-            Input valid
+            Số lượng hợp lệ
           </mat-success>
           <div class="md-form mb-4">
           <label for="orangeForm-image">Hình ảnh</label>       
@@ -92,11 +92,11 @@
           <button mdbBtn color="deep-orange" class="waves-light" (click)="fileInput.click()">Image</button>
           <mat-error style="color:#33cc33;"
             *ngIf="ProductFormModalImage.valid && (ProductFormModalImage.dirty || ProductFormModalImage.touched)">
-            Input valid
+            Hình ảnh hợp lệ
           </mat-error>
           <mat-success style="color:#f86161;"
             *ngIf="ProductFormModalImage.invalid && (ProductFormModalImage.dirty || ProductFormModalImage.touched)">
-            Input invalid
+            Hình ảnh không hợp lệ
           </mat-success>
           <div class="md-form mb-4">
               
