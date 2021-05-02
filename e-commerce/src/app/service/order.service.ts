@@ -16,4 +16,8 @@ export class OrderService {
   getOrderById(madh:string):Observable<any>{
     return this.httpClient.get<Order>('http://localhost:8080/order/get/'+madh)
   }
+  getAllOrderByTrangthai(trangthai:number):Observable<any>{
+    return this.httpClient.get<Order[]>('http://localhost:8080/order/get/trangthai/'+trangthai);
+  }
 }
+

@@ -41,6 +41,14 @@ public class OrderController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(orders);
     }
+    @GetMapping("/get/trangthai/{trangthai}")
+    public ResponseEntity<List<DatHang>> getAllOrderByTrangthai(@PathVariable(name = "trangthai")int trangthai ){
+        List<DatHang> orders = orderService.getAllOrderByTrangthai(trangthai);
+        if(orders!=null){
+            return ResponseEntity.status(HttpStatus.OK).body(orders);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(orders);
+    }
     @PostMapping("/add")
     public ResponseEntity<DatHang> addOrder(@RequestBody DatHang order){
         DatHang order2 = orderService.saveDathang(order);

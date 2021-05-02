@@ -40,21 +40,11 @@ export class OrderDetailComponent implements OnInit {
     
   })
 }
-  getUserInfo(matv:String){
-    this.userService.getUserDetailByID(matv).subscribe(
-      Response=>{
-        this.userDetail= Response;
-
-      }
-    )
-
-  }
   getOrderById(madh:String){
     let ss=madh+'';
     this.orderService.getOrderById(ss).subscribe(
       Response=>{
         this.order = Response;
-        this.getUserInfo(this.order.matvmua)
       }
     )
   }

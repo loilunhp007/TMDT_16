@@ -11,6 +11,7 @@ import { OrderService } from 'src/app/service/order.service';
 export class OrderComponent implements OnInit {
 
   orders:Array<Order>
+  cancelOrders:Array<Order>
   constructor(private orderService:OrderService,
     private router:Router,
     private actRouter:ActivatedRoute) { }
@@ -19,6 +20,7 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
     let Id=JSON.parse(sessionStorage.getItem('user'));
     this.getAllOrder(Id);
+    this.getAllOrderCancel(0);
   }
   getAllOrder(matv:string){
     this.order = new Order(); 
@@ -26,6 +28,15 @@ export class OrderComponent implements OnInit {
       Response=>{
         this.orders=Response;
         console.log(this.orders);}
+    )
+
+  }
+  getAllOrderCancel(trangthai:number){
+    this.order = new Order(); 
+    this.orderService.getAllOrderByTrangthai(trangthai).subscribe(
+      Response=>{
+        this.cancelOrders=Response;
+        }
     )
 
   }
