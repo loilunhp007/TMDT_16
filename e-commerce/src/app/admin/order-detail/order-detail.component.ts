@@ -21,7 +21,8 @@ export class OrderDetailComponent implements OnInit {
   constructor(private actRoute:ActivatedRoute,
     private orderDetailService:OrderDetailService,
     private orderService:OrderService,
-    private userService:UserService) { }
+    private userService:UserService,
+    private productService:ProductService) { }
   madh:String
   orderTotal =0
   orderTotal2 = 0 
@@ -32,10 +33,10 @@ export class OrderDetailComponent implements OnInit {
     this.userDetail= new UserDetail();
     this.actRoute.queryParams.subscribe(data=>{
       const s = data.id;
-      this.madh=s;
-      this.getOrderDetail(s);
-      this.getTotal(s);
       this.getOrderById(s);
+      this.madh=s;
+      this.getTotal(s);
+      
      
     
   })
@@ -56,19 +57,24 @@ export class OrderDetailComponent implements OnInit {
         if(this.orderdetails!=null){
           this.orderdetails.forEach(data=>{
             this.orderTotal+=Number(data.gia)*Number(data.soluong)
-            this.purchase+=Number(data.thanhtoan)
+            this.purchase=Number(data.thanhtoan)
+            this.productService.getProductByID(data.masp).subscribe(
+              Response2=>{
+                data.product=Response2;
+              }
+            )
           })
           this.orderTotal2=this.orderTotal;
           this.orderTotal2+=+this.Shipping;
          
+        }else{
+          if(this.orderdetails==null){
+          alert("don hang khong ton tai")}
         }
       }
     )
       
  
-  }
-  getOrderDetail(madh:String){
-    
   }
 }
 

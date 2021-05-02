@@ -20,7 +20,7 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
     let Id=JSON.parse(sessionStorage.getItem('user'));
     this.getAllOrder(Id);
-    this.getAllOrderCancel(0);
+    this.getAllOrderCancel(0,Id);
   }
   getAllOrder(matv:string){
     this.order = new Order(); 
@@ -31,23 +31,54 @@ export class OrderComponent implements OnInit {
     )
 
   }
-  getAllOrderCancel(trangthai:number){
+  getAllOrderCancel(trangthai:number,matvban:String){
     this.order = new Order(); 
-    this.orderService.getAllOrderByTrangthai(trangthai).subscribe(
+    let ss=matvban+''
+    this.orderService.getAllOrderByTrangthaiAndTvban(trangthai,ss).subscribe(
       Response=>{
         this.cancelOrders=Response;
         }
     )
 
   }
+  updateOrder(order:Order){
+    let ss = order.madh+''
+    if(order.trangthai == 1){
+    this.orderService.updateOrderStatus(ss,2).subscribe(
+      Response=>{
+        let order2 = new Order(); 
+        order2 = Response
+        this.exit();
+      }
+    );
+    }
+    if(order.trangthai == 2){
+    this.orderService.updateOrderStatus(ss,3).subscribe(
+      Response=>{
+        let order2 = new Order(); 
+        order2 = Response
+        this.exit();
+      })
+    }
+    if(order.trangthai == 3){
+      this.orderService.updateOrderStatus(ss,4).subscribe(
+        Response=>{
+          let order2 = new Order(); 
+          order2 = Response
+          this.exit()
+        })
+      }
+  }
+  
   goDetail(order:Order){
     this.actRouter.queryParams.subscribe(
       params=>{
         const id=order.madh;
         this.router.navigate(['admin','orderdetail'],{queryParams: {id}})
-        console.log(params)
-        alert(params)
       }
     )
+  }
+  exit() {
+    location.reload();
   }
 }

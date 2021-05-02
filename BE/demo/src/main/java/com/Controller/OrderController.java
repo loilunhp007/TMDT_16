@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,19 +42,27 @@ public class OrderController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(orders);
     }
-    @GetMapping("/get/trangthai/{trangthai}")
-    public ResponseEntity<List<DatHang>> getAllOrderByTrangthai(@PathVariable(name = "trangthai")int trangthai ){
-        List<DatHang> orders = orderService.getAllOrderByTrangthai(trangthai);
+    @GetMapping("/get/trangthai/{trangthai}/{matvban}")
+    public ResponseEntity<List<DatHang>> getAllOrderByTrangthai(@PathVariable(name = "trangthai")int trangthai,@PathVariable(name = "matvban" )String matvban){
+        List<DatHang> orders = orderService.getAllOrderByTrangthaiAndTVBan(trangthai,matvban);
         if(orders!=null){
             return ResponseEntity.status(HttpStatus.OK).body(orders);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(orders);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
     @PostMapping("/add")
     public ResponseEntity<DatHang> addOrder(@RequestBody DatHang order){
         DatHang order2 = orderService.saveDathang(order);
         return ResponseEntity.status(HttpStatus.OK).body(order2);
         
+    }
+    @PutMapping("/put/{madh}/{trangthai}")
+    public ResponseEntity<DatHang> updateOrder(@PathVariable(name = "madh")String madh,@PathVariable(name = "trangthai")int trangthai) throws Exception{
+        DatHang order= new DatHang(); 
+         order = orderService.getOrderById(madh);
+        order.setTrangthai(trangthai);
+        DatHang order2 = orderService.saveDathang(order);
+        return ResponseEntity.status(HttpStatus.OK).body(order2);
     }
 
 }

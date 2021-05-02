@@ -3,6 +3,8 @@ package com.Entity;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
@@ -16,14 +18,12 @@ import javax.persistence.Table;
 @Getter
 @Entity
 @Table(name="ctdathang")
-@IdClass(DatHangId.class)
+@IdClass(CT_DatHangId.class)
 public class CT_DatHang {
     @Id
     private String madh;
     @Id
-    @ManyToOne
-    @JoinColumn(name = "masp")
-    private Sanpham product;
+    private String masp;
     private String soluong;
     private String gia;
     private String tongtien;

@@ -12,4 +12,11 @@ export class OrderDetailService {
   getOrderDetail(madh:string):Observable<any>{
     return this.httpClient.get<OrderDetail>('http://localhost:8080/orderdetail/get/'+madh);
   }
+  addOrderDetail(orderDetail:OrderDetail):Observable<any>{
+    return this.httpClient.post<OrderDetail>('http://localhost:8080/orderdetail/add',orderDetail);
+  }
+  updateOrderDetail(orderDetail:OrderDetail):Observable<any>{
+    return this.httpClient.put<OrderDetail>('http://localhost:8080/orderdetail/put/'+orderDetail.madh,orderDetail);
+  }
+  
 }

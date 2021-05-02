@@ -33,8 +33,9 @@ public class OrderService {
         UserDetail userDetail = userDetailRepository.findById(matvban).get();
         return orderRepository.findByTvban(userDetail);
     }
-    public List<DatHang> getAllOrderByTrangthai(int trangthai){
-        return orderRepository.findByTrangthai(trangthai);
+    public List<DatHang> getAllOrderByTrangthaiAndTVBan(int trangthai,String matvban){
+        UserDetail userDetail = userDetailRepository.findById(matvban).get();
+        return orderRepository.findByTrangthaiAndTvban(trangthai,userDetail);
     }
     public List<DatHang> getAllOrderByTVMua(String matvmua){
         UserDetail userDetail = userDetailRepository.findById(matvmua).get();

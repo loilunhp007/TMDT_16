@@ -3,6 +3,7 @@ package com.Services;
 import java.util.List;
 
 import com.Entity.CT_DatHang;
+import com.Entity.Sanpham;
 import com.Repository.OrderDetailRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class OrderDetailService {
         return orderDetailRepository.findAll();
     }
     public CT_DatHang saveDathang(CT_DatHang orderDetail){
-         return orderDetailRepository.save(orderDetail);
+        return orderDetailRepository.save(orderDetail);
+
     }
 }

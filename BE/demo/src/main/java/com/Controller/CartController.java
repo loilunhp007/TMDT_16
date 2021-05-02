@@ -62,6 +62,12 @@ public class CartController {
         UserDetail userDetail = userService.getUserDetailById(matv);
         String detele = cartService.deleteCartItem(userDetail, masp);
         return ResponseEntity.status(HttpStatus.OK).body(detele+"delete success");
-    }       
+    }  
+    @DeleteMapping("/delete/cart/{matv}")
+    public ResponseEntity<String> deleteCart(@PathVariable(name = "matv")String matv){
+        UserDetail userDetail = userService.getUserDetailById(matv);
+        String detele = cartService.deleteCart(userDetail);
+        return ResponseEntity.status(HttpStatus.OK).body(detele+"delete success");
+    }            
 }
  

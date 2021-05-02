@@ -19,7 +19,6 @@ import javax.persistence.Table;
 @Table(name = "dathang")
 public class DatHang {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String madh;
     @ManyToOne
     @JoinColumn(name = "matvban")

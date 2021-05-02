@@ -16,8 +16,14 @@ export class OrderService {
   getOrderById(madh:string):Observable<any>{
     return this.httpClient.get<Order>('http://localhost:8080/order/get/'+madh)
   }
-  getAllOrderByTrangthai(trangthai:number):Observable<any>{
-    return this.httpClient.get<Order[]>('http://localhost:8080/order/get/trangthai/'+trangthai);
+  getAllOrderByTrangthaiAndTvban(trangthai:number,matvban:string):Observable<any>{
+    return this.httpClient.get<Order[]>('http://localhost:8080/order/get/trangthai/'+trangthai+'/'+matvban);
+  }
+   addOrder(order:Order):Observable<any>{
+    return this.httpClient.post<Order>('http://localhost:8080/order/add',order);
+  }
+   updateOrderStatus(madh:String,trangthai:number):Observable<any>{
+    return this.httpClient.put<Order>('http://localhost:8080/order/put/'+madh+'/'+trangthai,null);
   }
 }
 

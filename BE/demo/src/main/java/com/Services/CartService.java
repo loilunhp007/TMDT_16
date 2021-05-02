@@ -49,6 +49,13 @@ public class CartService {
             cartRepository.delete(cart);
             return "delete Sucess";
     }
+    public String deleteCart(UserDetail userDetail){
+        List<Cart> carts = cartRepository.findByUserDetail(userDetail);
+        for(int i=0;i<carts.size();i++){
+            cartRepository.delete(carts.get(i));
+        }
+        return "delete Sucess";
+}
     public int plusQuanCart(UserDetail userDetail,String masp){
         Sanpham product = sanPhamRepository.findById(masp).get();
         Cart cart = cartRepository.findByProductAndUserDetail(product, userDetail);

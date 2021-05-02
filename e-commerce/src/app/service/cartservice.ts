@@ -25,6 +25,9 @@ export class CartService {
   deleteCartItem(matv:string,masp:String):Observable<any>{
     return this.httpClient.delete<Cart>('http://localhost:8080/cart/delete/'+masp+'/'+matv);
   }
+  deleteCart(matv:string):Observable<any>{
+    return this.httpClient.delete<Cart>('http://localhost:8080/cart/delete/cart/'+matv);
+  }
 
  /*addItem(product:Product){
     const exist = this.cartItems.find((item)=>{
