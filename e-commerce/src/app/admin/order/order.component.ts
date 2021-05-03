@@ -27,6 +27,8 @@ export class OrderComponent implements OnInit {
     let Id=JSON.parse(sessionStorage.getItem('user'));
     this.getAllOrder(Id);
     this.getAllOrderCancel(0,Id);
+    this.updateAll(Id);
+
   }
   getAllOrder(matv:string){
     this.order = new Order(); 
@@ -35,6 +37,20 @@ export class OrderComponent implements OnInit {
         this.orders=Response;
         console.log(this.orders);}
     )
+  }
+    updateAll(matv:string){
+      this.order = new Order(); 
+      this.orderService.getAllOrder(matv).subscribe(
+        Response=>{
+          this.orders=Response;
+          
+          this.orders.forEach(data=>{
+              if(data.trangthai==4){
+                console.log(data.madh)
+              }
+          })
+        }
+      )
 
   }
   getAllOrderCancel(trangthai:number,matvban:String){
@@ -71,9 +87,11 @@ export class OrderComponent implements OnInit {
         Response=>{
           let order2 = new Order(); 
           order2 = Response
+
           this.exit()
         })
       }
+      
   }
   updateOrderCancel(order:Order){
     let ss = order.madh+''
