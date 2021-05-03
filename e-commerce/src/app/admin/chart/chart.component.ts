@@ -1,17 +1,43 @@
-import { Component, AfterViewInit } from '@angular/core';
-import { Chart } from 'node_modules/chart.js';
+import { Component, OnInit } from '@angular/core';
+import { Tooltip,registerables } from 'chart.js';
+import {  ArcElement, BarController, BarElement, BubbleController, CategoryScale, Chart, DecimationAlgorithm, DoughnutController, Filler, Legend, LinearScale, LineController, LineElement, LogarithmicScale, PieController, PointElement, PolarAreaController, RadarController, RadialLinearScale, ScatterController, TimeScale, TimeSeriesScale, Title } from 'node_modules/chart.js';
 
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css'],
 })
-export class ChartComponent implements AfterViewInit {
+export class ChartComponent implements OnInit {
   canvas: any;
   ctx: any;
-  ngAfterViewInit() {
-    this.canvas = document.getElementById('barChart1');
+  ngOnInit() {
+    Chart.register(
+      ArcElement,
+      LineElement,
+      BarElement,
+      PointElement,
+      BarController,
+      BubbleController,
+      DoughnutController,
+      LineController,
+      PieController,
+      PolarAreaController,
+      RadarController,
+      ScatterController,
+      CategoryScale,
+      LinearScale,
+      LogarithmicScale,
+      RadialLinearScale,
+      TimeScale,
+      TimeSeriesScale,
+      Filler,
+      Legend,
+      Title,
+      Tooltip
+    );
+    this.canvas = document.getElementById('myChart');
     this.ctx = this.canvas.getContext('2d');
+    this.ctx = 'myChart';
     let myChart = new Chart(this.ctx, {
       type: 'bar',
       data: {
