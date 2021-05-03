@@ -3,6 +3,7 @@ package com.Services;
 import java.util.List;
 
 import com.Entity.CT_DatHang;
+import com.Entity.CT_DatHangId;
 import com.Entity.Sanpham;
 import com.Repository.OrderDetailRepository;
 
@@ -19,6 +20,9 @@ public class OrderDetailService {
     }
     public List<CT_DatHang> getAllOrder(){
         return orderDetailRepository.findAll();
+    }
+    public CT_DatHang findByMadhAndMasp(CT_DatHangId ctdh_Id){
+        return orderDetailRepository.findById(ctdh_Id).get();
     }
     public CT_DatHang saveDathang(CT_DatHang orderDetail){
         return orderDetailRepository.save(orderDetail);

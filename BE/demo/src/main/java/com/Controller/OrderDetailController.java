@@ -3,6 +3,7 @@ package com.Controller;
 import java.util.List;
 
 import com.Entity.CT_DatHang;
+import com.Entity.CT_DatHangId;
 import com.Entity.Sanpham;
 import com.Services.OrderDetailService;
 
@@ -40,9 +41,12 @@ public class OrderDetailController {
 
     }
     @PutMapping("/put")
-    public CT_DatHang UpdateOrderDetail(CT_DatHang orderDetail){
+    public ResponseEntity<CT_DatHang> UpdateOrderDetail(@RequestBody CT_DatHang orderDetail){
 
-        return   null;
+        CT_DatHang orderDetail2= orderDetail;
+        orderDetail2.setThanhtoan(orderDetail.getTongtien());
+        CT_DatHang orderDetail3= orderDetailService.saveDathang(orderDetail2);
+        return   ResponseEntity.status(HttpStatus.OK).body(orderDetail3);
 
     }
     @GetMapping("/get/thongke/{masp}")

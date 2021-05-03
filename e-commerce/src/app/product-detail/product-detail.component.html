@@ -219,7 +219,6 @@
 								<img src="../../assets/images/product-details/rating.png" alt="" />
 								<span>
 									<span>{{product.gia|currency:'VND':'symbol':'3.0'}}</span>
-	
 									<button [disabled]="(this.product.trangthai==0 || this.product.soluong==0)"  type="button" class="btn btn-fefault cart" (click)="addToCart(product)" >
 										<i class="fa fa-shopping-cart"></i>
 										Thêm vào giỏ hàng
@@ -231,6 +230,7 @@
 								<p *ngIf="product.trangthai==0"><b>Trạng thái:</b>Bận</p>
 								<p><b>Hiện trạng:</b> Mới</p>
 								<p><b>Thương hiệu:</b> E-MALL</p>
+								<p><b>Người bán: </b>{{product.userDetail.ten}}</p>
 								<a href=""><img src="../../assets/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
 							</div><!--/product-information-->
 						</div>

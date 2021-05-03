@@ -43,11 +43,27 @@ export class OrderComponent implements OnInit {
       this.orderService.getAllOrder(matv).subscribe(
         Response=>{
           this.orders=Response;
-          
           this.orders.forEach(data=>{
-              if(data.trangthai==4){
-                console.log(data.madh)
-              }
+            if(data.trangthai ==4){
+              let sss=data.madh+''
+              this.orderDetailService.getOrderDetail(sss).subscribe(
+                Response2=>{
+                  let orderDetail2= new OrderDetail();
+                  orderDetail2=Response2[0];
+                  
+                  if(orderDetail2.thanhtoan==0){
+                    this.orderDetailService.updateOrderDetail(orderDetail2).subscribe(
+                      Response3=>{
+                        alert("success")
+                        this.exit();
+                      }
+                    )     
+                    
+                  }
+  
+                }
+              )
+            }
           })
         }
       )
@@ -137,4 +153,5 @@ export class OrderComponent implements OnInit {
   exit() {
     location.reload();
   }
+  
 }

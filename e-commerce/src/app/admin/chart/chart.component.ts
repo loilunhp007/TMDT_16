@@ -20,43 +20,17 @@ export class ChartComponent implements OnInit {
   products:Array<Product>
   luotXem:any = []
   nameproduct:any = []
+  spbanra:any=[]
+  doanhthu:any=[]
+  userId:String
   constructor(
     private productService:ProductService,
     private orderDetailService:OrderDetailService
   ){}
   ngOnInit() {
-    let spbanra=[]
-    let doanhthu=[]
-    let userId = JSON.parse(sessionStorage.getItem('user'));
-    this.productService.getProduct(userId).subscribe(
-      Response=>{
-        this.products=Response
-        this.products.forEach(data=>{
-          this.orderDetailService.ThongKeSP(data.masp).subscribe(
-            Response2=>{
-              spbanra.push(Response2);
-            }
-          )
-          this.orderDetailService.thongKeDoanhthu(data.masp).subscribe(
-            Response3=>{
-              let orderdetails=[];
-              orderdetails= Response3
-              let increaseMoney = 0
-              orderdetails.forEach(data2=>{
-                increaseMoney+=Number(data2.tongtien)
-              })
-              doanhthu.push(increaseMoney);
-            }
-          )
-          this.nameproduct.push(data.tensp);
-          this.luotXem.push(data.luotxem)
-        })
-        this.thongkespTheoluotxem(this.luotXem,this.nameproduct);
-        this.ThongKesoluongbanra(this.nameproduct,spbanra)
-        this.thongkeDoanhthu(this.nameproduct,doanhthu)
-        console.log(this.products)
-      }
-    );
+    
+    this.userId = JSON.parse(sessionStorage.getItem('user'));
+    
     
     Chart.register(
       ArcElement,
@@ -82,6 +56,10 @@ export class ChartComponent implements OnInit {
       Title,
       Tooltip
     );
+    this.loadChart(this.userId);
+    this.thongkespTheoluotxem(this.luotXem,this.nameproduct);
+    this.ThongKesoluongbanra(this.nameproduct,this.spbanra)
+    this.thongkeDoanhthu(this.nameproduct,this.doanhthu);
     //------------------------------------------------------------------------------------------------------------------
     //Top 10 sản phẩm bán chạy trong tháng
     
@@ -215,5 +193,37 @@ export class ChartComponent implements OnInit {
         }
       }
     });
+  }
+  private loadChart(masp:String){
+    this.productService.getProduct(masp).subscribe(
+      Response=>{
+        this.products=Response
+        this.products.forEach(data=>{
+          this.nameproduct.push(data.tensp);
+          this.luotXem.push(data.luotxem);
+          this.orderDetailService.ThongKeSP(data.masp).subscribe(
+            Response2=>{
+              this.spbanra.push(Response2);
+            }
+          )
+          this.orderDetailService.thongKeDoanhthu(data.masp).subscribe(
+            Response3=>{
+              let orderdetails=[];
+              orderdetails= Response3
+              let increaseMoney = 0
+              orderdetails.forEach(data2=>{
+                increaseMoney+=Number(data2.tongtien)
+              })
+              this.doanhthu.push(increaseMoney);
+            }
+          )
+        
+            
+        })
+      }
+    );
+  }
+  exit() {
+    location.reload();
   }
 }
