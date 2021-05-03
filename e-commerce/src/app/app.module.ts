@@ -33,13 +33,11 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchComponent } from './search/search.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { ChartComponent } from './chart/chart.component';
+import { ChartComponent } from './admin/chart/chart.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { OrderComponent } from './admin/order/order.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { OrderDetailComponent } from './admin/order-detail/order-detail.component';
-
-
 
 
 
@@ -93,9 +91,7 @@ import { OrderDetailComponent } from './admin/order-detail/order-detail.componen
     MatTabsModule
   ],
   providers: [ModalDirective],
-  bootstrap: [AppComponent
-  ],
-
+  bootstrap: [AppComponent],
 
 })
 export class AppModule { }

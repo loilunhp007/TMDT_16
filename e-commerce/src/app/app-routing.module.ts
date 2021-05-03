@@ -20,10 +20,14 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { OrderComponent } from './admin/order/order.component';
 import { OrderDetailComponent } from './admin/order-detail/order-detail.component';
+import { ChartComponent } from './admin/chart/chart.component';
 const routes: Routes = [
   {
     path:'admin',component: DashboardComponent,
     children:[
+      {
+        path:"chart",component:ChartComponent
+      },
       {
         path:"product",component:ProductComponent
       },
@@ -31,7 +35,7 @@ const routes: Routes = [
         path:"users",component:UsersComponent
       },
       {
-          path:"order",component:OrderComponent
+        path:"order",component:OrderComponent
       }
     ]
   },
