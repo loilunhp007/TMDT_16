@@ -19,7 +19,7 @@
 									<th scope="col">Tên sản phẩm</th>
 									<th scope="col">Số lượng</th>
 									<th scope="col">Giá</th>
-									<th scope="col">Thong tin SP</th>
+									<th scope="col">Thông tin SP</th>
 									<th scope="col">Hình ảnh</th>
                   <th scope="col">Trạng thái</th>
 									<th scope="col">Thao tác</th>
@@ -72,31 +72,31 @@
       <div class="modal-body mx-3">
         <form [formGroup]="validatingForm" (ngSubmit)="updateProduct()">
         <div class="md-form mb-5">
-          <label for="ProductFormModalID">Ma San Pham</label>
+          <label for="ProductFormModalID">Mã sản phẩm</label>
           <input type="text" id="ProductFormModalID" class="form-control" formControlName="ProductFormModalID" 
                  mdbInput mdbValidate >
         </div>
         <div class="md-form mb-5">
-          <label for="ProductFormModalName">Ten San Pham</label>
+          <label for="ProductFormModalName">Tên sản phẩm</label>
           <input type="text" id="ProductFormModalName" class="form-control" formControlName="ProductFormModalName"
                  mdbInput mdbValidate value="product.tensp">
         </div>
         <div class="md-form mb-4">
-          <label for="ProductFormModalInfo">Thong tin san pham</label>       
+          <label for="ProductFormModalInfo">Thông tin sản phẩm</label>       
           <input type="text" id="ProductFormModalInfo" class="form-control" formControlName="ProductFormModalInfo"
                  mdbInput mdbValidate >
         </div>
          <div class="md-form mb-4">
-          <label for="ProductFormModalPrice">Gia</label>     
+          <label for="ProductFormModalPrice">Giá</label>     
           <input type="text" id="ProductFormModalPrice" class="form-control" formControlName="ProductFormModalPrice"
                  mdbInput mdbValidate>
         </div>
          <div class="md-form mb-4">
-          <label for="ProductFormModalQuantity">So Luong</label>       
+          <label for="ProductFormModalQuantity">Số lượng</label>       
           <input type="text" id="ProductFormModalQuantity" class="form-control" formControlName="ProductFormModalQuantity"
                  mdbInput mdbValidate >      
           <div class="md-form mb-4">
-          <label for="ProductFormModalImage">Hinh anh</label>       
+          <label for="ProductFormModalImage">Hình ảnh</label>       
           <input type="file" id="ProductFormModalImage" accept="image/*"  (change)="onFileChanged($event)" class="form-control" formControlName="ProductFormModalImage"
                  mdbInput mdbValidate style="display:none" #fileInput>
                  <br>
