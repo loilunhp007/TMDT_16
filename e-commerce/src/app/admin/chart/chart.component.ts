@@ -144,7 +144,7 @@ export class ChartComponent implements OnInit {
         labels: name,
         datasets: [
           {
-            label: 'So luong  ban chay',
+            label: 'So luong ban ',
             data: spbanra,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
