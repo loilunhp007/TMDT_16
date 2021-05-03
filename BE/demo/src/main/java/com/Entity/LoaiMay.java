@@ -17,4 +17,5 @@ public class LoaiMay {
     @Id
     private String maloai;
     private String tenloai;
+    private int trangthai;
 }
