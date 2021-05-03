@@ -6,7 +6,9 @@ import com.Entity.LoaiMay;
 import com.Repository.LoaiMayRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LoaiMayService {
     
     @Autowired
