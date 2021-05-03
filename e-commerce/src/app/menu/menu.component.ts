@@ -18,6 +18,12 @@ export class MenuComponent implements OnInit {
     isLogged = false;
      userId = JSON.parse(sessionStorage.getItem("user"));
      userDetail:UserDetail
+     DELLs:any = [{name:'DELL PRECISION'},{name:'DELL LATITULE'},{name:'DELL ALIENWARE'},{name:'DELL XPS'},{name:'DELL VOSTRO'},{name:'DELL INSPIRON'}]
+     HPs:any=[{name:'HP ELITEBOOK'},{name:'HP ENVY'},{name:'HP PROBOOK'},{name:'HP PAVILION'},{name:'HP ZBOOK'},{name:'HP SPECTRE'},{name:'HP OMEN'}]
+     ASUSs:any=[{name:'ASUS G'},{name:'ASUS UX'},{name:'ASUS X'},{name:'ASUS K'},{name:'ASUS N'},{name:'ASUS PU'},]
+     LENOVOs:any=[{name:'LENOVO THINKPAD'},{name:'LENOVO THINKBOOK'},{name:'LENOVO IDEAPAD'},{name:'LENOVO YOGA'},{name:'LENOVO LEGION'},]
+     ACERs:any=[{name:'ACER ASPIRE'},{name:'ACER NITRO'},{name:'ACER SWIFT'},{name:'ACER PREDATOR'}]
+     MSIs:any=[{name:'MSI MODERN'},{name:'MSI GF'},{name:'MSI GL'},{name:'MSI BRAVO'},{name:'MSI GS'},{name:'MSI PRESTIGE'}]
   constructor(private userService : UserService,
     private router:Router,
     private actRoute:ActivatedRoute,
@@ -26,6 +32,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.DELLs)
     this.userDetail = new UserDetail();
     if(this.userId!=null){
       this.userService.getUserDetailByID(this.userId).subscribe(
@@ -44,6 +51,10 @@ export class MenuComponent implements OnInit {
   }
   searchProduct(){
     const keyword= this.getFormControls().searchValue.value;
+    this.router.navigate(['home','search'],{queryParams:{keyword}})
+  }
+  findByCategory(keyword2:String){
+    let keyword=keyword2.toLowerCase()
     this.router.navigate(['home','search'],{queryParams:{keyword}})
   }
      

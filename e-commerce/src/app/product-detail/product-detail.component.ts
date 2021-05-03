@@ -29,11 +29,13 @@ export class ProductDetailComponent implements OnInit {
       this.s = data.id
       console.log(data)
     this.getProductById(this.s);
+    this.getViewProduct(this.s);
     if(this.product.trangthai==0 || this.product.soluong==0){
       alert("Sản Phẩm hiện không có sẵn.Vui lòng chọn sản phẩm khác")
     }
-    })
     
+    })
+  
 
   }
   getProduct(trangthai:number){
@@ -67,9 +69,20 @@ export class ProductDetailComponent implements OnInit {
     }
      
   }
-  conditionDisable(product2:Product){
-      if(product2.soluong ==0 || product2.trangthai==0){
-        return false
+
+  getViewProduct(masp:String){
+    let sss=masp+''
+    this.productService.getProductByID(sss).subscribe(
+      Response=>{
+        let product2 = new Product()
+         product2 = Response;
+        product2.luotxem+=1
+        this.productService.updateProduct(product2).subscribe(
+          Response2=>{
+
+          }
+        )
       }
+    )
   }
 }
