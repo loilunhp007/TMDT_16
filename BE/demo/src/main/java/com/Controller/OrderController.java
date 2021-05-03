@@ -42,6 +42,14 @@ public class OrderController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(orders);
     }
+    @GetMapping("/get/tvmua/{matv}")
+    public ResponseEntity<List<DatHang>> getDonhangByTVMua(@PathVariable(name = "matv")String matv ){
+        List<DatHang> orders = orderService.getAllOrderByTVMua(matv);
+        if(orders!=null){
+            return ResponseEntity.status(HttpStatus.OK).body(orders);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(orders);
+    }
     @GetMapping("/get/trangthai/{trangthai}/{matvban}")
     public ResponseEntity<List<DatHang>> getAllOrderByTrangthai(@PathVariable(name = "trangthai")int trangthai,@PathVariable(name = "matvban" )String matvban){
         List<DatHang> orders = orderService.getAllOrderByTrangthaiAndTVBan(trangthai,matvban);

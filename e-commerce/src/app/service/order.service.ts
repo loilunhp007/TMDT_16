@@ -13,6 +13,9 @@ export class OrderService {
   getAllOrder(matv:string):Observable<any>{
     return this.httpClient.get<Order>('http://localhost:8080/order/get/tvban/'+matv);
   }
+  getAllOrderByTvmua(matv:string):Observable<any>{
+    return this.httpClient.get<Order>('http://localhost:8080/order/get/tvmua/'+matv);
+  }
   getOrderById(madh:string):Observable<any>{
     return this.httpClient.get<Order>('http://localhost:8080/order/get/'+madh)
   }

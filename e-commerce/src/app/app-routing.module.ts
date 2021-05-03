@@ -20,6 +20,9 @@ import { MyprofileComponent } from './myprofile/myprofile.component';
 import { OrderComponent } from './admin/order/order.component';
 import { OrderDetailComponent } from './admin/order-detail/order-detail.component';
 import { ChartComponent } from './admin/chart/chart.component';
+import { AdminguardGuard } from './admin/adminguard.guard';
+import { UserOrderComponent } from './user-order/user-order.component';
+import { UserOrderDetailComponent } from './user-order-detail/user-order-detail.component';
 const routes: Routes = [
   {
     path:'admin',component: DashboardComponent,canActivate:[AdminguardGuard],
@@ -54,6 +57,15 @@ component:OrderDetailComponent},
     path:"home/cart",
     component:CartComponent,
   },
+  {
+    path:"home/order",
+    component:UserOrderComponent,
+  },
+  {
+    path:"home/order/orderdetail",
+    component:UserOrderDetailComponent,
+  },
+  
   {
     path:"myprofile",
     component:MyprofileComponent,

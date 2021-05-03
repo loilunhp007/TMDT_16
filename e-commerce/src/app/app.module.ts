@@ -38,6 +38,8 @@ import { MyprofileComponent } from './myprofile/myprofile.component';
 import { OrderComponent } from './admin/order/order.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { OrderDetailComponent } from './admin/order-detail/order-detail.component';
+import { UserOrderComponent } from './user-order/user-order.component';
+import { UserOrderDetailComponent } from './user-order-detail/user-order-detail.component';
 
 
 
@@ -67,6 +69,8 @@ import { OrderDetailComponent } from './admin/order-detail/order-detail.componen
     MyprofileComponent,
     OrderComponent,
     OrderDetailComponent,
+    UserOrderComponent,
+    UserOrderDetailComponent,
   ],
   imports: [
     BrowserModule,

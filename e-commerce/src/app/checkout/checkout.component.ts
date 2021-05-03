@@ -174,22 +174,29 @@ export class CheckoutComponent implements OnInit {
                     orderDetail.gia = product2.gia
                     orderDetail.masp = product2.masp
                     orderDetail.thanhtoan=0
-                    order.tvban = product2.userDetail
+                    if((product2.soluong-orderDetail.soluong)>0){
+                      product2.soluong -=orderDetail.soluong;
+                      order.tvban = product2.userDetail
                     console.log(order)
                     this.orderService.addOrder(order).subscribe(
                       (Response4)=>{
                             console.log(orderDetail)
                             this.oderDetailService.addOrderDetail(orderDetail).subscribe(
                                 Response5=>{
-                                  alert("add detail sucess")
-                                    let itemId= this.userId+'' 
-                                    this.cartService.deleteCart(itemId).subscribe(
-                                      Response6=>{
-                                            this.exit();
-                                      },(error)=>{
-                                        this.exit();
-                                      }
-                                    );
+                                  this.productService.updateProduct(product2).subscribe(
+                                    Response6=>{
+                                      let itemId= this.userId+'' 
+                                      this.cartService.deleteCart(itemId).subscribe(
+                                        Response7=>{
+                                              this.exit();
+                                        },(error)=>{
+                                          this.exit();
+                                        }
+                                      );
+                                    }
+                                  )
+                                   
+                              
                                 },(error)=>{
                                         
                                       }
@@ -201,6 +208,10 @@ export class CheckoutComponent implements OnInit {
 
                         
                     );
+                    }else{
+                      alert('Het hang')
+                    }
+                    
 
                   }
                 )      
