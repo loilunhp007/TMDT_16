@@ -1,7 +1,9 @@
+import { UserDetail } from "./user-detail";
+
 export class Order {
     madh:String;
-    matvban:String;
-    matvmua:string;
+    tvban:UserDetail;
+    tvmua:UserDetail;
     ngaytao:String;
     tongtien:number;
     trangthai:number;

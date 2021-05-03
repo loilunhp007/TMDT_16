@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../model/product';
 import { ProductService } from '../service/product.service';
 
@@ -11,7 +11,8 @@ import { ProductService } from '../service/product.service';
 export class SearchComponent implements OnInit {
 
   constructor(private productService:ProductService,
-    private actRoute:ActivatedRoute) { }
+    private actRoute:ActivatedRoute,
+    private router:Router) { }
     searchText
     products: Product[]
     p:number=1
@@ -29,5 +30,14 @@ export class SearchComponent implements OnInit {
         this.products=Response;
       }
     )
+  }
+  goDetail(product:Product){
+    this.actRoute.queryParams.subscribe(
+      params=>{
+        const id=product.masp;
+        this.router.navigate(['home','product-detail'],{queryParams: {id}})
+      }
+    )
+  
   }
 }

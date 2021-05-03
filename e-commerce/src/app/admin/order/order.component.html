@@ -21,16 +21,32 @@
 							<tbody>
 								<tr *ngFor="let order of orders">
 									<td data-sortable="true">{{order.madh}}</td>
-									<td data-sortable="true">{{order.matvmua}}</td>
+									<td data-sortable="true">{{order.tvmua.ten}}</td>
 									<td data-sortable="true">{{order.ngaytao}}</td>
 									<td data-sortable="true">{{order.tongtien|currency:'VND':'symbol':'3.0'}}</td>
 									<td data-sortable="true" *ngIf="order.trangthai=='1'">
-											Xác thực đơn hàng
+											Chờ xác nhận
 									</td>
 									<td data-sortable="true" *ngIf="order.trangthai=='0'">
 											Đã Hủy
 									</td>
-									<td data-sortable="true"><a class="link" (click)="goDetail(order)"><span class="glyphicon glyphicon-list-alt"></span>Xem Chi Tiết</a></td>																
+									<td data-sortable="true" *ngIf="order.trangthai=='2'">
+											Chuẩn bị hàng
+									</td>
+									<td data-sortable="true" *ngIf="order.trangthai=='3'">
+											Giao hàng
+									</td>
+									<td data-sortable="true" *ngIf="order.trangthai=='4'">
+											Đã giao hàng
+									</td>
+									<td data-sortable="true">
+									 <a class="link" (click)="goDetail(order)">
+									<span class="glyphicon glyphicon-list-alt"></span>Xem Chi Tiết</a></td>
+									<td data-sortable="true">
+									<button mdbBtn color="success" rounded="true" mdbWavesEffect (click)="updateOrder(order)" [order]="order" ><i class="fa fa-check-square" ></i>Xác nhận</button>
+									<button mdbBtn color="default" rounded="true" mdbWavesEffect><i class="fa fa-trash"></i> Hủy Đơn</button>
+									</td>
+														
 							</tbody>
 							</table>
 					</div>
@@ -46,36 +62,35 @@
 							<table class="table table-hover">
 							<thead>
 								<tr>
-									<th scope="col">Mã sản phẩm</th>
-									<th scope="col">Loại</th>
-									<th scope="col">Tên sản phẩm</th>
-									<th scope="col">Số lượng</th>
-									<th scope="col">Giá</th>
-									<th scope="col">Thong tin SP</th>
-									<th scope="col">Hình ảnh</th>
+									<th scope="col">Mã Đơn hàng</th>
+									<th scope="col">Người mua</th>
+									<th scope="col">Ngày Đặt</th>
+									<th scope="col">Tổng đơn hàng</th>
                   					<th scope="col">Trạng thái</th>
 									<th scope="col">Thao tác</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr *ngFor="">
-									<td data-sortable="true"></td>
-									<td data-sortable="true"></td>
-									<td data-sortable="true"></td>
-									<td data-sortable="true"></td>
-									<td data-sortable="true"></td>
-									<td data-sortable="true"></td>
-									<td data-sortable="true"><img src="}" width="50px" height="50px"></td>
-									<td data-sortable="true">
-                  </td>
+								<tr *ngFor="let order of cancelOrders">
+									<td data-sortable="true">{{order.madh}}</td>
+									<td data-sortable="true">{{order.tvmua.ten}}</td>
+									<td data-sortable="true">{{order.ngaytao}}</td>
+									<td data-sortable="true">{{order.tongtien|currency:'VND':'symbol':'3.0'}}</td>
+									<td data-sortable="true" *ngIf="order.trangthai=='1'">
+											Chờ xác nhận
+									</td>
+									<td data-sortable="true" *ngIf="order.trangthai=='0'">
+											Đã Hủy
+									</td>
+									<td data-sortable="true"><a class="link" (click)="goDetail(order)"><span class="glyphicon glyphicon-list-alt"></span>Xem Chi Tiết</a>
 									
-									
+									</td>	
+								</tr>														
 							</tbody>
 							</table>
 					</div>
 					</div>
 					</div>		
-              
              </mat-tab>
 </mat-tab-group>
 		</div>

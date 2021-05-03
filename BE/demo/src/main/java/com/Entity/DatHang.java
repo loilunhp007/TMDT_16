@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,10 +19,13 @@ import javax.persistence.Table;
 @Table(name = "dathang")
 public class DatHang {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String madh;
-    private String matvban;
-    private String matvmua;
+    @ManyToOne
+    @JoinColumn(name = "matvban")
+    private UserDetail tvban;
+    @ManyToOne
+    @JoinColumn(name = "matvmua")
+    private UserDetail tvmua;
     private String ngaytao;
     private int tongtien;
     private int trangthai;

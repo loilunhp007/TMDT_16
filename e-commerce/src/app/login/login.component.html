@@ -24,7 +24,7 @@
 								Keep me signed in
 							</span>
 							
-							<button style="margin-left: 26%;" type="submit"  class="btn btn-default">Đăng nhập</button>
+							<button style="margin-left: 26%;" type="submit"  class="btn btn-default" [disabled]="email.invalid || matkhau.invalid" >Đăng nhập</button>
 						</form>
 						</div><!--/login form-->
 						</div>
@@ -59,17 +59,20 @@
 								<mat-error style="color:#f86161;" *ngIf="registerForm.get('regisEmail').touched && registerForm.get('regisEmail').invalid" class="invalid-email">
 									<div *ngIf="registerForm.get('regisEmail').errors.required" style="color:#f86161;">Email đang rỗng</div>
 									Email không hợp lệ
+									<br>
 								</mat-error>
-								
+								<mat-hint style="color:#0ca2b6;">* example@gmail.com</mat-hint>
 								<label class="center-block" >Mật khẩu:</label>
 								<input type="password" placeholder="Password"formControlName="regisPassword" [ngClass]="{'is-invalid':registerForm.get('regisPassword').touched && registerForm.get('regisPassword').invalid}"/>
 								<mat-error style="color:#f86161;" *ngIf="registerForm.get('regisPassword').touched && registerForm.get('regisPassword').invalid" class="invalid-passwd">
 									<div *ngIf="registerForm.get('regisPassword').errors.required" style="color:#f86161;">Mật khẩu đang rỗng</div>
-									Mật khẩu không hợp lệ		
+									Mật khẩu không hợp lệ
+									<br>		
 								</mat-error>
-								
+								<mat-hint style="color:#0ca2b6;">* Mật khẩu phải có kí tự 1 ký tự in hoa, ký tự số, ký tự thường, mật khẩu dài ít nhất 6 ký tự </mat-hint>
 								<br>
-								<button style="margin-left: 31%;" type="submit" class="btn btn-default">Đăng ký</button>
+								<button style="margin-left: 31%;margin-top: 10%;" type="submit" class="btn btn-default" [disabled]="regisFirstName.invalid || regisLastName.invalid
+								|| regisPhone.invalid || regisEmail.invalid || regisPassword.invalid" >Đăng ký</button>
 							</form>
 					</div><!--/sign up form-->
 				</div>

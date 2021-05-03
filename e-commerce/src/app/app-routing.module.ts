@@ -13,7 +13,6 @@ import { MenuComponent } from './menu/menu.component';
 import { NotfoundexceptionComponent } from './notfoundexception/notfoundexception.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ShoplayoutComponent } from './shoplayout/shoplayout.component';
-import { AuthGuardService as AuthGuard } from './service/auth-guard.service';
 import { BlogComponent } from './blog/blog.component';
 import { SearchComponent } from './search/search.component';
 import { CheckoutComponent } from './checkout/checkout.component';
@@ -23,7 +22,7 @@ import { OrderDetailComponent } from './admin/order-detail/order-detail.componen
 import { ChartComponent } from './admin/chart/chart.component';
 const routes: Routes = [
   {
-    path:'admin',component: DashboardComponent,
+    path:'admin',component: DashboardComponent,canActivate:[AdminguardGuard],
     children:[
       {
         path:"chart",component:ChartComponent

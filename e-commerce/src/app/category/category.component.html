@@ -141,10 +141,10 @@
 								</div>
 							</div>
 						</div>
-							<div>
-					<h2>Filter</h2>
-					<div class="search_box pull-left">
-						<input type="text"  class="form-control" placeholder="Search" [(ngModel)]="searchText" display="text-align:center"/>
+					<div>
+					<h2>Tìm kiếm</h2>
+					<div class="search_box pull-left" style="margin-top: -22px; margin-left: 10px;">
+						<input type="text"  class="form-control" placeholder="Search" [(ngModel)]="searchText" display="text-align:center" />
 					</div>
 					</div><!--/category-productsr-->
 				
@@ -167,8 +167,8 @@
 					<div class="price-range"><!--price-range-->
 						<h2>Khoảng giá</h2>
 						<div class="well">
-							 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-							 <b>$ 0</b> <b class="pull-right">$ 600</b>
+							 <input type="text" class="span2" value=""[(ngModel)]="searchText" data-slider-min="0" data-slider-max="100000000" data-slider-step="5" data-slider-value="[250,450]" id="sl2" placeholder="Giá tiền" ><br />
+							 <b>{{0|currency:'VND':'symbol':'3.0'}}</b> <b class="pull-right">{{100000000|currency:'VND':'symbol':'3.0'}}</b>
 						</div>
 					</div><!--/price-range-->
 					

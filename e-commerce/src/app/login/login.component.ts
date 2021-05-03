@@ -24,11 +24,23 @@ export class LoginComponent implements OnInit {
     matkhau: ['',Validators.required]
   })
   registerForm = this.formBuilder.group({
-    regisFirstName: '',
-    regisLastName: '',
-    regisPhone: '',
-    regisEmail: '',
-    regisPassword:'',
+    regisFirstName: ['',Validators.required],
+    regisLastName: ['',Validators.required],
+    regisPhone: ['',[
+                    Validators.required,
+                    Validators.pattern('^((\\+84-?)|0)?[0-9]{10}$')
+                ]],
+    regisEmail: ['',[
+                    //^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$
+                    //^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$
+                    Validators.required,
+                    Validators.email
+                ]],
+    regisPassword: ['',
+                    [Validators.minLength(6),
+                     Validators.required,
+                     Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$') 
+                    ]]
   })
 
 
@@ -37,11 +49,7 @@ export class LoginComponent implements OnInit {
   constructor(private userService : UserService,
     private route : Router,
     private formBuilder: FormBuilder,
-    private activeRoute:ActivatedRoute) {
-      
-    
-
-     }
+    private activeRoute:ActivatedRoute) {    }
 
   ngOnInit( ): void {
     this.activeRoute.queryParams.subscribe(
@@ -52,25 +60,6 @@ export class LoginComponent implements OnInit {
       )
     this.userDetail= new UserDetail();
     this.user = new User();
-    
-    this.registerForm = this.formBuilder.group({
-      regisFirstName: ['',Validators.required],
-      regisLastName: ['',Validators.required],
-      regisPhone: ['',[
-                      Validators.required,
-                      Validators.pattern('^((\\+84-?)|0)?[0-9]{10}$')
-                  ]],
-      regisEmail: ['',[
-                      //^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$
-                      Validators.required,
-                      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
-                  ]],
-      regisPassword: ['',
-                      [Validators.minLength(6),
-                       Validators.required,
-                       Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$') 
-                      ]]
-                    })
   }
   get f(){return this.loginForm.controls}
   get f1(){ return this.registerForm.controls}
@@ -79,7 +68,6 @@ export class LoginComponent implements OnInit {
     return str;
   }
   loginUser(){
-    let role = "admin";
     this.user.email=  this.f.email.value;
     this.user.matkhau = this.f.matkhau.value;
     this.userService.loginUserFromRemote(this.user).subscribe(
@@ -87,9 +75,8 @@ export class LoginComponent implements OnInit {
         console.log(this.user);
         sessionStorage.setItem("user",JSON.stringify(this.user.matv));
         if(this.f.matkhau.value == this.user.matkhau){
-            if(role == "admin"){
-              this.route.navigate(["/admin"]);
-            }else{this.route.navigate(["/home"]);}
+              alert("login sucess")
+              this.route.navigate(["/home"])
           
         }
 
@@ -109,13 +96,13 @@ export class LoginComponent implements OnInit {
     const loaithanhvien="02";
     this.userService.getMaxUser().subscribe(
       response=>{ this.max=response;     
-        const random = Math.floor(Math.random() * (9999 - 1000)) + 1;
+        const random = Math.floor(Math.random() * (99 - 10))+1;
         //userDetail
           this.matv= random+''+this.max; 
           this.userDetail.matv=this.matv;
           this.userDetail.loaithanhvien=loaithanhvien;
-          this.userDetail.ho = this.validate(this.f1.regisFirstName.value);
-          this.userDetail.ten = this.validate(this.f1.regisLastName.value);
+          this.userDetail.ho = this.validate(this.f1.regisLastName.value);
+          this.userDetail.ten = this.validate(this.f1.regisFirstName.value);
           this.userDetail.sdt = this.validate(this.f1.regisPhone.value);
           this.userDetail.ngaytao = year.toString()+'-'+month+'-'+day;
           this.userDetail.trangthai="1";
@@ -127,7 +114,8 @@ export class LoginComponent implements OnInit {
               this.user.matv= this.matv;
               this.userService.addUser(this.user).subscribe(
                       (user)=>{
-                        sessionStorage.setItem("user",JSON.stringify(this.user));
+                        console.log(user.matv);
+                        sessionStorage.setItem("user",JSON.stringify(this.user.matv));
                           this.route.navigate(['/home']);
                       },
                       (error)=>{}
@@ -139,5 +127,26 @@ export class LoginComponent implements OnInit {
           (error)=>{
 
               }
+        }
+        get email(){
+          return this.loginForm.get('email')
+        }
+        get matkhau(){
+          return this.loginForm.get('matkhau')
+        }
+        get regisFirstName(){
+          return this.registerForm.get('regisFirstName')
+        }
+        get regisLastName(){
+          return this.registerForm.get('regisLastName')
+        }
+        get regisPhone(){
+          return this.registerForm.get('regisPhone')
+        }
+        get regisEmail(){
+          return this.registerForm.get('regisEmail')
+        }
+        get regisPassword(){
+          return this.registerForm.get('regisPassword')
         }
       }

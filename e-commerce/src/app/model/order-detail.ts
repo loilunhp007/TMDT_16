@@ -1,7 +1,11 @@
+import { Product } from "./product";
+
 export class OrderDetail {
-    madh:string
+    madh:string;
     masp:string;
-    ngaytao:String;
     gia:number;
+    soluong:number;
     tongtien:number;
+    thanhtoan:number;
+    product:Product
 }
