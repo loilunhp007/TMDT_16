@@ -24,4 +24,10 @@ public class OrderDetailService {
         return orderDetailRepository.save(orderDetail);
 
     }
+    public Long findByMasp(String masp){
+        return orderDetailRepository.countByMasp(masp);
+    }
+    public List<CT_DatHang> GetTongtienByMasp(String masp){
+        return orderDetailRepository.findAllByMasp(masp);
+    }
 }

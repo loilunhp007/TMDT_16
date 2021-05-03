@@ -18,5 +18,10 @@ export class OrderDetailService {
   updateOrderDetail(orderDetail:OrderDetail):Observable<any>{
     return this.httpClient.put<OrderDetail>('http://localhost:8080/orderdetail/put/'+orderDetail.madh,orderDetail);
   }
-  
+  ThongKeSP(masp:String):Observable<any>{
+    return this.httpClient.get<number>('http://localhost:8080/orderdetail/get/thongke/'+masp);
+  }
+  thongKeDoanhthu(masp:String):Observable<any>{
+    return this.httpClient.get<number[]>('http://localhost:8080/orderdetail/get/tongtien/'+masp);
+  }    
 }

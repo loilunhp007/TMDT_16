@@ -45,4 +45,14 @@ public class OrderDetailController {
         return   null;
 
     }
+    @GetMapping("/get/thongke/{masp}")
+        public ResponseEntity<Long> CountByMasp(@PathVariable(name ="masp")String masp){
+            Long num = orderDetailService.findByMasp(masp);
+            return ResponseEntity.status(HttpStatus.OK).body(num);    
+        }
+        @GetMapping("/get/tongtien/{masp}")
+        public ResponseEntity<List<CT_DatHang>> getTongtienByMasp(@PathVariable(name ="masp")String masp){
+            List<CT_DatHang> num = orderDetailService.GetTongtienByMasp(masp);
+            return ResponseEntity.status(HttpStatus.OK).body(num);    
+        }
 }

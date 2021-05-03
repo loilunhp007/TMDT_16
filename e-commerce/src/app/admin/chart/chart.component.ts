@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Tooltip,registerables } from 'chart.js';
 import {  ArcElement, BarController, BarElement, BubbleController, CategoryScale, Chart, DecimationAlgorithm, DoughnutController, Filler, Legend, LinearScale, LineController, LineElement, LogarithmicScale, PieController, PointElement, PolarAreaController, RadarController, RadialLinearScale, ScatterController, TimeScale, TimeSeriesScale, Title } from 'node_modules/chart.js';
+import { Product } from 'src/app/model/product';
+import { OrderDetailService } from 'src/app/service/order-detail.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-chart',
@@ -14,7 +17,47 @@ export class ChartComponent implements OnInit {
   ctx2: any;
   canvas3: any;
   ctx3: any;
+  products:Array<Product>
+  luotXem:any = []
+  nameproduct:any = []
+  constructor(
+    private productService:ProductService,
+    private orderDetailService:OrderDetailService
+  ){}
   ngOnInit() {
+    let spbanra=[]
+    let doanhthu=[]
+    let userId = JSON.parse(sessionStorage.getItem('user'));
+    this.productService.getProduct(userId).subscribe(
+      Response=>{
+        this.products=Response
+        this.products.forEach(data=>{
+          this.orderDetailService.ThongKeSP(data.masp).subscribe(
+            Response2=>{
+              spbanra.push(Response2);
+            }
+          )
+          this.orderDetailService.thongKeDoanhthu(data.masp).subscribe(
+            Response3=>{
+              let orderdetails=[];
+              orderdetails= Response3
+              let increaseMoney = 0
+              orderdetails.forEach(data2=>{
+                increaseMoney+=Number(data2.tongtien)
+              })
+              doanhthu.push(increaseMoney);
+            }
+          )
+          this.nameproduct.push(data.tensp);
+          this.luotXem.push(data.luotxem)
+        })
+        this.thongkespTheoluotxem(this.luotXem,this.nameproduct);
+        this.ThongKesoluongbanra(this.nameproduct,spbanra)
+        this.thongkeDoanhthu(this.nameproduct,doanhthu)
+        console.log(this.products)
+      }
+    );
+    
     Chart.register(
       ArcElement,
       LineElement,
@@ -41,17 +84,26 @@ export class ChartComponent implements OnInit {
     );
     //------------------------------------------------------------------------------------------------------------------
     //Top 10 sản phẩm bán chạy trong tháng
+    
+    //------------------------------------------------------------------------------------------------------------------
+    //Top 10 sản phẩm hot trong tháng
+   
+    //------------------------------------------------------------------------------------------------------------------
+    //Thống kê doanh thu trong năm
+    
+  }
+  private thongkespTheoluotxem(luotxem:any[],nameproduct:any[]){
     this.canvas1 = document.getElementById('myChart1');
     this.ctx1 = this.canvas1.getContext('2d');
     this.ctx1 = 'myChart1'
     let myChart1 = new Chart(this.ctx1, {
       type: 'bar',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: nameproduct,
         datasets: [
           {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Luot xem',
+            data: luotxem,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
@@ -80,19 +132,20 @@ export class ChartComponent implements OnInit {
         }
       }
     });
-    //------------------------------------------------------------------------------------------------------------------
-    //Top 10 sản phẩm hot trong tháng
+    
+  }
+  private ThongKesoluongbanra(name:any[],spbanra:any[]){
     this.canvas2 = document.getElementById('myChart2');
     this.ctx2 = this.canvas2.getContext('2d');
     this.ctx2 = 'myChart2'
     let myChart2 = new Chart(this.ctx2, {
       type: 'bar',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: name,
         datasets: [
           {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'So luong  ban chay',
+            data: spbanra,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
@@ -121,19 +174,19 @@ export class ChartComponent implements OnInit {
         }
       }
     });
-    //------------------------------------------------------------------------------------------------------------------
-    //Thống kê doanh thu trong năm
+  }
+  private thongkeDoanhthu(name:any[],doanhthu:any[]){
     this.canvas3 = document.getElementById('myChart3');
     this.ctx3 = this.canvas3.getContext('2d');
     this.ctx3 = 'myChart3'
     let myChart3 = new Chart(this.ctx3, {
       type: 'bar',
       data: {
-        labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+        labels: name,
         datasets: [
           {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Doanh thu',
+            data: doanhthu,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
