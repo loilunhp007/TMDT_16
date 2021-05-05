@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../model/product';
 import { ProductService } from '../service/product.service';
-
+import { google } from "google-maps";
+declare var google:any
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
+    
   constructor(private productService:ProductService,
     private actRoute:ActivatedRoute,
     private router:Router) { }
@@ -22,7 +23,6 @@ export class SearchComponent implements OnInit {
         const key = data.keyword;
         this.getProductByLikeName(key);
       })
-
   }
   getProductByLikeName(k:String){
     this.productService.getProductByLikeName(k).subscribe(

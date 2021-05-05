@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -40,9 +41,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { OrderDetailComponent } from './admin/order-detail/order-detail.component';
 import { UserOrderComponent } from './user-order/user-order.component';
 import { UserOrderDetailComponent } from './user-order-detail/user-order-detail.component';
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +90,7 @@ import { UserOrderDetailComponent } from './user-order-detail/user-order-detail.
     MatSelectModule,
     MatSlideToggleModule,
     NgxPaginationModule,
-    MatTabsModule
+    MatTabsModule,
   ],
   providers: [ModalDirective],
   bootstrap: [AppComponent],

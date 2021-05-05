@@ -8,7 +8,7 @@ import { Order } from '../model/order';
 })
 export class OrderService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient,) { }
    
   getAllOrder(matv:string):Observable<any>{
     return this.httpClient.get<Order>('http://localhost:8080/order/get/tvban/'+matv);
@@ -28,5 +28,6 @@ export class OrderService {
    updateOrderStatus(madh:String,trangthai:number):Observable<any>{
     return this.httpClient.put<Order>('http://localhost:8080/order/put/'+madh+'/'+trangthai,null);
   }
+  
 }
 

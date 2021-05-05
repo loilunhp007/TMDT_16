@@ -19,14 +19,20 @@ export class UserOrderComponent implements OnInit {
     private router:Router,
     private actRouter:ActivatedRoute,
     private orderDetailService:OrderDetailService,
-    private productService:ProductService) { }
+    private productService:ProductService,
+    ) { }
   Id:string;
   order:Order
   orderDetail:OrderDetail
+
   ngOnInit(): void {
     let Id=JSON.parse(sessionStorage.getItem('user'));
     this.getAllOrder(Id);
     this.getAllOrderCancel(0,Id);
+   
+     
+   
+
   }
   getAllOrder(matv:string){
     this.order = new Order(); 
@@ -47,34 +53,7 @@ export class UserOrderComponent implements OnInit {
     )
 
   }
-  updateThanhtoan(Id:String){
-    let ss = Id+''
-    this.orderService.getAllOrderByTvmua(ss).subscribe(
-      Response=>{
-        this.orders= Response;
-        this.orders.forEach(data=>{
-          if(data.trangthai ==4){
-            let sss=data.madh+''
-            this.orderDetailService.getOrderDetail(sss).subscribe(
-              Response2=>{
-                let orderDetail2= new OrderDetail();
-                orderDetail2=Response2;
-                if(orderDetail2.thanhtoan==0){
-                  this.orderDetailService.updateOrderDetail(orderDetail2).subscribe(
-                    Response3=>{
-                      this.exit();
-                    }
-                  )     
-                  
-                }
-
-              }
-            )
-          }
-        })
-      }
-    )
-  }
+  
   updateOrderCancel(order:Order){
     let ss = order.madh+''
     this.orderService.updateOrderStatus(ss,0).subscribe(

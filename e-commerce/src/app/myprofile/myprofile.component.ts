@@ -16,6 +16,7 @@ export class MyprofileComponent implements OnInit {
     firstName:['',Validators.required],
     lastName : ['',Validators.required],
     phone:['',Validators.required],
+    address:['',Validators.required],
     birthday:[''],
     email:[''],
     startDay:[''],
@@ -58,6 +59,9 @@ export class MyprofileComponent implements OnInit {
   get Email() {
     return this.userForm.get('email');
   }
+  get Adress() {
+    return this.userForm.get('address');
+  }
   loadUser(id:String){
     this.userService.getUserDetailByID(id).subscribe(
       Response=>{
@@ -66,6 +70,7 @@ export class MyprofileComponent implements OnInit {
           this.Ten.setValue(this.userDetail.ten,String)
           this.SDT.setValue(this.userDetail.sdt,String)
           this.Email.setValue(this.userDetail.gmail,String)
+          this.Adress.setValue(this.userDetail.diachi)
           this.BirthDay.setValue(this.userDetail.ngaysinh)
           this.StartDay.setValue(this.userDetail.ngaytao)
       }
@@ -83,6 +88,7 @@ export class MyprofileComponent implements OnInit {
         user2.gmail = this.Email.value
         user2.ngaysinh= this.BirthDay.value;
         user2.ngaytao = this.StartDay.value;
+        user2.diachi = this.Adress.value
         if(confirm("Bạn có chắc ?")){
           this.userService.updateUserDetail(this.userId,user2).subscribe(
             Response=>{
