@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Tooltip,registerables } from 'chart.js';
 import {  ArcElement, BarController, BarElement, BubbleController, CategoryScale, Chart, DecimationAlgorithm, DoughnutController, Filler, Legend, LinearScale, LineController, LineElement, LogarithmicScale, PieController, PointElement, PolarAreaController, RadarController, RadialLinearScale, ScatterController, TimeScale, TimeSeriesScale, Title } from 'node_modules/chart.js';
 import { Product } from 'src/app/model/product';
 import { OrderDetailService } from 'src/app/service/order-detail.service';
+import { OrderService } from 'src/app/service/order.service';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -23,14 +24,21 @@ export class ChartComponent implements OnInit {
   spbanra:any=[]
   doanhthu:any=[]
   userId:String
+  select = 1
+  myChart1:Chart
+  myChart2:Chart
+  myChart3:Chart
+  months:any=[{name:'1'},{name:'2'},{name:'3'},{name:'4'},{name:'5'},{name:'6'},{name:'7'},{name:'8'},{name:'9'},{name:'10'},{name:'11'},{name:'12'}]
   constructor(
     private productService:ProductService,
-    private orderDetailService:OrderDetailService
+    private orderDetailService:OrderDetailService,
+    private orderService:OrderService
   ){}
+ 
   ngOnInit() {
     
     this.userId = JSON.parse(sessionStorage.getItem('user'));
-    
+    this.loadChart(this.userId);
     
     Chart.register(
       ArcElement,
@@ -56,10 +64,9 @@ export class ChartComponent implements OnInit {
       Title,
       Tooltip
     );
-    this.loadChart(this.userId);
-    this.thongkespTheoluotxem(this.luotXem,this.nameproduct);
-    this.ThongKesoluongbanra(this.nameproduct,this.spbanra)
-    this.thongkeDoanhthu(this.nameproduct,this.doanhthu);
+    this.getValueWithAsync();
+      
+  
     //------------------------------------------------------------------------------------------------------------------
     //Top 10 sản phẩm bán chạy trong tháng
     
@@ -74,7 +81,7 @@ export class ChartComponent implements OnInit {
     this.canvas1 = document.getElementById('myChart1');
     this.ctx1 = this.canvas1.getContext('2d');
     this.ctx1 = 'myChart1'
-    let myChart1 = new Chart(this.ctx1, {
+     this.myChart1 = new Chart(this.ctx1, {
       type: 'bar',
       data: {
         labels: nameproduct,
@@ -116,7 +123,7 @@ export class ChartComponent implements OnInit {
     this.canvas2 = document.getElementById('myChart2');
     this.ctx2 = this.canvas2.getContext('2d');
     this.ctx2 = 'myChart2'
-    let myChart2 = new Chart(this.ctx2, {
+   this.myChart2 = new Chart(this.ctx2, {
       type: 'bar',
       data: {
         labels: name,
@@ -157,7 +164,7 @@ export class ChartComponent implements OnInit {
     this.canvas3 = document.getElementById('myChart3');
     this.ctx3 = this.canvas3.getContext('2d');
     this.ctx3 = 'myChart3'
-    let myChart3 = new Chart(this.ctx3, {
+    this.myChart3 = new Chart(this.ctx3, {
       type: 'bar',
       data: {
         labels: name,
@@ -195,29 +202,34 @@ export class ChartComponent implements OnInit {
     });
   }
   private loadChart(masp:String){
-    this.productService.getProduct(masp).subscribe(
+    this.productService.getProduct(masp).toPromise().then(
       Response=>{
         this.products=Response
         this.products.forEach(data=>{
           this.nameproduct.push(data.tensp);
           this.luotXem.push(data.luotxem);
-          this.orderDetailService.ThongKeSP(data.masp).subscribe(
+          this.orderDetailService.ThongKeSP(data.masp).toPromise().then(
             Response2=>{
               this.spbanra.push(Response2);
             }
           )
-          this.orderDetailService.thongKeDoanhthu(data.masp).subscribe(
+          
+          this.orderService.getAllOrder(this.userId+'').toPromise().then(
             Response3=>{
-              let orderdetails=[];
-              orderdetails= Response3
+              let orders=[];
+              orders= Response3
               let increaseMoney = 0
-              orderdetails.forEach(data2=>{
-                increaseMoney+=Number(data2.tongtien)
+              orders.forEach(data2=>{
+                let date = new Date(data2.ngaytao);
+                let s = date.getMonth();
+                if(s == this.select){
+                  increaseMoney+=Number(data2.tongtien);
+                }
+               
               })
               this.doanhthu.push(increaseMoney);
             }
           )
-        
             
         })
       }
@@ -226,4 +238,41 @@ export class ChartComponent implements OnInit {
   exit() {
     location.reload();
   }
+  resolveAfter3Seconds(x) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        this.thongkespTheoluotxem(this.luotXem,this.nameproduct);
+        this.ThongKesoluongbanra(this.nameproduct,this.spbanra)
+        this.thongkeDoanhthu(this.nameproduct,this.doanhthu);
+      }, 1000);
+    });
+}
+async getValueWithAsync() {
+  const value = <number>await this.resolveAfter3Seconds(20);
+}
+selected(select:number){
+  this.myChart3.destroy();
+  this.doanhthu =[];
+  this.orderService.getAllOrder(this.userId+'').toPromise().then(
+    Response3=>{
+      let orders=[];
+      orders= Response3
+      let increaseMoney = 0
+      orders.forEach(data2=>{
+        let date = new Date(data2.ngaytao);
+        let s = date.getMonth();
+        if(s == this.select){
+          increaseMoney+=Number(data2.tongtien);
+        }
+       
+      })
+      this.doanhthu.push(increaseMoney);
+    }
+  )
+  setTimeout(()=>{
+    this.thongkeDoanhthu(this.nameproduct,this.doanhthu);
+  },1000)
+  
+  console.log(this.select);
+}
 }

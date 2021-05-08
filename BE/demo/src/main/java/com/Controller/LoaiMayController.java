@@ -21,9 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoaiMayController {
     @Autowired
     private LoaiMayService loaiMayService;
-    @GetMapping
+    @GetMapping("/get")
     public ResponseEntity<List<LoaiMay>> getAllLoaiMay(){
         List<LoaiMay> loaimay = loaiMayService.getAllLoaiMay();
+        return ResponseEntity.status(HttpStatus.OK).body(loaimay);
+    }
+    @GetMapping("/get/{tenloai}")
+    public ResponseEntity<List<LoaiMay>> getAllByName(String tenloai){
+        List<LoaiMay> loaimay = loaiMayService.getAllByName(tenloai);
         return ResponseEntity.status(HttpStatus.OK).body(loaimay);
     }
 }

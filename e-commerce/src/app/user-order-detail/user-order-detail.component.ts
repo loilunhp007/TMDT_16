@@ -103,7 +103,9 @@ export class UserOrderDetailComponent implements OnInit {
            var distance = google.maps.geometry.spherical.computeDistanceBetween(this.gps1,this.gps2)
             this.time = Number(distance/speed);
             this.thoigiannhan = Math.floor(this.time/24);
-            
+            if(this.thoigiannhan ==0){
+              this.thoigiannhan+=1
+            }
 
           }
         )
