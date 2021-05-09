@@ -23,6 +23,7 @@ export class OrderComponent implements OnInit {
     private orderDetailService:OrderDetailService) { }
   Id:string;
   order:Order
+  p:number=1
   ngOnInit(): void {
     let Id=JSON.parse(sessionStorage.getItem('user'));
     this.getAllOrder(Id);

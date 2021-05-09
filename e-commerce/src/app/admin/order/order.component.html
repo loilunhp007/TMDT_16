@@ -19,7 +19,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr *ngFor="let order of orders">
+								<tr *ngFor="let order of orders | paginate:{itemsPerPage:10,currentPage:p}">
 									<td data-sortable="true">{{order.madh}}</td>
 									<td data-sortable="true">{{order.tvmua.ten}}</td>
 									<td data-sortable="true">{{order.ngaytao}}</td>
@@ -46,8 +46,9 @@
 									<button *ngIf="(order.trangthai!=4 && order.trangthai!=0)" mdbBtn color="success" rounded="true" mdbWavesEffect (click)="updateOrder(order)" [order]="order" ><i class="fa fa-check-square" ></i>Xác nhận</button>
 									<button [disabled]="!order.trangthai==1 ||order.trangthai==4" mdbBtn color="default" rounded="true" mdbWavesEffect (click)="updateOrderCancel(order)"><i class="fa fa-trash"></i> Hủy Đơn</button>
 									</td>
-														
+									
 							</tbody>
+							<pagination-controls (pageChange)="p = $event"></pagination-controls>					
 							</table>
 					</div>
 					</div>
@@ -71,7 +72,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr *ngFor="let order of cancelOrders">
+								<tr *ngFor="let order of cancelOrders | paginate:{itemsPerPage:10,currentPage:p}">
 									<td data-sortable="true">{{order.madh}}</td>
 									<td data-sortable="true">{{order.tvmua.ten}}</td>
 									<td data-sortable="true">{{order.ngaytao}}</td>
@@ -87,6 +88,7 @@
 									</td>	
 								</tr>														
 							</tbody>
+							<pagination-controls (pageChange)="p = $event"></pagination-controls>					
 							</table>
 					</div>
 					</div>
