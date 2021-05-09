@@ -72,7 +72,7 @@
 							<td class="cart_total">
 								<p class="cart_total_price">{{orderdetail.gia*orderdetail.soluong|currency:'VND':'symbol':'3.0'}}</p>
 							</td>
-
+							<Button *ngIf="order.trangthai == 4" (click)="goDetail(orderdetail)" mdbBtn color="default" rounded="true" mdbWavesEffect >Đánh giá</Button>
 						</tr>
 
 							<td colspan="4">&nbsp;</td>

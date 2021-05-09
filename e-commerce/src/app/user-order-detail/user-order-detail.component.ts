@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as GoogleMapsLoader from 'google-maps';
 import { Order } from '../model/order';
 import { OrderDetail } from '../model/order-detail';
@@ -22,7 +22,9 @@ export class UserOrderDetailComponent implements OnInit {
     private orderDetailService:OrderDetailService,
     private orderService:OrderService,
     private userService:UserService,
-    private productService:ProductService) { }
+    private productService:ProductService,
+    private actRouter:ActivatedRoute,
+    private router:Router) { }
   madh:String
   orderTotal =0
   orderTotal2 = 0 
@@ -83,6 +85,16 @@ export class UserOrderDetailComponent implements OnInit {
     )
       
  
+  }
+  goDetail(orderDetail:OrderDetail){
+    this.actRoute.queryParams.subscribe(
+      params=>{
+        const id=orderDetail.masp;
+        const dh=orderDetail.madh;
+        this.router.navigate(['home','product-detail'],{queryParams: {id,dh}})
+      }
+    )
+  
   }
   calculating(address1:String,address2:string){
     let speed = 100

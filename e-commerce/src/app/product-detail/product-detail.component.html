@@ -241,7 +241,7 @@
 							<ul class="nav nav-tabs">
 								<li  class="active"><a href="#details" data-toggle="tab">Chi tiết sản phẩm</a></li>
 								<li><a href="#companyprofile" data-toggle="tab">Thông tin công ty</a></li>
-								<li><a href="#reviews" data-toggle="tab">Đánh giá sản phẩm (5)</a></li>
+								<li><a href="#reviews" data-toggle="tab">Đánh giá sản phẩm ({{size}})</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
@@ -262,19 +262,44 @@
 										<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
 										<li><a href=""><i class="fa fa-calendar-o"></i>3 MAY 2021</a></li>
 									</ul>
-									<p>Cảm ơn đã mua hàng của chúng tôi. Mời bạn đánh giá sản phẩm.</p>
-									<p><b>Viết đánh giá của bạn</b></p>
+									<div class="card" *ngFor="let comment of comments">
+										<div class="card-body">
+											<div class="row">
+												<div class="col-md">
+													<li><a href="" ><i class="fa fa-user"></i>{{comment.donhang.tvmua.ten}}</a></li>
+													<p class="text-secondary text-center" >{{comment.donhang.tvmua.ngaytao}}</p>
+												</div>
+												<div class="col-md-10">
+													<p >
+														<span class="float-right" *ngFor="let i of [1,2,3,4,5]"><i *ngIf="i <= comment.sao" class="text-warning fa fa-star"></i></span>
+
+												</p>
+												<div class="clearfix"></div>
+													<p>{{comment.noidung}}</p>
+													<p>
+														
+												</p>
+												</div>
+											</div>
+										</div>
+									</div>
 									
-									<form action="#">
-										<span>
-											<input type="text" placeholder="Tên của bạn"/>
-											<input type="email" placeholder="Địa chỉ email"/>
-										</span>
-										<textarea name="" ></textarea>
-										<b>Rating: </b> <img src="../../assets/images/product-details/rating.png" alt="" />
-										<button type="button" class="btn btn-default pull-right">
+									<form [formGroup]="commentForm" (ngSubmit)="rating()">
+										<input type="hidden" formControlName="madh">
+										<input type="hidden" formControlName="masp">
+										<textarea formControlName="noidung" ></textarea>
+										<b>Rating:</b> 
+										<div class="rating"> 
+										<input formControlName="selectedStar"  type="radio" name="selectedStar" value="5" id="5"><label for="5">☆</label>
+										<input formControlName="selectedStar"  type="radio" name="selectedStar" value="4" id="4"><label for="4">☆</label> 
+										<input formControlName="selectedStar"  type="radio" name="selectedStar" value="3" id="3"><label for="3">☆</label>
+										 <input formControlName="selectedStar"  type="radio" name="selectedStar" value="2" id="2"><label for="2">☆</label> 
+										 <input formControlName="selectedStar"  type="radio" name="selectedStar" value="1" id="1"><label for="1">☆</label>
+										</div>
+										<button type="ngSubmit" class="btn btn-default pull-right"[disabled]="!flag" >
 											Đánh giá
 										</button>
+										
 									</form>
 								</div>
 							</div>

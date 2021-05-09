@@ -17,7 +17,7 @@ public class LoaiMayService {
         return loaiMayRepository.findAll();
     }
     public List<LoaiMay> getAllByName(String name){
-        return loaiMayRepository.findByTenloai(name);
+        return loaiMayRepository.findByTenloaiContains(name);
     }
     public LoaiMay addLoaiMay(LoaiMay loaiMay){
         return loaiMayRepository.save(loaiMay);

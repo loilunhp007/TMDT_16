@@ -28,7 +28,7 @@ export class ChartComponent implements OnInit {
   myChart1:Chart
   myChart2:Chart
   myChart3:Chart
-  months:any=[{name:'1'},{name:'2'},{name:'3'},{name:'4'},{name:'5'},{name:'6'},{name:'7'},{name:'8'},{name:'9'},{name:'10'},{name:'11'},{name:'12'}]
+  months:any=[{name:'0'},{name:'1'},{name:'2'},{name:'3'},{name:'4'},{name:'5'},{name:'6'},{name:'7'},{name:'8'},{name:'9'},{name:'10'},{name:'11'}]
   constructor(
     private productService:ProductService,
     private orderDetailService:OrderDetailService,
@@ -129,7 +129,7 @@ export class ChartComponent implements OnInit {
         labels: name,
         datasets: [
           {
-            label: 'So luong ban ',
+            label: 'Tổng đơn hàng ',
             data: spbanra,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
@@ -219,12 +219,15 @@ export class ChartComponent implements OnInit {
               let orders=[];
               orders= Response3
               let increaseMoney = 0
+              let soluong=0
               orders.forEach(data2=>{
                 let date = new Date(data2.ngaytao);
                 let s = date.getMonth();
-                if(s == this.select){
+                console.log(s+1)
+                if((this.select == s+1)  && data2.trangthai==4){
                   increaseMoney+=Number(data2.tongtien);
                 }
+
                
               })
               this.doanhthu.push(increaseMoney);

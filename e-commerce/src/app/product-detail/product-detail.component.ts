@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Comment } from '../model/comment';
+import { Order } from '../model/order';
 import { Product } from '../model/product';
 import { CartService } from '../service/cartservice';
+import { CommentService } from '../service/comment.service';
+import { OrderService } from '../service/order.service';
 import { ProductService } from '../service/product.service';
 
 @Component({
@@ -17,23 +22,42 @@ export class ProductDetailComponent implements OnInit {
   pId:String
   userId:String
   flag=false
+  comments:Array<Comment>
+  order:Order
+  comment:Comment
+  commentForm = this.formBuilder.group({
+    madh:['',Validators.required,],
+    masp:['',Validators.required],
+    noidung:['',Validators.required],
+    selectedStar:['',Validators.required]
+  })
+  size=0;
   constructor(private productService:ProductService,
     private router: Router,
     private actRoute: ActivatedRoute,
-    private cartService:CartService) { }
+    private cartService:CartService,
+    private commentService:CommentService,
+    private orderService:OrderService,
+    private formBuilder:FormBuilder) { }
     idx=0;
   ngOnInit(): void {
+    this.comment = new Comment()
+    this.order = new Order();
     this.product = new Product();
     this.getProduct(1);
     this.actRoute.queryParams.subscribe(data=>{
       this.s = data.id
+      this.madh.setValue(data.dh);
+      this.masp.setValue(this.s);
+      this.selectedStar.setValue(5);
       console.log(data)
     this.getProductById(this.s);
     this.getViewProduct(this.s);
+    this.checkComment(this.madh.value,this.masp.value)
     if(this.product.trangthai==0 || this.product.soluong==0){
       alert("Sản Phẩm hiện không có sẵn.Vui lòng chọn sản phẩm khác")
     }
-    
+    this.getAllComment(this.s);
     })
   
 
@@ -41,7 +65,6 @@ export class ProductDetailComponent implements OnInit {
   getProduct(trangthai:number){
     this.productService.getProductByTrangthai(trangthai).subscribe(
       (response)=>{ this.products =response;
-          console.log(this.products);
         
       })
   }
@@ -79,10 +102,71 @@ export class ProductDetailComponent implements OnInit {
         product2.luotxem+=1
         this.productService.updateProduct(product2).subscribe(
           Response2=>{
-
+            
           }
         )
       }
     )
+  }
+  getAllComment(masp:String){
+     this.commentService.getAllByMasp(masp).subscribe(
+      Response=>{
+        this.comments=Response;
+        this.size = this.comments.length;
+        this.comments.forEach(data=>{
+          let ss=data.madh+''
+          this.orderService.getOrderById(ss).subscribe(
+            Response2=>{
+              data.donhang=Response2;
+          })
+
+        })
+          
+      })
+  }
+  selectedStarChange(star:number){
+    console.log(this.selectedStar);
+  }
+  rating(){
+    let comment2=new Comment();
+    comment2.madh=this.madh.value;
+    comment2.masp=this.masp.value;
+    comment2.noidung=this.noidung.value
+    comment2.sao=this.selectedStar.value
+    this.commentService.addCmt(comment2).subscribe(
+      Response=>{
+        this.exit();
+      }
+    )
+    
+  }
+  exit() {
+    location.reload();
+  }
+  get madh(){
+    return this.commentForm.get('madh');
+  }
+  get masp(){
+    return this.commentForm.get('masp');
+  }
+  get noidung(){
+    return this.commentForm.get('noidung');
+  }
+  get selectedStar(){
+    return this.commentForm.get('selectedStar');
+  }
+  checkComment(madh:String,masp:String){
+    this.commentService.getCommentById(madh,masp).subscribe(
+      Response=>{
+        if(Response!=null){
+          console.log(Response)
+          return this.flag=false;
+        
+      } else{
+        return this.flag=true
+      }
+      }
+    )
+
   }
 }

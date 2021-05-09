@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LoaiMayRepository extends JpaRepository<LoaiMay,String> {
-    public List<LoaiMay> findByTenloai(String name);
+    public List<LoaiMay> findByTenloaiContains(String name);
+    
 }
