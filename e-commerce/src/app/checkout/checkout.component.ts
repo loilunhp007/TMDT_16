@@ -157,7 +157,7 @@ export class CheckoutComponent implements OnInit {
                 let orderDetail = new OrderDetail()
                 let product2 =new Product();
                 const random = Math.floor(Math.random() * (99-10)+1)+''+randomChars.charAt(Math.floor(Math.random() * randomChars.length))+''+ Math.floor(Math.random() * (9-1))
-                    order.madh = random
+                  order.madh = random
                 order.tvmua  = tvmua
                 const day=this.date.getDate();
                 const month = this.date.getMonth()+1;
@@ -174,6 +174,8 @@ export class CheckoutComponent implements OnInit {
                     orderDetail.gia = product2.gia
                     orderDetail.masp = product2.masp
                     orderDetail.thanhtoan=0
+                    orderDetail.diachigiao = product2.userDetail.diachi
+                    orderDetail.diachinhan = this.address.value;
                     if((product2.soluong-orderDetail.soluong)>0){
                       product2.soluong -=orderDetail.soluong;
                       order.tvban = product2.userDetail

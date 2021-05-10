@@ -34,7 +34,9 @@ export class UserOrderDetailComponent implements OnInit {
   gps2:any
   time:any
   ngay:String
-  thoigiannhan
+  thoigiannhan;
+  diachigiao:String;
+  diachinhan:String;
   ngOnInit(): void {
     this.order = new Order();
     this.userDetail= new UserDetail();
@@ -43,7 +45,8 @@ export class UserOrderDetailComponent implements OnInit {
       this.getOrderById(s);
       this.madh=s;
       this.getTotal(s);  
-   
+      console.log(this.diachigiao+"nhan:"+this.diachinhan)
+
     
   })
   
@@ -53,8 +56,6 @@ export class UserOrderDetailComponent implements OnInit {
     this.orderService.getOrderById(ss).subscribe(
       Response=>{
         this.order = Response;
-        let diachii=this.order.tvmua.diachi+'';
-        this.calculating(this.order.tvban.diachi,diachii);
         let newDate = new Date(this.order.ngaytao+'');
       }
     )
@@ -66,6 +67,10 @@ export class UserOrderDetailComponent implements OnInit {
         this.orderdetails=Response;
         if(this.orderdetails!=null){
           this.orderdetails.forEach(data=>{
+           
+            this.diachigiao=data.diachigiao;
+            this.diachinhan=data.diachinhan;
+            this.calculating(data.diachigiao,data.diachinhan+'')
             this.orderTotal+=Number(data.gia)*Number(data.soluong)
             this.purchase=Number(data.thanhtoan)
             this.productService.getProductByID(data.masp).subscribe(
@@ -97,15 +102,15 @@ export class UserOrderDetailComponent implements OnInit {
   
   }
   calculating(address1:String,address2:string){
-    let speed = 100
-    this.orderDetailService.getFromAddress(address1).subscribe(
+    let speed = 20
+    this.orderDetailService.getFromAddress(this.diachigiao).subscribe(
       Response=>{
         let data1 = Response.results[0].geometry.lat;
         let num = data1    
         let data2 = Response.results[0].geometry.lng;
         let num2= data2
         this.gps1 = new google.maps.LatLng(num,num2);
-        this.orderDetailService.getFromAddress(address2).subscribe(
+        this.orderDetailService.getFromAddress(this.diachinhan).subscribe(
           Response2=>{
             let data3 = Response2.results[0].geometry.lat;
             let data4 = Response2.results[0].geometry.lng;
@@ -113,8 +118,9 @@ export class UserOrderDetailComponent implements OnInit {
             let num2= data4
            this.gps2 = new google.maps.LatLng(num,num2);
            var distance = google.maps.geometry.spherical.computeDistanceBetween(this.gps1,this.gps2)
-            this.time = Number(distance/speed);
-            this.thoigiannhan = Math.floor(this.time/24);
+            this.time = Number(distance/(1000*speed));
+            console.log(this.time)
+            this.thoigiannhan = Math.floor((this.time)/12);
             if(this.thoigiannhan ==0){
               this.thoigiannhan+=1
             }

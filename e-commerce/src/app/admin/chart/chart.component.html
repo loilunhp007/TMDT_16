@@ -22,6 +22,9 @@
 				<div class="panel-heading" >Tổng sản phẩm bán chạy </div>
 				<div class="panel-body">
 					<div style="width: 100%; height: 500px">
+						<select [(ngModel)]="select2" id="selectthang_02" name="selectthang_02" (change)="selected2(select2)">
+							<option *ngFor="let month of months" [value]="month.name">Tháng {{month.name}}</option>
+						</select>
 						 <canvas  id="myChart2" width="400" height="400"></canvas>
 					</div>
 				</div>
@@ -33,7 +36,7 @@
 				<div class="panel-body">
 					<div style="width: 100%; height: 500px">
 						<select [(ngModel)]="select" id="selectthang_01" name="selectthang_01" (change)="selected(select)">
-							<option *ngFor="let month of months" [value]="month.name">Tháng {{month.name*1+1}}</option>
+							<option *ngFor="let month of months" [value]="month.name">Tháng {{month.name}}</option>
 						</select>
 						 <canvas   id="myChart3" width="400" height="400"></canvas>
 					</div>

@@ -25,10 +25,11 @@ export class ChartComponent implements OnInit {
   doanhthu:any=[]
   userId:String
   select = 1
+  select2=1
   myChart1:Chart
   myChart2:Chart
   myChart3:Chart
-  months:any=[{name:'0'},{name:'1'},{name:'2'},{name:'3'},{name:'4'},{name:'5'},{name:'6'},{name:'7'},{name:'8'},{name:'9'},{name:'10'},{name:'11'}]
+  months:any=[{name:'1'},{name:'2'},{name:'3'},{name:'4'},{name:'5'},{name:'6'},{name:'7'},{name:'8'},{name:'9'},{name:'10'},{name:'11'},{name:'12'}]
   constructor(
     private productService:ProductService,
     private orderDetailService:OrderDetailService,
@@ -205,36 +206,25 @@ export class ChartComponent implements OnInit {
     this.productService.getProduct(masp).toPromise().then(
       Response=>{
         this.products=Response
+        this.orderDetailService.ThongKeSP(this.userId,this.select).toPromise().then(
+          Response2=>{
+            this.spbanra = Response2;
+          }
+        )
+        this.orderDetailService.thongKeDoanhthu(this.userId,this.select).toPromise().then(
+          Response3=>{
+            this.doanhthu=Response3;
+          }
+        )
         this.products.forEach(data=>{
           this.nameproduct.push(data.tensp);
           this.luotXem.push(data.luotxem);
-          this.orderDetailService.ThongKeSP(data.masp).toPromise().then(
-            Response2=>{
-              this.spbanra.push(Response2);
+         
+        
             }
-          )
           
-          this.orderService.getAllOrder(this.userId+'').toPromise().then(
-            Response3=>{
-              let orders=[];
-              orders= Response3
-              let increaseMoney = 0
-              let soluong=0
-              orders.forEach(data2=>{
-                let date = new Date(data2.ngaytao);
-                let s = date.getMonth();
-                console.log(s+1)
-                if((this.select == s+1)  && data2.trangthai==4){
-                  increaseMoney+=Number(data2.tongtien);
-                }
-
-               
-              })
-              this.doanhthu.push(increaseMoney);
-            }
-          )
             
-        })
+        )
       }
     );
   }
@@ -254,28 +244,33 @@ async getValueWithAsync() {
   const value = <number>await this.resolveAfter3Seconds(20);
 }
 selected(select:number){
+  
   this.myChart3.destroy();
   this.doanhthu =[];
-  this.orderService.getAllOrder(this.userId+'').toPromise().then(
+  this.orderDetailService.thongKeDoanhthu(this.userId,this.select).toPromise().then(
     Response3=>{
-      let orders=[];
-      orders= Response3
-      let increaseMoney = 0
-      orders.forEach(data2=>{
-        let date = new Date(data2.ngaytao);
-        let s = date.getMonth();
-        if(s == this.select){
-          increaseMoney+=Number(data2.tongtien);
-        }
-       
-      })
-      this.doanhthu.push(increaseMoney);
+      this.doanhthu=Response3;
     }
   )
+    
+  
   setTimeout(()=>{
     this.thongkeDoanhthu(this.nameproduct,this.doanhthu);
+    
   },1000)
   
   console.log(this.select);
 }
+  selected2(select:number){
+    this.myChart2.destroy();
+    this.spbanra=[];
+    this.orderDetailService.ThongKeSP(this.userId,this.select2).toPromise().then(
+      Response2=>{
+        this.spbanra = Response2;
+      }
+    )
+    setTimeout(()=>{
+      this.ThongKesoluongbanra(this.nameproduct,this.spbanra);
+    },1000)
+  }
 }

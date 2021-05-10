@@ -48,13 +48,13 @@ export class CartComponent implements OnInit {
       this.cartService.getCartItems(this.userId).subscribe(
       Response =>{
         this.carts = Response
-        this.cartTotal2+=this.Shipping
         if(this.carts !=null){
           this.carts.forEach(item=>{
             this.productService.getProductByID(item.product.masp).subscribe(
               Response1=>{
                 this.product = Response1
                 console.log(this.product)
+                this.cartTotal2+=this.Shipping
                 this.cartTotal+=(this.product.gia*item.soluong)
                 this.cartTotal2+=(this.product.gia*item.soluong)
               }

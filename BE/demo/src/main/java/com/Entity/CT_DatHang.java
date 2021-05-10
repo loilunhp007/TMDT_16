@@ -26,6 +26,8 @@ public class CT_DatHang {
     private String masp;
     private String soluong;
     private String gia;
+    private String diachigiao;
+    private String diachinhan;
     private String tongtien;
     private String thanhtoan;
 }

@@ -49,14 +49,14 @@ public class OrderDetailController {
         return   ResponseEntity.status(HttpStatus.OK).body(orderDetail3);
 
     }
-    @GetMapping("/get/thongke/{masp}")
-        public ResponseEntity<Long> CountByMasp(@PathVariable(name ="masp")String masp){
-            Long num = orderDetailService.findByMasp(masp);
+    @GetMapping("/get/thongkedoanhthu/{matv}/{thang}")
+        public ResponseEntity<List<Long>> getDoanhThu(@PathVariable(name ="matv")String matv,@PathVariable(name = "thang")int thang){
+            List<Long> num = orderDetailService.getThanhtien(matv,thang);
             return ResponseEntity.status(HttpStatus.OK).body(num);    
         }
-        @GetMapping("/get/tongtien/{masp}")
-        public ResponseEntity<List<CT_DatHang>> getTongtienByMasp(@PathVariable(name ="masp")String masp){
-            List<CT_DatHang> num = orderDetailService.GetTongtienByMasp(masp);
+        @GetMapping("/get/thongkesoluong/{matv}/{thang}")
+        public ResponseEntity<List<Long>> getSoluongBan(@PathVariable(name ="matv")String matv,@PathVariable(name = "thang")int thang){
+            List<Long> num = orderDetailService.getThongKeSoluong(matv,thang);
             return ResponseEntity.status(HttpStatus.OK).body(num);    
         }
 }
