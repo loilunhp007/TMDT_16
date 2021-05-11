@@ -17,4 +17,5 @@ public interface OrderDetailRepository extends JpaRepository<CT_DatHang,CT_DatHa
     @Query(value = "SELECT sum(ctdh.soluong) from CTDatHang ctdh join DatHang dh on ctdh.madh = dh.madh where dh.matvban=?1 and Month(dh.ngaytao)=?2  group by ctdh.masp",nativeQuery = true)
     public List<Long> thongkesoluong(String matv,int thang);
     public List<CT_DatHang> findAllByMasp(String masp);
+    
 }

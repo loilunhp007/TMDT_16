@@ -180,7 +180,7 @@ export class CheckoutComponent implements OnInit {
                 const year = this.date.getFullYear();
                 order.ngaytao = year+'-'+month+'-'+day
                 order.tongtien =this.cartTotal2
-                orderDetail.tongtien = order.tongtien
+                 order.tongtien = Number(data.soluong*data.product.gia)+Number(this.Shipping)
                 order.trangthai= 1
                 orderDetail.soluong=data.soluong
                 this.productService.getProductByID(data.product.masp).subscribe(
@@ -191,9 +191,10 @@ export class CheckoutComponent implements OnInit {
                     orderDetail.masp = product2.masp
                     orderDetail.thanhtoan=0
                     orderDetail.tid= this.shippingFee.value
-                    
+                    orderDetail.tongtien = Number(product2.gia*data.soluong)+Number(this.Shipping)
                     orderDetail.diachigiao = product2.userDetail.diachi
                     orderDetail.diachinhan = this.address.value;
+                    console.log(orderDetail);
                     if((product2.soluong-orderDetail.soluong)>0){
                       product2.soluong -=orderDetail.soluong;
                       order.tvban = product2.userDetail

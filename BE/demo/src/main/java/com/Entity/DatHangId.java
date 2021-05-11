@@ -10,8 +10,7 @@ public class DatHangId implements Serializable {
     @Id
     private String madh;
     @Id
-    @ManyToOne
-    @JoinColumn(name = "masp")
+
     private Sanpham sanpham;
     private DatHangId(){}
     private DatHangId(String madh,Sanpham sanpham){
