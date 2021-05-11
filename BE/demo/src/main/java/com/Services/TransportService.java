@@ -20,4 +20,7 @@ public class TransportService {
     public List<Transport> getAlltranSport(){
         return transportRepository.findAll();
     }
+    public Transport findByTid(String tid){
+        return transportRepository.findById(tid).get();
+    }
 }

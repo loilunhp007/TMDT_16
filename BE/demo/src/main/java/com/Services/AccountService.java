@@ -32,6 +32,11 @@ public class AccountService {
     public long count(){
         return accountRepository.count();
     }
+    public String deteleUser(Long uid){
+        taikhoan tk = accountRepository.findById(uid).get();
+         accountRepository.delete(tk);
+         return "xoa success";
+    }
     
     
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../model/product';
 import { ProductService } from '../service/product.service';
 import { google } from "google-maps";
+import { CartService } from '../service/cartservice';
 declare var google:any
 @Component({
   selector: 'app-search',
@@ -13,7 +14,9 @@ export class SearchComponent implements OnInit {
     
   constructor(private productService:ProductService,
     private actRoute:ActivatedRoute,
-    private router:Router) { }
+    private router:Router,
+    private cartService:CartService) { }
+    userId;
     searchText
     products: Product[]
     p:number=1
@@ -49,5 +52,21 @@ export class SearchComponent implements OnInit {
   findByCategory(keyword2:String){
     let keyword=keyword2.toLowerCase()
     this.router.navigate(['home','search'],{queryParams:{keyword}})
+  }
+  addToCart(product:Product){
+    if(sessionStorage.getItem("user")!=null){
+      this.userId = JSON.parse(sessionStorage.getItem("user"));
+      let s= this.userId+''
+     this.cartService.addToCart(s,product.masp).subscribe(
+       Response=>{
+          console.log(Response)
+       },
+       (error)=>{
+         console.log(s+"sp:"+product.masp)
+         alert("Add to cart Sucess")
+       }
+     )
+    }
+     
   }
 }

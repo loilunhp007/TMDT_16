@@ -35,6 +35,7 @@
                         <li class="list-group-item">Gửi từ : {{diachigiao}}</li>
 						<li class="list-group-item">Địa chỉ: {{diachinhan}}</li>
 						<li class="list-group-item">Thời gian nhận hàng dự kiến: {{thoigiannhan}} Ngày</li>
+						<li class="list-group-item">Đơn vị vận chuyển: {{transport.tname}}</li>
                     </ul>
                 </div>
             
@@ -89,7 +90,7 @@
 									</tr>
 									<tr class="shipping-cost">
 										<td>Shipping Cost</td>
-										<td>{{Shipping|currency:'VND':'symbol':'3.0'}}</td>										
+										<td>{{transport.fee|currency:'VND':'symbol':'3.0'}}</td>										
 									</tr>
 									<tr>
 										<td>Total</td>
@@ -114,4 +115,5 @@
 <br>
 <br>
 <br>
+
 <app-footer></app-footer>

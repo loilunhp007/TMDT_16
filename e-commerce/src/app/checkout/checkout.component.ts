@@ -10,6 +10,7 @@ import { CartService } from '../service/cartservice';
 import { OrderDetailService } from '../service/order-detail.service';
 import { OrderService } from '../service/order.service';
 import { ProductService } from '../service/product.service';
+import { TransportService } from '../service/transport.service';
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -23,18 +24,20 @@ export class CheckoutComponent implements OnInit {
   cartTotal=0
   cartTotal2=0
   product:Product
-  Shipping = 25000;
+  Shipping : number=0;
   userId:String
   info:UserDetail;
   date = new Date()
-  
   infoForm = this.formBuilder.group({
     ho:[''],
     ten:[''],
     address:[''],
     phone:[''],
-    email:['']
+    email:[''],
+    shipping:['']
   })
+  shippingName:String
+  transports:Array<Transport>
   constructor(private cartService:CartService,
     private productService:ProductService,
     private actRoute:ActivatedRoute,
@@ -42,11 +45,12 @@ export class CheckoutComponent implements OnInit {
     private userSerVice:UserService,
     private formBuilder:FormBuilder,
     private orderService:OrderService,
-    private oderDetailService:OrderDetailService
+    private oderDetailService:OrderDetailService,
+    private transportService:TransportService
     ) { }
 
   ngOnInit(): void {
-    
+    this.getShipping();
     this.info = new UserDetail();
     this.userId = JSON.parse(sessionStorage.getItem("user"));
     if(sessionStorage.getItem("user")!=null){
@@ -125,6 +129,18 @@ export class CheckoutComponent implements OnInit {
   
       )
     }
+     deleteCartItem(product:Product){
+    let s= this.userId+''
+    this.cartService.deleteCartItem(s,product.masp).subscribe(
+      Response=>{
+        this.exit()
+      },
+      (error)=>{
+        this.exit()
+      }
+
+    )
+  }
     exit() {
       location.reload();
     }
@@ -163,8 +179,8 @@ export class CheckoutComponent implements OnInit {
                 const month = this.date.getMonth()+1;
                 const year = this.date.getFullYear();
                 order.ngaytao = year+'-'+month+'-'+day
-                order.tongtien =(data.soluong*data.product.gia)
-                orderDetail.tongtien = order.tongtien 
+                order.tongtien =this.cartTotal2
+                orderDetail.tongtien = order.tongtien
                 order.trangthai= 1
                 orderDetail.soluong=data.soluong
                 this.productService.getProductByID(data.product.masp).subscribe(
@@ -174,6 +190,8 @@ export class CheckoutComponent implements OnInit {
                     orderDetail.gia = product2.gia
                     orderDetail.masp = product2.masp
                     orderDetail.thanhtoan=0
+                    orderDetail.tid= this.shippingFee.value
+                    
                     orderDetail.diachigiao = product2.userDetail.diachi
                     orderDetail.diachinhan = this.address.value;
                     if((product2.soluong-orderDetail.soluong)>0){
@@ -243,5 +261,25 @@ export class CheckoutComponent implements OnInit {
     get Email() {
       return this.infoForm.get('email');
     }
-    
+    get shippingFee(){
+      return this.infoForm.get('shipping');
+    }
+    selectedShipping(){
+      this.transportService.getShippingById(this.shippingFee.value).subscribe(
+        Response=>{
+          this.Shipping= Response.fee
+          this.cartTotal2+=Number(this.Shipping)
+        }
+      )
+      console.log(this.shippingFee.value)
+
+    }
+    getShipping(){
+      this.transportService.getShipping().subscribe(
+        Response=>{
+          this.transports = Response;
+          console.log(this.transports)
+        }
+      )
+    }
 }

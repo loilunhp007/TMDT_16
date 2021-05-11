@@ -9,5 +9,6 @@ export class OrderDetail {
     diachinhan:String
     tongtien:number;
     thanhtoan:number;
+    tid:String;
     product:Product
 }

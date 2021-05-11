@@ -23,7 +23,15 @@ import { ChartComponent } from './admin/chart/chart.component';
 import { AdminguardGuard } from './admin/adminguard.guard';
 import { UserOrderComponent } from './user-order/user-order.component';
 import { UserOrderDetailComponent } from './user-order-detail/user-order-detail.component';
+import { LayoutComponent } from './administrator/layout/layout.component';
+import { AccountComponent } from './administrator/account/account.component';
 const routes: Routes = [
+  {
+  path:'administrator',component:LayoutComponent,
+  children:[
+    {path:'account',component:AccountComponent}
+  ]
+  },
   {
     path:'admin',component: DashboardComponent,canActivate:[AdminguardGuard],
     children:[

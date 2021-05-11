@@ -17,6 +17,9 @@ export class UserService {
    addUser(newUser: User):Observable<any> {
    return this.httpClient.post<User>('http://localhost:8080/user/add', newUser);   
   }
+  updateUser(newUser: User):Observable<any> {
+    return this.httpClient.put<User>('http://localhost:8080/user/put/'+newUser.uid, newUser);   
+   }
    public loginUserFromRemote(user:User ): Observable<any> {
       
       return this.httpClient.post<User>("http://localhost:8080/user/login",user);
@@ -50,5 +53,8 @@ export class UserService {
    }
    getMaxUser(){
     return this.httpClient.get<number>('http://localhost:8080/user/getMax'); 
+   }
+   deleteUser(uid:number){
+     return this.httpClient.delete<string>('http://localhost:8080/user/delete/'+uid)
    }
 }

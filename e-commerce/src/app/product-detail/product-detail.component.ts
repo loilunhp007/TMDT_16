@@ -164,7 +164,7 @@ export class ProductDetailComponent implements OnInit {
   checkComment(madh:String,masp:String){
     this.commentService.getCommentById(madh,masp).subscribe(
       Response=>{
-        if(Response!=null){
+        if(Response!=null || madh==null){
           console.log(Response)
           return this.flag=false;
         

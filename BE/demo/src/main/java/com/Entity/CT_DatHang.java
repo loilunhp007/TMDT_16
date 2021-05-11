@@ -30,4 +30,5 @@ public class CT_DatHang {
     private String diachinhan;
     private String tongtien;
     private String thanhtoan;
+    private String tid;
 }

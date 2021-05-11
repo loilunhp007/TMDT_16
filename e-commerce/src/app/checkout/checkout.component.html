@@ -19,17 +19,9 @@
 									<input type="text" placeholder="Tên *"formControlName="ten">
 									<input type="text" placeholder="Địa chỉ giao hàng 1 *"formControlName="address">
 									<input type="text" placeholder="Số điện thoại"formControlName="phone">
-									<select>
-										<option>-- Thành Phố --</option>
-										<option>Thủ đô Hà Nội</option>
-										<option>Thành phố Hồ Chí Minh</option>
-										<option>Đà Nẵng</option>
-										<option>Huế</option>
-										<option>Nghệ An</option>
-										<option>Hải Phòng</option>
-										<option>Cần Thơ</option>
-										<option>Tây Ninh</option>
-									</select>
+									<select formControlName="shipping" (change)="selectedShipping()">
+										<option *ngFor="let transport of transports" [value]="transport.tid">{{transport.tname}} - {{transport.fee}} </option>
+						</select>
 								</form>
 							</div>
 							<div class="form-two">
@@ -99,13 +91,14 @@
 									<a class="cart_quantity_up" (click)="plusCart(cart.product)"> + </a>
 									<input class="cart_quantity_input" type="text" name="quantity" value="{{cart.soluong}}" autocomplete="off" size="2">
 									<a class="cart_quantity_down" (click)="minusCart(cart.product)"> - </a>
+									
 								</div>
 							</td>
 							<td class="cart_total">
 								<p class="cart_total_price">{{cart.product.gia*cart.soluong}}</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete" href=""(click)="deleteCartItem(cart.product)"> <i class="fa fa-times"></i></a>
 							</td>
 						</tr>
 							<td colspan="4">&nbsp;</td>

@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Table(name = "taikhoan")
 public class taikhoan {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long uid;
     private String email;
     private String matkhau;

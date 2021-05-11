@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,11 @@ public class TransportController {
     public ResponseEntity<List<Transport>> getAllTransport(){
         List<Transport> list= transportService.getAlltranSport();
         return ResponseEntity.status(HttpStatus.OK).body(list);
+    } 
+    @GetMapping("/get/{tid}")
+    public ResponseEntity<Transport> getTransport(@PathVariable(name = "tid")String tid){
+        Transport tranSport= transportService.findByTid(tid);
+        return ResponseEntity.status(HttpStatus.OK).body(tranSport);
     } 
     @PostMapping("/add")
     public ResponseEntity<Transport> addTransport(@RequestBody Transport transport){

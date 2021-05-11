@@ -76,6 +76,15 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("user",JSON.stringify(this.user.matv));
         if(this.f.matkhau.value == this.user.matkhau){
               alert("login sucess")
+              this.userService.getUserDetailByID(this.user.matv+'').subscribe(
+                Response=>{
+                  this.userDetail = new UserDetail();
+                  this.userDetail=Response;
+                  if(this.userDetail.loaithanhvien=="01"){
+                    this.route.navigate(["/administrator"])
+                  }
+                }
+              )
               this.route.navigate(["/home"])
           
         }

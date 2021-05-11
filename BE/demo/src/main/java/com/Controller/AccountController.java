@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,13 +58,14 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(taiKhoan);
     }
     
-    @PutMapping("/put")
-    public ResponseEntity<taikhoan> updateThanhVienByID(@PathVariable(name = "id")Long id, @RequestBody taikhoan taiKhoan){
+    @PutMapping("/put/{uid}")
+    public ResponseEntity<taikhoan> updateThanhVienByID(@PathVariable(name = "uid")Long id, @RequestBody taikhoan taiKhoan){
         taikhoan  _taikhoan =accountService.findAccountByID(id);
         _taikhoan.setMatkhau(taiKhoan.getMatkhau());
         _taikhoan.setEmail(taiKhoan.getEmail());
         _taikhoan.setTrangthai(taiKhoan.getTrangthai());
-        return ResponseEntity.status(HttpStatus.OK).body(_taikhoan);
+        taikhoan taikhoan2 = accountService.addAccount(_taikhoan);
+        return ResponseEntity.status(HttpStatus.OK).body(taikhoan2);
     }
     
 
@@ -84,5 +86,10 @@ public class AccountController {
     public ResponseEntity<Long> getMaxUser(){
         long count = accountService.count();
         return ResponseEntity.status(HttpStatus.OK).body(count);
+    }
+    @DeleteMapping("/delete/{uid}")
+    public ResponseEntity<String> deteleUser(@PathVariable(name = "uid")long uid){
+        
+       return ResponseEntity.status(HttpStatus.OK).body(accountService.deteleUser(uid));
     }
 }

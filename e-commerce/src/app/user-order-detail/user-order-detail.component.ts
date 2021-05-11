@@ -3,10 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as GoogleMapsLoader from 'google-maps';
 import { Order } from '../model/order';
 import { OrderDetail } from '../model/order-detail';
+import { Transport } from '../model/transport';
 import { UserDetail } from '../model/user-detail';
 import { OrderDetailService } from '../service/order-detail.service';
 import { OrderService } from '../service/order.service';
 import { ProductService } from '../service/product.service';
+import { TransportService } from '../service/transport.service';
 import { UserService } from '../service/user.service';
 declare var google;
 @Component({
@@ -18,17 +20,19 @@ export class UserOrderDetailComponent implements OnInit {
   orderdetails:Array<OrderDetail>
   order:Order;
   userDetail:UserDetail;
+  transport:Transport;
   constructor(private actRoute:ActivatedRoute,
     private orderDetailService:OrderDetailService,
     private orderService:OrderService,
     private userService:UserService,
     private productService:ProductService,
     private actRouter:ActivatedRoute,
-    private router:Router) { }
+    private router:Router,
+    private transportService:TransportService) { }
   madh:String
   orderTotal =0
   orderTotal2 = 0 
-  Shipping=25000
+  Shipping=0
   purchase=0
   gps1:any
   gps2:any
@@ -37,7 +41,9 @@ export class UserOrderDetailComponent implements OnInit {
   thoigiannhan;
   diachigiao:String;
   diachinhan:String;
+  sss:any;
   ngOnInit(): void {
+    
     this.order = new Order();
     this.userDetail= new UserDetail();
     this.actRoute.queryParams.subscribe(data=>{
@@ -45,8 +51,12 @@ export class UserOrderDetailComponent implements OnInit {
       this.getOrderById(s);
       this.madh=s;
       this.getTotal(s);  
+      this.transport=new Transport();
+      
       console.log(this.diachigiao+"nhan:"+this.diachinhan)
-
+      setTimeout(()=>{
+        this.getTransport(this.sss);
+      },1000)
     
   })
   
@@ -56,6 +66,7 @@ export class UserOrderDetailComponent implements OnInit {
     this.orderService.getOrderById(ss).subscribe(
       Response=>{
         this.order = Response;
+        
         let newDate = new Date(this.order.ngaytao+'');
       }
     )
@@ -67,7 +78,8 @@ export class UserOrderDetailComponent implements OnInit {
         this.orderdetails=Response;
         if(this.orderdetails!=null){
           this.orderdetails.forEach(data=>{
-           
+             this.sss=data.tid+'';
+            
             this.diachigiao=data.diachigiao;
             this.diachinhan=data.diachinhan;
             this.calculating(data.diachigiao,data.diachinhan+'')
@@ -101,6 +113,15 @@ export class UserOrderDetailComponent implements OnInit {
     )
   
   }
+  getTransport(tid:String){
+    this.transportService.getShippingById(tid).subscribe(
+      Response=>{
+        this.transport=Response;
+        this.orderTotal2+=Number(this.transport.fee)
+        console.log(this.transport)
+      }
+    )
+  }
   calculating(address1:String,address2:string){
     let speed = 20
     this.orderDetailService.getFromAddress(this.diachigiao).subscribe(
@@ -132,4 +153,5 @@ export class UserOrderDetailComponent implements OnInit {
    
     
   }
+ 
 }

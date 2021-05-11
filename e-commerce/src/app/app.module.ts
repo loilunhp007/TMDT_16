@@ -41,6 +41,11 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { OrderDetailComponent } from './admin/order-detail/order-detail.component';
 import { UserOrderComponent } from './user-order/user-order.component';
 import { UserOrderDetailComponent } from './user-order-detail/user-order-detail.component';
+import { TransportComponent } from './admin/transport/transport.component';
+import { AdminisMenuComponent } from './administrator/adminis-menu/adminis-menu.component';
+import { SidebarMenuComponent } from './administrator/sidebar-menu/sidebar-menu.component';
+import { LayoutComponent } from './administrator/layout/layout.component';
+import { AccountComponent } from './administrator/account/account.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +74,11 @@ import { UserOrderDetailComponent } from './user-order-detail/user-order-detail.
     OrderDetailComponent,
     UserOrderComponent,
     UserOrderDetailComponent,
+    TransportComponent,
+    AdminisMenuComponent,
+    SidebarMenuComponent,
+    LayoutComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
