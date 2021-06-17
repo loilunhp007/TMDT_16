@@ -155,7 +155,7 @@
 				</div>
 				<div style="clear: both;"></div>
 				<br> -->
-				<div class="col-sm-4" *ngFor="let product of products | filter : searchText | paginate:{itemsPerPage:6,currentPage:p} ">
+				<div class="col-sm-4 xs-6" *ngFor="let product of products | filter : searchText | paginate:{itemsPerPage:6,currentPage:p} ">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -180,8 +180,9 @@
 								</ul>
 							</div>
 					</div>
+					
 				</div><!--features_items-->
-					<pagination-controls (pageChange)="p = $event"></pagination-controls>
+					<pagination-controls (pageChange)="p = $event" *ngIf="products != null" ></pagination-controls>
 			</div>
 			
 		</div>

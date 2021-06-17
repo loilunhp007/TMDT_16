@@ -159,7 +159,7 @@
 					</div>
 					<div style="clear: both;"></div>
 					<br> -->
-					<div class="col-sm-4" *ngFor="let product of products | filter : searchText | paginate:{itemsPerPage:8,currentPage:p,totalItems:products.length} ">
+					<div class="col-sm-4" *ngFor="let product of products | filter : searchText | paginate:{itemsPerPage:8,currentPage:p,totalItems:products.length > 0} ">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">

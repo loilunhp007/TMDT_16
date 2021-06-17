@@ -8,6 +8,15 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.menu{
-    font-size: 2vh;
+
+.t{
+    max-width:12%;
+    display: block;
+    height: 100%;
+}
+@media only screen and (max-width:700px) {
+    .t{
+        display: inline;
+        text-align: center;
+    }
 }

@@ -5,6 +5,7 @@ import { Cart } from '../model/cart';
 import { Order } from '../model/order';
 import { OrderDetail } from '../model/order-detail';
 import { Product } from '../model/product';
+import { Transport } from '../model/transport';
 import { UserDetail } from '../model/user-detail';
 import { CartService } from '../service/cartservice';
 import { OrderDetailService } from '../service/order-detail.service';

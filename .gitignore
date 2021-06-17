@@ -1,1 +1,4 @@
 /e-commerce/nbproject/private/
+
+# Local Netlify folder
+.netlify
