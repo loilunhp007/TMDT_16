@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97d00ccd-c7c5-4bc7-a38b-d94757c22ebf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/app/service/cartservice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/app/service/cartservice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/app/service/comment.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/app/service/comment.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/app/service/order-detail.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/app/service/order-detail.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/app/service/order.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/app/service/order.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/app/service/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/app/service/product.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/app/service/transport.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/app/service/transport.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/app/service/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/app/service/user.service.ts" afterDir="false" />
-    </list>
+    <list default="true" id="97d00ccd-c7c5-4bc7-a38b-d94757c22ebf" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +26,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../BE-ecommerce" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -62,6 +52,7 @@
       <updated>1615122875034</updated>
       <workItem from="1615122883186" duration="160000" />
       <workItem from="1624020031500" duration="328000" />
+      <workItem from="1624020619619" duration="43000" />
     </task>
     <servers />
   </component>
@@ -69,21 +60,9 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="249" y="0" key="#Project_Structure" timestamp="1615122991398">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1624020661169">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1615122991398" />
-    <state x="549" y="154" key="FileChooserDialogImpl" timestamp="1615123034543">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1615123034543" />
-    <state x="478" y="0" width="579" height="824" key="find.popup" timestamp="1615122961486">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="478" y="0" width="579" height="824" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1615122961486" />
-    <state x="209" y="0" key="new project wizard" timestamp="1615123042707">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="209" y="0" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1615123042707" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1624020661169" />
   </component>
 </project>
