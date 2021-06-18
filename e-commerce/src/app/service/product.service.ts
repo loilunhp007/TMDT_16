@@ -8,31 +8,31 @@ import { Product } from '../model/product';
 })
 export class ProductService {
 
-  constructor(private httpClient : HttpClient) { 
-    
+  constructor(private httpClient : HttpClient) {
+
   }
   getProduct(matv:String):Observable<Product[]>{
-    return this.httpClient.get<Product[]>("http://localhost:8080/products/get/matv/"+matv);
+    return this.httpClient.get<Product[]>("https://be-ecommerce1.herokuapp.com/products/get/matv/"+matv);
   }
   addProduct(product: Product){
-   return this.httpClient.post<Product>("http://localhost:8080/products/add",product);
+   return this.httpClient.post<Product>("https://be-ecommerce1.herokuapp.com/products/add",product);
   }
   getProductByName(tensp:String){
-   return this.httpClient.get<Product[]>("http://localhost:8080/product/get/"+tensp);
+   return this.httpClient.get<Product[]>("https://be-ecommerce1.herokuapp.com/product/get/"+tensp);
   }
   getProductByID(masp:String):Observable<any>{
-    return this.httpClient.get<Product>('http://localhost:8080/products/get/'+masp);
+    return this.httpClient.get<Product>('https://be-ecommerce1.herokuapp.com/products/get/'+masp);
   }
   updateProduct(product : Product):Observable<any>{
-    return  this.httpClient.put<Product>("http://localhost:8080/products/put/"+product.masp,product);
+    return  this.httpClient.put<Product>("https://be-ecommerce1.herokuapp.com/products/put/"+product.masp,product);
   }
   deteleProductByID(masp:String):Observable<any>{
-    return this.httpClient.delete<Product>("http://localhost:8080/products/delete/"+masp);
+    return this.httpClient.delete<Product>("https://be-ecommerce1.herokuapp.com/products/delete/"+masp);
   }
   getProductByTrangthai(trangthai:number):Observable<any>{
-    return this.httpClient.get<Product[]>('http://localhost:8080/products/get/trangthai/'+trangthai)
+    return this.httpClient.get<Product[]>('https://be-ecommerce1.herokuapp.com/products/get/trangthai/'+trangthai)
   }
   getProductByLikeName(k:String):Observable<any>{
-    return this.httpClient.get<Product[]>('http://localhost:8080/products/get/tensp/'+k)
+    return this.httpClient.get<Product[]>('https://be-ecommerce1.herokuapp.com/products/get/tensp/'+k)
   }
 }
