@@ -272,7 +272,7 @@ function ProductComponent_tr_33_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](product_r3.thongtinsanpham);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpropertyInterpolate1"]("src", "../../../../assets/images/", product_r3.hinhanh, "", _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpropertyInterpolate1"]("src", "data:image/png;base64,", product_r3.hinhanh, "", _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsanitizeUrl"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", product_r3.trangthai == "1");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
@@ -362,19 +362,14 @@ class ProductComponent {
             const uploadData = new FormData();
             let img = product2.hinhanh + '';
             if (srcImg != this.imgURL) {
-                product2.hinhanh = img;
+                product2.hinhanh = this.ProductFormModalImage.value;
                 uploadData.append('imageFile', this.selectedFile, img);
-                console.log(product2);
-                this.httpClient.post('http://localhost:8080/products/upload', uploadData, { observe: "response" }).subscribe((Response) => {
-                    if (Response.status === 200) {
-                        this.productService.updateProduct(product2).subscribe((response) => {
-                        }, (error) => {
-                            console.log(product2);
-                            console.log(srcImg);
-                            console.log(this.ProductFormModalImage);
-                            console.log(product2.maloai);
-                        });
-                    }
+                this.productService.updateProduct(product2).subscribe((response) => {
+                }, (error) => {
+                    console.log(product2);
+                    console.log(srcImg);
+                    console.log(this.ProductFormModalImage);
+                    console.log(product2.maloai);
                 });
             }
             else {
@@ -700,7 +695,7 @@ function CheckoutComponent_tr_70_Template(rf, ctx) { if (rf & 1) {
 } if (rf & 2) {
     const cart_r3 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpropertyInterpolate1"]("src", "../../assets/images/", cart_r3.product.hinhanh, "", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpropertyInterpolate1"]("src", "data:image/png;base64,", cart_r3.product.hinhanh, "", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵsanitizeUrl"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](cart_r3.product.tensp);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
@@ -1113,22 +1108,22 @@ class CartService {
         this.httpClient = httpClient;
     }
     getCartItems(matv) {
-        return this.httpClient.get('http://localhost:8080/cart/get/' + matv);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/cart/get/' + matv);
     }
     addToCart(matv, masp) {
-        return this.httpClient.post('http://localhost:8080/cart/add/' + masp + '/' + matv, null);
+        return this.httpClient.post('https://be-ecommerce1.herokuapp.com/cart/add/' + masp + '/' + matv, null);
     }
     plusCart(matv, masp) {
-        return this.httpClient.put('http://localhost:8080/cart/put/plus/' + masp + "/" + matv, null);
+        return this.httpClient.put('https://be-ecommerce1.herokuapp.com/cart/put/plus/' + masp + "/" + matv, null);
     }
     minusCart(matv, masp) {
-        return this.httpClient.put('http://localhost:8080/cart/put/minus/' + masp + "/" + matv, null);
+        return this.httpClient.put('https://be-ecommerce1.herokuapp.com/cart/put/minus/' + masp + "/" + matv, null);
     }
     deleteCartItem(matv, masp) {
-        return this.httpClient.delete('http://localhost:8080/cart/delete/' + masp + '/' + matv);
+        return this.httpClient.delete('https://be-ecommerce1.herokuapp.com/cart/delete/' + masp + '/' + matv);
     }
     deleteCart(matv) {
-        return this.httpClient.delete('http://localhost:8080/cart/delete/cart/' + matv);
+        return this.httpClient.delete('https://be-ecommerce1.herokuapp.com/cart/delete/cart/' + matv);
     }
 }
 CartService.ɵfac = function CartService_Factory(t) { return new (t || CartService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -1436,16 +1431,16 @@ class UserService {
         this.httpClient = httpClient;
     }
     getUsers() {
-        return this.httpClient.get("http://localhost:8080/user/get");
+        return this.httpClient.get("https://be-ecommerce1.herokuapp.com/user/get");
     }
     addUser(newUser) {
-        return this.httpClient.post('http://localhost:8080/user/add', newUser);
+        return this.httpClient.post('https://be-ecommerce1.herokuapp.com/user/add', newUser);
     }
     updateUser(newUser) {
-        return this.httpClient.put('http://localhost:8080/user/put/' + newUser.uid, newUser);
+        return this.httpClient.put('https://be-ecommerce1.herokuapp.com/user/put/' + newUser.uid, newUser);
     }
     loginUserFromRemote(user) {
-        return this.httpClient.post("http://localhost:8080/user/login", user);
+        return this.httpClient.post("https://be-ecommerce1.herokuapp.com/user/login", user);
     }
     isLogged() {
         let sesson = sessionStorage.getItem("user");
@@ -1462,26 +1457,26 @@ class UserService {
     }
     getUserbyEmail() {
         let user = JSON.parse(sessionStorage.getItem("user"));
-        return this.httpClient.get("http://localhost:8080/user/getemail/{" + user.email + "}");
+        return this.httpClient.get("https://be-ecommerce1.herokuapp.com/user/getemail/{" + user.email + "}");
     }
     getUserByID() {
         let user = JSON.parse(sessionStorage.getItem("user"));
-        return this.httpClient.get("http://localhost:8080/user/get/" + user.uid);
+        return this.httpClient.get("https://be-ecommerce1.herokuapp.com/user/get/" + user.uid);
     }
     addUserDetail(UserDetail) {
-        return this.httpClient.post('http://localhost:8080/userdetail/add', UserDetail);
+        return this.httpClient.post('https://be-ecommerce1.herokuapp.com/userdetail/add', UserDetail);
     }
     updateUserDetail(id, UserDetail) {
-        return this.httpClient.put('http://localhost:8080/userdetail/put/' + id, UserDetail);
+        return this.httpClient.put('https://be-ecommerce1.herokuapp.com/userdetail/put/' + id, UserDetail);
     }
     getUserDetailByID(id) {
-        return this.httpClient.get('http://localhost:8080/userdetail/get/' + id);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/userdetail/get/' + id);
     }
     getMaxUser() {
-        return this.httpClient.get('http://localhost:8080/user/getMax');
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/user/getMax');
     }
     deleteUser(uid) {
-        return this.httpClient.delete('http://localhost:8080/user/delete/' + uid);
+        return this.httpClient.delete('https://be-ecommerce1.herokuapp.com/user/delete/' + uid);
     }
 }
 UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -1870,19 +1865,19 @@ class OrderDetailService {
         this.httpClient = httpClient;
     }
     getOrderDetail(madh) {
-        return this.httpClient.get('http://localhost:8080/orderdetail/get/' + madh);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/orderdetail/get/' + madh);
     }
     addOrderDetail(orderDetail) {
-        return this.httpClient.post('http://localhost:8080/orderdetail/add', orderDetail);
+        return this.httpClient.post('https://be-ecommerce1.herokuapp.com/orderdetail/add', orderDetail);
     }
     updateOrderDetail(orderDetail) {
-        return this.httpClient.put('http://localhost:8080/orderdetail/put', orderDetail);
+        return this.httpClient.put('https://be-ecommerce1.herokuapp.com/orderdetail/put', orderDetail);
     }
     ThongKeSP(matv, thang) {
-        return this.httpClient.get('http://localhost:8080/orderdetail/get/thongkesoluong/' + matv + '/' + thang);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/orderdetail/get/thongkesoluong/' + matv + '/' + thang);
     }
     thongKeDoanhthu(matv, thang) {
-        return this.httpClient.get('http://localhost:8080/orderdetail/get/thongkedoanhthu/' + matv + '/' + thang);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/get/thongkedoanhthu/' + matv + '/' + thang);
     }
     getFromAddress(address) {
         return this.httpClient.get('https://api.opencagedata.com/geocode/v1/json?q=' + address + '&key=d38ba382c7434d7d91669d2e9e112c4c');
@@ -2509,7 +2504,7 @@ class AddproductComponent {
         this.product.gia = this.ProductFormModalPrice.value;
         this.product.soluong = this.ProductFormModalQuantity.value;
         this.product.trangthai = 1;
-        this.product.hinhanh = imageName;
+        this.product.hinhanh = this.ProductFormModalImage.value;
         this.userService.getUserDetailByID(this.userDetailId).subscribe(data => {
             this.product.userDetail = data;
             this.httpClient.post('http://localhost:8080/products/upload', uploadData, { observe: "response" }).subscribe((Response) => {
@@ -3000,7 +2995,7 @@ function CartComponent_tr_25_Template(rf, ctx) { if (rf & 1) {
 } if (rf & 2) {
     const cart_r1 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate1"]("src", "../../../../assets/images/", cart_r1.product.hinhanh, "", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate1"]("src", "data:image/png;base64,", cart_r1.product.hinhanh, "", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](cart_r1.product.tensp);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
@@ -3469,7 +3464,7 @@ function CategoryComponent_div_90_Template(rf, ctx) { if (rf & 1) {
 } if (rf & 2) {
     const product_r26 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "../../../../assets/images/", product_r26.hinhanh, "", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "data:image/png;base64,", product_r26.hinhanh, "", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](product_r26.masp);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
@@ -5145,13 +5140,13 @@ class CommentService {
         this.httpClient = httpClient;
     }
     getAllByMasp(masp) {
-        return this.httpClient.get('http://localhost:8080/cmt/get/' + masp);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/cmt/get/' + masp);
     }
     addCmt(comment) {
-        return this.httpClient.post('http://localhost:8080/cmt/add', comment);
+        return this.httpClient.post('https://be-ecommerce1.herokuapp.com/cmt/add', comment);
     }
     getCommentById(madh, masp) {
-        return this.httpClient.get('http://localhost:8080/cmt/get/' + madh + '/' + masp);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/cmt/get/' + madh + '/' + masp);
     }
 }
 CommentService.ɵfac = function CommentService_Factory(t) { return new (t || CommentService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -5179,22 +5174,22 @@ class OrderService {
         this.httpClient = httpClient;
     }
     getAllOrder(matv) {
-        return this.httpClient.get('http://localhost:8080/order/get/tvban/' + matv);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/order/get/tvban/' + matv);
     }
     getAllOrderByTvmua(matv) {
-        return this.httpClient.get('http://localhost:8080/order/get/tvmua/' + matv);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/get/tvmua/' + matv);
     }
     getOrderById(madh) {
-        return this.httpClient.get('http://localhost:8080/order/get/' + madh);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/order/get/' + madh);
     }
     getAllOrderByTrangthaiAndTvban(trangthai, matvban) {
-        return this.httpClient.get('http://localhost:8080/order/get/trangthai/' + trangthai + '/' + matvban);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/order/get/trangthai/' + trangthai + '/' + matvban);
     }
     addOrder(order) {
-        return this.httpClient.post('http://localhost:8080/order/add', order);
+        return this.httpClient.post('https://be-ecommerce1.herokuapp.com/order/add', order);
     }
     updateOrderStatus(madh, trangthai) {
-        return this.httpClient.put('http://localhost:8080/order/put/' + madh + '/' + trangthai, null);
+        return this.httpClient.put('https://be-ecommerce1.herokuapp.com/order/put/' + madh + '/' + trangthai, null);
     }
 }
 OrderService.ɵfac = function OrderService_Factory(t) { return new (t || OrderService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -5280,28 +5275,28 @@ class ProductService {
         this.httpClient = httpClient;
     }
     getProduct(matv) {
-        return this.httpClient.get("http://localhost:8080/products/get/matv/" + matv);
+        return this.httpClient.get("https://be-ecommerce1.herokuapp.com/products/get/matv/" + matv);
     }
     addProduct(product) {
-        return this.httpClient.post("http://localhost:8080/products/add", product);
+        return this.httpClient.post("https://be-ecommerce1.herokuapp.com/products/add", product);
     }
     getProductByName(tensp) {
-        return this.httpClient.get("http://localhost:8080/product/get/" + tensp);
+        return this.httpClient.get("https://be-ecommerce1.herokuapp.com/product/get/" + tensp);
     }
     getProductByID(masp) {
-        return this.httpClient.get('http://localhost:8080/products/get/' + masp);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/products/get/' + masp);
     }
     updateProduct(product) {
-        return this.httpClient.put("http://localhost:8080/products/put/" + product.masp, product);
+        return this.httpClient.put("https://be-ecommerce1.herokuapp.com/products/put/" + product.masp, product);
     }
     deteleProductByID(masp) {
-        return this.httpClient.delete("http://localhost:8080/products/delete/" + masp);
+        return this.httpClient.delete("https://be-ecommerce1.herokuapp.com/products/delete/" + masp);
     }
     getProductByTrangthai(trangthai) {
-        return this.httpClient.get('http://localhost:8080/products/get/trangthai/' + trangthai);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/products/get/trangthai/' + trangthai);
     }
     getProductByLikeName(k) {
-        return this.httpClient.get('http://localhost:8080/products/get/tensp/' + k);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/products/get/tensp/' + k);
     }
 }
 ProductService.ɵfac = function ProductService_Factory(t) { return new (t || ProductService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -6592,10 +6587,10 @@ class TransportService {
         this.httpClient = httpClient;
     }
     getShipping() {
-        return this.httpClient.get('http://localhost:8080/transport/get');
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/transport/get');
     }
     getShippingById(tid) {
-        return this.httpClient.get('http://localhost:8080/transport/get/' + tid);
+        return this.httpClient.get('https://be-ecommerce1.herokuapp.com/transport/get/' + tid);
     }
 }
 TransportService.ɵfac = function TransportService_Factory(t) { return new (t || TransportService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };

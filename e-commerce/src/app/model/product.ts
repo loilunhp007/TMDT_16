@@ -5,7 +5,7 @@ export class Product {
     maloai : string;
     tensp:string;
     gia: number;
-    hinhanh :String;
+    hinhanh :Blob;
     thongtinsanpham:string;
     soluong:number;
     danhgia:number;
