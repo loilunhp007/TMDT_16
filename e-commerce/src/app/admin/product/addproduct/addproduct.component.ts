@@ -25,6 +25,7 @@ export class AddproductComponent implements OnInit {
   Categorys : Category[]
   category1: Category
   category2:Category
+
   private userDetailId:String;
   constructor(private ProductService: ProductService,
     private route:Router,
@@ -61,12 +62,12 @@ export class AddproductComponent implements OnInit {
         this.product.gia = this.ProductFormModalPrice.value;
         this.product.soluong = this.ProductFormModalQuantity.value;
         this.product.trangthai=1;
-        this.product.hinhanh= this.imgURL;
+        this.product.hinhanh= this.selectedFile;
         this.userService.getUserDetailByID(this.userDetailId).subscribe(
           data=>{
             this.product.userDetail = data;
             
-          this.ProductService.addProduct(this.product,this.selectedFile).subscribe(
+          this.ProductService.addProduct(this.product).subscribe(
             (response)=>{
               this.route.navigate(['admin','product']);
             },
