@@ -66,7 +66,7 @@ export class AddproductComponent implements OnInit {
           data=>{
             this.product.userDetail = data;
             
-          this.ProductService.addProduct(this.product,uploadData).subscribe(
+          this.ProductService.addProduct(this.product,this.selectedFile).subscribe(
             (response)=>{
               this.route.navigate(['admin','product']);
             },
