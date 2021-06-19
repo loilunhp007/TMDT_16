@@ -66,9 +66,6 @@ export class AddproductComponent implements OnInit {
           data=>{
             this.product.userDetail = data;
             
-            this.httpClient.post('http://localhost:8080/products/upload',uploadData,{ observe : "response"}).subscribe(
-      (Response)=>{
-        if(Response.status === 200){
           this.ProductService.addProduct(this.product).subscribe(
             (response)=>{
               this.route.navigate(['admin','product']);
@@ -84,13 +81,12 @@ export class AddproductComponent implements OnInit {
               alert(this.product)
           }
         console.log('Image upload Sucess');
-        }
+        
     },
   
-    
-)
 
-          }
+
+          
         ),
         (error)=>{
             console.log(error);
