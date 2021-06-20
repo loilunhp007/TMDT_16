@@ -17,7 +17,8 @@ export class ProductService {
   addProduct(product: Product,file:File):Observable<any>{
     let myForm:FormData = new FormData();
     myForm.append('file', file);
-    myForm.append('product', JSON.stringify(product));
+    myForm.append('sanpham', JSON.stringify(product));
+    console.log(myForm);
    return this.httpClient.post<Product>("https://be-ecommerce1.herokuapp.com/products/add",myForm);
   }
   getProductByName(tensp:String){
