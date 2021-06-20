@@ -14,10 +14,10 @@ export class ProductService {
   getProduct(matv:String):Observable<Product[]>{
     return this.httpClient.get<Product[]>("https://be-ecommerce1.herokuapp.com/products/get/matv/"+matv);
   }
-  addProduct(product: Product,file:File):Observable<any>{
+  addProduct(sanpham: Product,file:File):Observable<any>{
     let myForm:FormData = new FormData();
     myForm.append('file', file);
-    myForm.append('sanpham', JSON.stringify(product));
+    myForm.append('sanpham', JSON.stringify(sanpham));
     console.log(myForm);
    return this.httpClient.post<Product>("https://be-ecommerce1.herokuapp.com/products/add",myForm);
   }
