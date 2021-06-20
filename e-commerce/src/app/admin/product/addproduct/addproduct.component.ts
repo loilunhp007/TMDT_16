@@ -62,7 +62,7 @@ export class AddproductComponent implements OnInit {
         this.product.gia = this.ProductFormModalPrice.value;
         this.product.soluong = this.ProductFormModalQuantity.value;
         this.product.trangthai=1;
-        this.product.hinhanh= this.imgURL;
+        this.product.hinhanh= new Blob([JSON.stringify(this.selectedFile,null,2)], {type : 'application/json'}) ;
         this.userService.getUserDetailByID(this.userDetailId).subscribe(
           data=>{
             this.product.userDetail = data;
