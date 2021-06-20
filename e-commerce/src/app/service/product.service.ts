@@ -7,15 +7,16 @@ import { Product } from '../model/product';
   providedIn: 'root'
 })
 export class ProductService {
-
+  s:any=[]
   constructor(private httpClient : HttpClient) {
 
   }
   getProduct(matv:String):Observable<Product[]>{
     return this.httpClient.get<Product[]>("https://be-ecommerce1.herokuapp.com/products/get/matv/"+matv);
   }
-  addProduct(product: Product){
-   return this.httpClient.post<Product>("https://be-ecommerce1.herokuapp.com/products/add",product);
+  addProduct(product: Product,form:FormData):Observable<any>{
+    this.s={product,form}
+   return this.httpClient.post<Product>("https://be-ecommerce1.herokuapp.com/products/add",this.s);
   }
   getProductByName(tensp:String){
    return this.httpClient.get<Product[]>("https://be-ecommerce1.herokuapp.com/product/get/"+tensp);
