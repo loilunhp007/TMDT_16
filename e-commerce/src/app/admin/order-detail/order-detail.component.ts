@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from 'src/app/model/order';
 import { OrderDetail } from 'src/app/model/order-detail';
-import { Sanpham } from 'src/app/model/sanpham';
+import { Product } from 'src/app/model/product';
 import { UserDetail } from 'src/app/model/user-detail';
 import { OrderDetailService } from 'src/app/service/order-detail.service';
 import { OrderService } from 'src/app/service/order.service';

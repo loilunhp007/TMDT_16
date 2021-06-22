@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Sanpham } from 'src/app/model/sanpham';
+import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service'; 
 import { FileSaverService } from 'ngx-filesaver';
 import { HttpClient } from '@angular/common/http';
@@ -20,7 +20,7 @@ export class AddproductComponent implements OnInit {
   validatingForm: FormGroup
   selectedFile : File
   @Input()
-  product: Sanpham;
+  product: Product;
   imgURL:any;
   Categorys : Category[]
   category1: Category
@@ -36,7 +36,7 @@ export class AddproductComponent implements OnInit {
   ngOnInit(): void {
   
     this.userDetailId = JSON.parse(sessionStorage.getItem("user"));
-    this.product= new Sanpham();
+    this.product= new Product();
     this.validatingForm = new FormGroup({
       ProductFormModalID: new FormControl('', Validators.required),
       ProductFormModalName: new FormControl('', Validators.required),

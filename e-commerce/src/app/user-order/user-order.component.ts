@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from '../model/order';
 import { OrderDetail } from '../model/order-detail';
-import { Sanpham } from '../model/sanpham';
+import { Product } from '../model/product';
 import { OrderDetailService } from '../service/order-detail.service';
 import { OrderService } from '../service/order.service';
 import { ProductService } from '../service/product.service';
@@ -69,7 +69,7 @@ export class UserOrderComponent implements OnInit {
             console.log(sss)
             this.productService.getProductByID(sss).subscribe(
               Response3=>{
-                let product = new Sanpham();
+                let product = new Product();
                 product = Response3;
                 product.soluong+=Number(orderDetail.soluong)
                 this.productService.updateProduct(product).subscribe(

@@ -1,4 +1,4 @@
-import { Sanpham } from "./sanpham";
+import { Product } from "./product";
 
 export class OrderDetail {
     madh:string;
@@ -10,5 +10,5 @@ export class OrderDetail {
     tongtien:number;
     thanhtoan:number;
     tid:String;
-    product:Sanpham
+    product:Product
 }

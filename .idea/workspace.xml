@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97d00ccd-c7c5-4bc7-a38b-d94757c22ebf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/app/category/category.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/app/category/category.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/app/model/product.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/app/model/product.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/app/service/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/app/service/product.service.ts" afterDir="false" />
-    </list>
+    <list default="true" id="97d00ccd-c7c5-4bc7-a38b-d94757c22ebf" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,7 +26,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../BE-ecommerce" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -58,7 +53,6 @@
       <workItem from="1615122883186" duration="160000" />
       <workItem from="1624020031500" duration="328000" />
       <workItem from="1624020619619" duration="43000" />
-      <workItem from="1624365372606" duration="122000" />
     </task>
     <servers />
   </component>

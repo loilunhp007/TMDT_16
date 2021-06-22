@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Tooltip,registerables } from 'chart.js';
 import {  ArcElement, BarController, BarElement, BubbleController, CategoryScale, Chart, DecimationAlgorithm, DoughnutController, Filler, Legend, LinearScale, LineController, LineElement, LogarithmicScale, PieController, PointElement, PolarAreaController, RadarController, RadialLinearScale, ScatterController, TimeScale, TimeSeriesScale, Title } from 'node_modules/chart.js';
-import { Sanpham } from 'src/app/model/sanpham';
+import { Product } from 'src/app/model/product';
 import { OrderDetailService } from 'src/app/service/order-detail.service';
 import { OrderService } from 'src/app/service/order.service';
 import { ProductService } from 'src/app/service/product.service';
@@ -18,7 +18,7 @@ export class ChartComponent implements OnInit {
   ctx2: any;
   canvas3: any;
   ctx3: any;
-  products:Array<Sanpham>
+  products:Array<Product>
   luotXem:any = []
   nameproduct:any = []
   spbanra:any=[]

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Sanpham } from '../model/sanpham';
+import { Product } from '../model/product';
 import { ProductService } from '../service/product.service';
 import { google } from "google-maps";
 import { CartService } from '../service/cartservice';
@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
     private cartService:CartService) { }
     userId;
     searchText
-    products: Sanpham[]
+    products: Product[]
     p:number=1
     DELLs:any = [{name:'DELL PRECISION'},{name:'DELL LATITULE'},{name:'DELL ALIENWARE'},{name:'DELL XPS'},{name:'DELL VOSTRO'},{name:'DELL INSPIRON'}]
     HPs:any=[{name:'HP ELITEBOOK'},{name:'HP ENVY'},{name:'HP PROBOOK'},{name:'HP PAVILION'},{name:'HP ZBOOK'},{name:'HP SPECTRE'},{name:'HP OMEN'}]
@@ -40,7 +40,7 @@ export class SearchComponent implements OnInit {
       }
     )
   }
-  goDetail(product:Sanpham){
+  goDetail(product:Product){
     this.actRoute.queryParams.subscribe(
       params=>{
         const id=product.masp;
@@ -53,16 +53,16 @@ export class SearchComponent implements OnInit {
     let keyword=keyword2.toLowerCase()
     this.router.navigate(['home','search'],{queryParams:{keyword}})
   }
-  addToCart(product:Sanpham){
+  addToCart(product:Product){
     if(sessionStorage.getItem("user")!=null){
       this.userId = JSON.parse(sessionStorage.getItem("user"));
       let s= this.userId+''
      this.cartService.addToCart(s,product.masp).subscribe(
        Response=>{
-          
+          console.log(Response)
        },
        (error)=>{
-        
+         console.log(s+"sp:"+product.masp)
          alert("Add to cart Sucess")
        }
      )
