@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
-import { Product } from 'src/app/model/product';
+import { Sanpham } from 'src/app/model/sanpham';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class UpdateProductComponent implements OnInit {
   
-  @Input() product:Product;
+  @Input() product:Sanpham;
   selectedFile:File
   imgURL:any
   validatingForm = this.formBuilder.group({

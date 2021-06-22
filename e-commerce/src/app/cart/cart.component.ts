@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cart } from '../model/cart';
-import { Product } from '../model/product';
+import { Sanpham } from '../model/sanpham';
 import { User } from '../model/user';
 import { CartService } from '../service/cartservice';
 import { ProductService } from '../service/product.service';
@@ -13,10 +13,10 @@ import { ProductService } from '../service/product.service';
 })
 export class CartComponent implements OnInit {
   carts: Array<Cart>
-  products : Array<Product>;
+  products : Array<Sanpham>;
   cartTotal=0
   cartTotal2=0
-  product:Product
+  product:Sanpham
   Shipping = 25000;
   flag =true
   constructor(private cartService : CartService,
@@ -29,7 +29,7 @@ export class CartComponent implements OnInit {
     if(sessionStorage.getItem("user")!=null){
       this.userId = JSON.parse(sessionStorage.getItem("user"));
     }
-    this.product = new Product()
+    this.product = new Sanpham()
     this.getCart();
     this.getTotal();
     
@@ -64,7 +64,7 @@ export class CartComponent implements OnInit {
       })
     }
     
-  plusCart(product:Product){
+  plusCart(product:Sanpham){
    
     let s= this.userId+''
     this.cartService.plusCart(s,product.masp).subscribe(
@@ -77,7 +77,7 @@ export class CartComponent implements OnInit {
 
     )
   }
-minusCart(product:Product){
+minusCart(product:Sanpham){
    
     let s= this.userId+''
     this.cartService.minusCart(s,product.masp).subscribe(
@@ -90,7 +90,7 @@ minusCart(product:Product){
 
     )
   }
-  deleteCartItem(product:Product){
+  deleteCartItem(product:Sanpham){
     let s= this.userId+''
     this.cartService.deleteCartItem(s,product.masp).subscribe(
       Response=>{
@@ -105,12 +105,12 @@ minusCart(product:Product){
   exit() {
     location.reload();
   }
-  goDetail(product:Product){
+  goDetail(product:Sanpham){
     this.actRoute.queryParams.subscribe(
       params=>{
         const id=product.masp;
         this.router.navigate(['home','product-detail'],{queryParams: {id}})
-        console.log(params)
+        
       }
     )
   

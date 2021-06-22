@@ -3,7 +3,7 @@ import { Component, OnInit, setTestabilityGetter, ViewChild } from '@angular/cor
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MDBModalRef, MDBModalService, ModalDirective } from 'angular-bootstrap-md';
-import { Product } from 'src/app/model/product';
+import { Sanpham } from 'src/app/model/sanpham';
 import { User } from 'src/app/model/user';
 import { ProductService } from 'src/app/service/product.service';
 import { UpdateProductComponent } from './update-product/update-product.component';
@@ -14,8 +14,8 @@ import { UpdateProductComponent } from './update-product/update-product.componen
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  products : Array<Product>
-  selectedProduct : Product
+  products : Array<Sanpham>
+  selectedProduct : Sanpham
   action : String
   selectedFile:File
   imgURL:any;
@@ -72,7 +72,7 @@ export class ProductComponent implements OnInit {
           console.log(this.products);
       })
   }
-  editProduct(product:Product){
+  editProduct(product:Sanpham){
     this.activatedRoute.queryParams.subscribe(
       (params)=>{
         this.action= params['action'];
@@ -82,7 +82,7 @@ export class ProductComponent implements OnInit {
       })
       
   }
-  displayProduct(product:Product){
+  displayProduct(product:Sanpham){
     this.ProductFormModalID.setValue( product.masp)
     this.ProductFormModalName.setValue( product.tensp)
     this.ProductFormModalInfo.setValue( product.thongtinsanpham)
@@ -94,7 +94,7 @@ export class ProductComponent implements OnInit {
   }
   updateProduct()
   {
-        let product2= new Product() 
+        let product2= new Sanpham() 
         this.productService.getProductByID(this.ProductFormModalID.value).subscribe(Response=>{
             product2=Response
             product2.tensp=this.ProductFormModalName.value;
@@ -177,7 +177,7 @@ export class ProductComponent implements OnInit {
   get ProductFormModalTrangThai() {
     return this.validatingForm.get('ProductFormModalTrangThai');
   }
-  deleteProduct(product:Product){
+  deleteProduct(product:Sanpham){
     if(confirm("Are you sure to delete "+product.tensp)) {
       this.productService.deteleProductByID(product.masp).subscribe(
         Response=>{
@@ -187,8 +187,8 @@ export class ProductComponent implements OnInit {
     }
     
   }
-  statusProduct(product:Product){
-      let product2 = new Product();
+  statusProduct(product:Sanpham){
+      let product2 = new Sanpham();
       this.productService.getProductByID(product.masp).subscribe(
         Response=>{
           product2=Response

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from '../model/product';
+import { Sanpham } from '../model/sanpham';
 import { User } from '../model/user';
 import { CartService } from '../service/cartservice';
 import { ProductService } from '../service/product.service';
@@ -17,8 +17,8 @@ export class CategoryComponent implements OnInit {
     private cartService : CartService,
     private Actroute: ActivatedRoute,
     private router:Router) { }
-    products : Array<Product>
-    product : Product;
+    products : Array<Sanpham>
+    sanpham : Sanpham;
     userId:String
     productId:String;
     p:number=1
@@ -42,21 +42,21 @@ export class CategoryComponent implements OnInit {
   }
   getProductByID(id:String){
     this.productService.getProductByID(id).subscribe(
-      Response=>{this.product = Response;
+      Response=>{this.sanpham = Response;
 
       }
     )
   }
-  addToCart(product:Product){
+  addToCart(sanpham:Sanpham){
     if(sessionStorage.getItem("user")!=null){
       this.userId = JSON.parse(sessionStorage.getItem("user"));
       let s= this.userId+''
-     this.cartService.addToCart(s,product.masp).subscribe(
+     this.cartService.addToCart(s,sanpham.masp).subscribe(
        Response=>{
-          console.log(Response)
+          
        },
        (error)=>{
-         console.log(s+"sp:"+product.masp)
+         console.log(s+"sp:"+sanpham.masp)
          alert("Add to cart Sucess")
        }
      )
@@ -64,10 +64,10 @@ export class CategoryComponent implements OnInit {
      
   }
 
-  goDetail(product:Product){
+  goDetail(sanpham:Sanpham){
     this.Actroute.queryParams.subscribe(
       params=>{
-        const id=product.masp;
+        const id=sanpham.masp;
         this.router.navigate(['home','product-detail'],{queryParams: {id}})
       }
     )

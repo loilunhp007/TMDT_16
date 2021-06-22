@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from 'src/app/model/order';
 import { OrderDetail } from 'src/app/model/order-detail';
-import { Product } from 'src/app/model/product';
+import { Sanpham } from 'src/app/model/sanpham';
 import { OrderDetailService } from 'src/app/service/order-detail.service';
 import { OrderService } from 'src/app/service/order.service';
 import { ProductService } from 'src/app/service/product.service';
@@ -125,7 +125,7 @@ export class OrderComponent implements OnInit {
             console.log(sss)
             this.productService.getProductByID(sss).subscribe(
               Response3=>{
-                let product = new Product();
+                let product = new Sanpham();
                 product = Response3;
                 product.soluong+=Number(orderDetail.soluong)
                 this.productService.updateProduct(product).subscribe(

@@ -186,7 +186,7 @@ const environment = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductComponent", function() { return ProductComponent; });
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
-/* harmony import */ var src_app_model_product__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/model/product */ "q0+M");
+/* harmony import */ var src_app_model_sanpham__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/model/sanpham */ "SIAn");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var src_app_service_product_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/product.service */ "nhC3");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "tyNb");
@@ -349,7 +349,7 @@ class ProductComponent {
         this.ProductFormModalTrangThai.setValue(product.trangthai);
     }
     updateProduct() {
-        let product2 = new src_app_model_product__WEBPACK_IMPORTED_MODULE_1__["Product"]();
+        let product2 = new src_app_model_sanpham__WEBPACK_IMPORTED_MODULE_1__["Sanpham"]();
         this.productService.getProductByID(this.ProductFormModalID.value).subscribe(Response => {
             product2 = Response;
             product2.tensp = this.ProductFormModalName.value;
@@ -423,7 +423,7 @@ class ProductComponent {
         }
     }
     statusProduct(product) {
-        let product2 = new src_app_model_product__WEBPACK_IMPORTED_MODULE_1__["Product"]();
+        let product2 = new src_app_model_sanpham__WEBPACK_IMPORTED_MODULE_1__["Sanpham"]();
         this.productService.getProductByID(product.masp).subscribe(Response => {
             product2 = Response;
             if (product2.trangthai == 1) {
@@ -603,7 +603,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckoutComponent", function() { return CheckoutComponent; });
 /* harmony import */ var _model_order__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../model/order */ "s09W");
 /* harmony import */ var _model_order_detail__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../model/order-detail */ "9hP0");
-/* harmony import */ var _model_product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/product */ "q0+M");
+/* harmony import */ var _model_sanpham__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/sanpham */ "SIAn");
 /* harmony import */ var _model_user_detail__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../model/user-detail */ "iAZP");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _service_cartservice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/cartservice */ "LJlA");
@@ -739,7 +739,7 @@ class CheckoutComponent {
             this.userId = JSON.parse(sessionStorage.getItem("user"));
             this.getUserInfo();
         }
-        this.product = new _model_product__WEBPACK_IMPORTED_MODULE_2__["Product"]();
+        this.product = new _model_sanpham__WEBPACK_IMPORTED_MODULE_2__["Sanpham"]();
         this.getCart();
         this.getTotal();
     }
@@ -818,7 +818,7 @@ class CheckoutComponent {
                     this.carts.forEach(data => {
                         let order = new _model_order__WEBPACK_IMPORTED_MODULE_0__["Order"]();
                         let orderDetail = new _model_order_detail__WEBPACK_IMPORTED_MODULE_1__["OrderDetail"]();
-                        let product2 = new _model_product__WEBPACK_IMPORTED_MODULE_2__["Product"]();
+                        let product2 = new _model_sanpham__WEBPACK_IMPORTED_MODULE_2__["Sanpham"]();
                         const random = Math.floor(Math.random() * (99 - 10) + 1) + '' + randomChars.charAt(Math.floor(Math.random() * randomChars.length)) + '' + Math.floor(Math.random() * (9 - 1));
                         order.madh = random;
                         order.tvmua = tvmua;
@@ -1889,6 +1889,23 @@ OrderDetailService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
 
 /***/ }),
 
+/***/ "SIAn":
+/*!**********************************!*\
+  !*** ./src/app/model/sanpham.ts ***!
+  \**********************************/
+/*! exports provided: Sanpham */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Sanpham", function() { return Sanpham; });
+class Sanpham {
+    constructor() { }
+}
+
+
+/***/ }),
+
 /***/ "Sy1n":
 /*!**********************************!*\
   !*** ./src/app/app.component.ts ***!
@@ -2378,7 +2395,7 @@ MenuComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComp
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddproductComponent", function() { return AddproductComponent; });
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
-/* harmony import */ var src_app_model_product__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/model/product */ "q0+M");
+/* harmony import */ var src_app_model_sanpham__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/model/sanpham */ "SIAn");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var src_app_service_product_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/product.service */ "nhC3");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "tyNb");
@@ -2478,7 +2495,7 @@ class AddproductComponent {
     }
     ngOnInit() {
         this.userDetailId = JSON.parse(sessionStorage.getItem("user"));
-        this.product = new src_app_model_product__WEBPACK_IMPORTED_MODULE_1__["Product"]();
+        this.product = new src_app_model_sanpham__WEBPACK_IMPORTED_MODULE_1__["Sanpham"]();
         this.validatingForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormGroup"]({
             ProductFormModalID: new _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required),
             ProductFormModalName: new _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required),
@@ -2504,24 +2521,20 @@ class AddproductComponent {
         this.product.gia = this.ProductFormModalPrice.value;
         this.product.soluong = this.ProductFormModalQuantity.value;
         this.product.trangthai = 1;
-        this.product.hinhanh = this.ProductFormModalImage.value;
+        this.product.hinhanh = new Blob([JSON.stringify(this.selectedFile, null, 2)], { type: 'application/json' });
         this.userService.getUserDetailByID(this.userDetailId).subscribe(data => {
             this.product.userDetail = data;
-            this.httpClient.post('http://localhost:8080/products/upload', uploadData, { observe: "response" }).subscribe((Response) => {
-                if (Response.status === 200) {
-                    this.ProductService.addProduct(this.product).subscribe((response) => {
-                        this.route.navigate(['admin', 'product']);
-                    }, (error) => {
-                        console.log(this.product);
-                        alert(this.product);
-                    }),
-                        (error) => {
-                            console.log(this.product);
-                            alert(this.product);
-                        };
-                    console.log('Image upload Sucess');
-                }
-            });
+            this.ProductService.addProduct(this.product, this.selectedFile).subscribe((response) => {
+                this.route.navigate(['admin', 'product']);
+            }, (error) => {
+                console.log(this.product);
+                alert(this.product);
+            }),
+                (error) => {
+                    console.log(this.product);
+                    alert(this.product);
+                };
+            console.log('Image upload Sucess');
         }),
             (error) => {
                 console.log(error);
@@ -2923,7 +2936,7 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_44__["ɵɵdefineInjecto
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CartComponent", function() { return CartComponent; });
-/* harmony import */ var _model_product__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../model/product */ "q0+M");
+/* harmony import */ var _model_sanpham__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../model/sanpham */ "SIAn");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _service_cartservice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/cartservice */ "LJlA");
 /* harmony import */ var _service_product_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/product.service */ "nhC3");
@@ -3023,7 +3036,7 @@ class CartComponent {
         if (sessionStorage.getItem("user") != null) {
             this.userId = JSON.parse(sessionStorage.getItem("user"));
         }
-        this.product = new _model_product__WEBPACK_IMPORTED_MODULE_0__["Product"]();
+        this.product = new _model_sanpham__WEBPACK_IMPORTED_MODULE_0__["Sanpham"]();
         this.getCart();
         this.getTotal();
     }
@@ -3510,24 +3523,24 @@ class CategoryComponent {
     }
     getProductByID(id) {
         this.productService.getProductByID(id).subscribe(Response => {
-            this.product = Response;
+            this.sanpham = Response;
         });
     }
-    addToCart(product) {
+    addToCart(sanpham) {
         if (sessionStorage.getItem("user") != null) {
             this.userId = JSON.parse(sessionStorage.getItem("user"));
             let s = this.userId + '';
-            this.cartService.addToCart(s, product.masp).subscribe(Response => {
+            this.cartService.addToCart(s, sanpham.masp).subscribe(Response => {
                 console.log(Response);
             }, (error) => {
-                console.log(s + "sp:" + product.masp);
+                console.log(s + "sp:" + sanpham.masp);
                 alert("Add to cart Sucess");
             });
         }
     }
-    goDetail(product) {
+    goDetail(sanpham) {
         this.Actroute.queryParams.subscribe(params => {
-            const id = product.masp;
+            const id = sanpham.masp;
             this.router.navigate(['home', 'product-detail'], { queryParams: { id } });
         });
     }
@@ -4055,7 +4068,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserOrderComponent", function() { return UserOrderComponent; });
 /* harmony import */ var _model_order__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../model/order */ "s09W");
 /* harmony import */ var _model_order_detail__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../model/order-detail */ "9hP0");
-/* harmony import */ var _model_product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/product */ "q0+M");
+/* harmony import */ var _model_sanpham__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/sanpham */ "SIAn");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _service_order_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../service/order.service */ "jhRr");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
@@ -4253,7 +4266,7 @@ class UserOrderComponent {
                 let sss = orderDetail.masp + '';
                 console.log(sss);
                 this.productService.getProductByID(sss).subscribe(Response3 => {
-                    let product = new _model_product__WEBPACK_IMPORTED_MODULE_2__["Product"]();
+                    let product = new _model_sanpham__WEBPACK_IMPORTED_MODULE_2__["Sanpham"]();
                     product = Response3;
                     product.soluong += Number(orderDetail.soluong);
                     this.productService.updateProduct(product).subscribe(Response4 => {
@@ -4667,7 +4680,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderComponent", function() { return OrderComponent; });
 /* harmony import */ var src_app_model_order__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/model/order */ "s09W");
 /* harmony import */ var src_app_model_order_detail__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/model/order-detail */ "9hP0");
-/* harmony import */ var src_app_model_product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/model/product */ "q0+M");
+/* harmony import */ var src_app_model_sanpham__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/model/sanpham */ "SIAn");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/order.service */ "jhRr");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
@@ -4925,7 +4938,7 @@ class OrderComponent {
                 let sss = orderDetail.masp + '';
                 console.log(sss);
                 this.productService.getProductByID(sss).subscribe(Response3 => {
-                    let product = new src_app_model_product__WEBPACK_IMPORTED_MODULE_2__["Product"]();
+                    let product = new src_app_model_sanpham__WEBPACK_IMPORTED_MODULE_2__["Sanpham"]();
                     product = Response3;
                     product.soluong += Number(orderDetail.soluong);
                     this.productService.updateProduct(product).subscribe(Response4 => {
@@ -5273,12 +5286,17 @@ __webpack_require__.r(__webpack_exports__);
 class ProductService {
     constructor(httpClient) {
         this.httpClient = httpClient;
+        this.s = [];
     }
     getProduct(matv) {
         return this.httpClient.get("https://be-ecommerce1.herokuapp.com/products/get/matv/" + matv);
     }
-    addProduct(product) {
-        return this.httpClient.post("https://be-ecommerce1.herokuapp.com/products/add", product);
+    addProduct(sanpham, file) {
+        let myForm = new FormData();
+        myForm.append('file', file);
+        myForm.append('sanpham', JSON.stringify(sanpham));
+        console.log(myForm);
+        return this.httpClient.post("https://be-ecommerce1.herokuapp.com/products/add", myForm);
     }
     getProductByName(tensp) {
         return this.httpClient.get("https://be-ecommerce1.herokuapp.com/product/get/" + tensp);
@@ -5286,8 +5304,8 @@ class ProductService {
     getProductByID(masp) {
         return this.httpClient.get('https://be-ecommerce1.herokuapp.com/products/get/' + masp);
     }
-    updateProduct(product) {
-        return this.httpClient.put("https://be-ecommerce1.herokuapp.com/products/put/" + product.masp, product);
+    updateProduct(sanpham) {
+        return this.httpClient.put("https://be-ecommerce1.herokuapp.com/products/put/" + sanpham.masp, sanpham);
     }
     deteleProductByID(masp) {
         return this.httpClient.delete("https://be-ecommerce1.herokuapp.com/products/delete/" + masp);
@@ -5466,23 +5484,6 @@ TransportComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } }, directives: [_product_addproduct_addproduct_component__WEBPACK_IMPORTED_MODULE_1__["AddproductComponent"]], styles: [".danhsachsanpham[_ngcontent-%COMP%]{\r\n    float: left;\r\n    width: 75%;\r\n    margin-left: 50px;\r\n    margin-top: 50px;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRyYW5zcG9ydC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksV0FBVztJQUNYLFVBQVU7SUFDVixpQkFBaUI7SUFDakIsZ0JBQWdCO0FBQ3BCIiwiZmlsZSI6InRyYW5zcG9ydC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmRhbmhzYWNoc2FucGhhbXtcclxuICAgIGZsb2F0OiBsZWZ0O1xyXG4gICAgd2lkdGg6IDc1JTtcclxuICAgIG1hcmdpbi1sZWZ0OiA1MHB4O1xyXG4gICAgbWFyZ2luLXRvcDogNTBweDtcclxufSJdfQ== */"] });
-
-
-/***/ }),
-
-/***/ "q0+M":
-/*!**********************************!*\
-  !*** ./src/app/model/product.ts ***!
-  \**********************************/
-/*! exports provided: Product */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Product", function() { return Product; });
-class Product {
-    constructor() { }
-}
 
 
 /***/ }),
@@ -6612,7 +6613,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
 /* harmony import */ var _model_comment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../model/comment */ "wwwP");
 /* harmony import */ var _model_order__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/order */ "s09W");
-/* harmony import */ var _model_product__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../model/product */ "q0+M");
+/* harmony import */ var _model_sanpham__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../model/sanpham */ "SIAn");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _service_product_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/product.service */ "nhC3");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "tyNb");
@@ -6819,7 +6820,7 @@ class ProductDetailComponent {
     ngOnInit() {
         this.comment = new _model_comment__WEBPACK_IMPORTED_MODULE_1__["Comment"]();
         this.order = new _model_order__WEBPACK_IMPORTED_MODULE_2__["Order"]();
-        this.product = new _model_product__WEBPACK_IMPORTED_MODULE_3__["Product"]();
+        this.product = new _model_sanpham__WEBPACK_IMPORTED_MODULE_3__["Sanpham"]();
         this.getProduct(1);
         this.actRoute.queryParams.subscribe(data => {
             this.s = data.id;
@@ -6862,7 +6863,7 @@ class ProductDetailComponent {
     getViewProduct(masp) {
         let sss = masp + '';
         this.productService.getProductByID(sss).subscribe(Response => {
-            let product2 = new _model_product__WEBPACK_IMPORTED_MODULE_3__["Product"]();
+            let product2 = new _model_sanpham__WEBPACK_IMPORTED_MODULE_3__["Sanpham"]();
             product2 = Response;
             product2.luotxem += 1;
             this.productService.updateProduct(product2).subscribe(Response2 => {

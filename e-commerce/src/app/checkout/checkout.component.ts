@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Cart } from '../model/cart';
 import { Order } from '../model/order';
 import { OrderDetail } from '../model/order-detail';
-import { Product } from '../model/product';
+import { Sanpham } from '../model/sanpham';
 import { Transport } from '../model/transport';
 import { UserDetail } from '../model/user-detail';
 import { CartService } from '../service/cartservice';
@@ -24,7 +24,7 @@ export class CheckoutComponent implements OnInit {
   carts: Array<Cart>
   cartTotal=0
   cartTotal2=0
-  product:Product
+  product:Sanpham
   Shipping : number=0;
   userId:String
   info:UserDetail;
@@ -58,7 +58,7 @@ export class CheckoutComponent implements OnInit {
       this.userId = JSON.parse(sessionStorage.getItem("user"));
       this.getUserInfo();
     }
-    this.product = new Product()
+    this.product = new Sanpham()
 
     this.getCart();
     this.getTotal();
@@ -104,7 +104,7 @@ export class CheckoutComponent implements OnInit {
         }
       })
     }
-    plusCart(product:Product){
+    plusCart(product:Sanpham){
    
       let s= this.userId+''
       this.cartService.plusCart(s,product.masp).subscribe(
@@ -117,7 +117,7 @@ export class CheckoutComponent implements OnInit {
   
       )
     }
-  minusCart(product:Product){
+  minusCart(product:Sanpham){
      
       let s= this.userId+''
       this.cartService.minusCart(s,product.masp).subscribe(
@@ -130,7 +130,7 @@ export class CheckoutComponent implements OnInit {
   
       )
     }
-     deleteCartItem(product:Product){
+     deleteCartItem(product:Sanpham){
     let s= this.userId+''
     this.cartService.deleteCartItem(s,product.masp).subscribe(
       Response=>{
@@ -145,12 +145,12 @@ export class CheckoutComponent implements OnInit {
     exit() {
       location.reload();
     }
-    goDetail(product:Product){
+    goDetail(product:Sanpham){
       this.actRoute.queryParams.subscribe(
         params=>{
           const id=product.masp;
           this.router.navigate(['home','product-detail'],{queryParams: {id}})
-          console.log(params)
+          
         }
       )
     
@@ -172,7 +172,7 @@ export class CheckoutComponent implements OnInit {
               this.carts.forEach(data=>{
                 let order = new Order()
                 let orderDetail = new OrderDetail()
-                let product2 =new Product();
+                let product2 =new Sanpham();
                 const random = Math.floor(Math.random() * (99-10)+1)+''+randomChars.charAt(Math.floor(Math.random() * randomChars.length))+''+ Math.floor(Math.random() * (9-1))
                   order.madh = random
                 order.tvmua  = tvmua
@@ -202,7 +202,6 @@ export class CheckoutComponent implements OnInit {
                     console.log(order)
                     this.orderService.addOrder(order).subscribe(
                       (Response4)=>{
-                            console.log(orderDetail)
                             this.oderDetailService.addOrderDetail(orderDetail).subscribe(
                                 Response5=>{
                                   this.productService.updateProduct(product2).subscribe(
@@ -273,7 +272,6 @@ export class CheckoutComponent implements OnInit {
           this.cartTotal2+=Number(this.Shipping)
         }
       )
-      console.log(this.shippingFee.value)
 
     }
     getShipping(){

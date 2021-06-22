@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Comment } from '../model/comment';
 import { Order } from '../model/order';
-import { Product } from '../model/product';
+import { Sanpham } from '../model/sanpham';
 import { CartService } from '../service/cartservice';
 import { CommentService } from '../service/comment.service';
 import { OrderService } from '../service/order.service';
@@ -16,8 +16,8 @@ import { ProductService } from '../service/product.service';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-  products:Array<Product>
-  product : Product
+  products:Array<Sanpham>
+  product : Sanpham
   s:String
   pId:String
   userId:String
@@ -49,7 +49,7 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.comment = new Comment()
     this.order = new Order();
-    this.product = new Product();
+    this.product = new Sanpham();
     this.getProduct(1);
     this.actRoute.queryParams.subscribe(data=>{
       this.s = data.id
@@ -81,7 +81,7 @@ export class ProductDetailComponent implements OnInit {
       }
     )
   }
-  addToCart(product:Product){
+  addToCart(product:Sanpham){
     if(sessionStorage.getItem("user")!=null){
       this.userId = JSON.parse(sessionStorage.getItem("user"));
       let s1= this.userId+''
@@ -103,7 +103,7 @@ export class ProductDetailComponent implements OnInit {
     let sss=masp+''
     this.productService.getProductByID(sss).subscribe(
       Response=>{
-        let product2 = new Product()
+        let product2 = new Sanpham()
          product2 = Response;
         product2.luotxem+=1
         this.productService.updateProduct(product2).subscribe(
