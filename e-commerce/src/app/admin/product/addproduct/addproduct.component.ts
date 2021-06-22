@@ -69,10 +69,12 @@ export class AddproductComponent implements OnInit {
             
           this.ProductService.addProduct(this.product,this.selectedFile).subscribe(
             (response)=>{
+              console.log(response)
               this.route.navigate(['admin','product']);
             },
             (error)=>{ 
-              console.log(this.product)
+              console.log(error)
+              
               alert(this.product)
             }
       
