@@ -67,7 +67,7 @@ export class AddproductComponent implements OnInit {
           data=>{
             this.product.userDetail = data;
             uploadData.append("sanpham",JSON.stringify(this.product));
-            console.log(uploadData);
+            console.log(JSON.stringify(uploadData));
           this.ProductService.addProduct(uploadData).subscribe(
             (response)=>{
               console.log(response)
