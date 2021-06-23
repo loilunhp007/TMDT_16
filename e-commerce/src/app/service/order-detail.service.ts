@@ -22,7 +22,7 @@ export class OrderDetailService {
     return this.httpClient.get<number[]>('https://be-ecommerce1.herokuapp.com/orderdetail/get/thongkesoluong/'+matv+'/'+thang);
   }
   thongKeDoanhthu(matv:String,thang):Observable<any>{
-    return this.httpClient.get<number[]>('https://be-ecommerce1.herokuapp.com/get/thongkedoanhthu/'+matv+'/'+thang);
+    return this.httpClient.get<number[]>('https://be-ecommerce1.herokuapp.com/orderdetail/get/thongkedoanhthu/'+matv+'/'+thang);
   }
   getFromAddress(address:String):Observable<any>{
     return this.httpClient.get('https://api.opencagedata.com/geocode/v1/json?q='+address+'&key=d38ba382c7434d7d91669d2e9e112c4c');

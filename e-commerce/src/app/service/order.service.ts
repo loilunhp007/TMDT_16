@@ -14,7 +14,7 @@ export class OrderService {
     return this.httpClient.get<Order>('https://be-ecommerce1.herokuapp.com/order/get/tvban/'+matv);
   }
   getAllOrderByTvmua(matv:string):Observable<any>{
-    return this.httpClient.get<Order>('https://be-ecommerce1.herokuapp.com/get/tvmua/'+matv);
+    return this.httpClient.get<Order>('https://be-ecommerce1.herokuapp.com/order/get/tvmua/'+matv);
   }
   getOrderById(madh:string):Observable<any>{
     return this.httpClient.get<Order>('https://be-ecommerce1.herokuapp.com/order/get/'+madh)
