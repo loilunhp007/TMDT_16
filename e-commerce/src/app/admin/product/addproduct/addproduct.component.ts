@@ -66,8 +66,9 @@ export class AddproductComponent implements OnInit {
         this.userService.getUserDetailByID(this.userDetailId).subscribe(
           data=>{
             this.product.userDetail = data;
-            
-          this.ProductService.addProduct(this.product,this.selectedFile).subscribe(
+            uploadData.append("sanpham",JSON.stringify(this.product));
+            console.log(uploadData);
+          this.ProductService.addProduct(uploadData).subscribe(
             (response)=>{
               console.log(response)
               this.route.navigate(['admin','product']);

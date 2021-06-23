@@ -14,8 +14,8 @@ export class ProductService {
   getProduct(matv:String):Observable<Product[]>{
     return this.httpClient.get<Product[]>("https://be-ecommerce1.herokuapp.com/products/get/matv/"+matv);
   }
-  addProduct(sanpham: Product,file:File):Observable<any>{
-   return this.httpClient.post<Product>("https://be-ecommerce1.herokuapp.com/products/add?file="+JSON.stringify(file),sanpham);
+  addProduct(formData:FormData):Observable<any>{
+   return this.httpClient.post<Product>("https://be-ecommerce1.herokuapp.com/products/add",formData);
   }
   getProductByName(tensp:String){
    return this.httpClient.get<Product[]>("https://be-ecommerce1.herokuapp.com/product/get/"+tensp);
