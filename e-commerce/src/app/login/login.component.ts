@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit {
     this.user.matkhau = this.f.matkhau.value;
     this.userService.loginUserFromRemote(this.user).subscribe(
       response => {this.user=response;
-        console.log(this.user);
         sessionStorage.setItem("user",JSON.stringify(this.user.matv));
         if(this.f.matkhau.value == this.user.matkhau){
               alert("login sucess")
@@ -123,7 +122,6 @@ export class LoginComponent implements OnInit {
               this.user.matv= this.matv;
               this.userService.addUser(this.user).subscribe(
                       (user)=>{
-                        console.log(user.matv);
                         sessionStorage.setItem("user",JSON.stringify(this.user.matv));
                           this.route.navigate(['/home']);
                       },
