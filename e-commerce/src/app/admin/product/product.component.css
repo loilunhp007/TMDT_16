@@ -1,25 +1,6 @@
 .danhsachsanpham{
-    float: right;
+    float: left;
     width: 75%;
-    margin-right: 50px;
-    position: relative;
-    margin-top: -6%;
-}
-@media only screen and (max-width:1024px)and(min-width : 769px) {
-    .danhsachsanpham{
-        margin-top: -14%;
-        margin-left: -5%;
-    }
-}
-@media only screen and (max-width:768px) and(min-width : 701px) {
-    .danhsachsanpham{
-        margin-top: -20%;
-        margin-left: -5%;
-    }
-}
-@media only screen and (max-width:700px) {
-    .danhsachsanpham{
-        display: inline;
-        margin-top: 2%;
-    }
+    margin-left: 50px;
+    margin-top: 50px;
 }

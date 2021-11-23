@@ -9,25 +9,25 @@ import { Order } from '../model/order';
 export class OrderService {
 
   constructor(private httpClient:HttpClient,) { }
-
+   
   getAllOrder(matv:string):Observable<any>{
-    return this.httpClient.get<Order>('https://be-ecommerce1.herokuapp.com/order/get/tvban/'+matv);
+    return this.httpClient.get<Order>('http://localhost:8080/order/get/tvban/'+matv);
   }
   getAllOrderByTvmua(matv:string):Observable<any>{
-    return this.httpClient.get<Order>('https://be-ecommerce1.herokuapp.com/order/get/tvmua/'+matv);
+    return this.httpClient.get<Order>('http://localhost:8080/order/get/tvmua/'+matv);
   }
   getOrderById(madh:string):Observable<any>{
-    return this.httpClient.get<Order>('https://be-ecommerce1.herokuapp.com/order/get/'+madh)
+    return this.httpClient.get<Order>('http://localhost:8080/order/get/'+madh)
   }
   getAllOrderByTrangthaiAndTvban(trangthai:number,matvban:string):Observable<any>{
-    return this.httpClient.get<Order[]>('https://be-ecommerce1.herokuapp.com/order/get/trangthai/'+trangthai+'/'+matvban);
+    return this.httpClient.get<Order[]>('http://localhost:8080/order/get/trangthai/'+trangthai+'/'+matvban);
   }
    addOrder(order:Order):Observable<any>{
-    return this.httpClient.post<Order>('https://be-ecommerce1.herokuapp.com/order/add',order);
+    return this.httpClient.post<Order>('http://localhost:8080/order/add',order);
   }
    updateOrderStatus(madh:String,trangthai:number):Observable<any>{
-    return this.httpClient.put<Order>('https://be-ecommerce1.herokuapp.com/order/put/'+madh+'/'+trangthai,null);
+    return this.httpClient.put<Order>('http://localhost:8080/order/put/'+madh+'/'+trangthai,null);
   }
-
+  
 }
 

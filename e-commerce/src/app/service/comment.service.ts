@@ -10,13 +10,13 @@ export class CommentService {
 
   constructor(private httpClient:HttpClient) { }
   getAllByMasp(masp:String):Observable<any>{
-    return this.httpClient.get<Comment[]>('https://be-ecommerce1.herokuapp.com/cmt/get/'+masp);
+    return this.httpClient.get<Comment[]>('http://localhost:8080/cmt/get/'+masp);
   }
   addCmt(comment:Comment):Observable<any>{
-    return this.httpClient.post<Comment>('https://be-ecommerce1.herokuapp.com/cmt/add',comment);
+    return this.httpClient.post<Comment>('http://localhost:8080/cmt/add',comment);
   }
   getCommentById(madh:String,masp:String):Observable<any>{
-    return this.httpClient.get<Comment>('https://be-ecommerce1.herokuapp.com/cmt/get/'+madh+'/'+masp);
+    return this.httpClient.get<Comment>('http://localhost:8080/cmt/get/'+madh+'/'+masp);
   }
 
 }

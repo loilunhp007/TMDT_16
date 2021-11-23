@@ -46,8 +46,6 @@ import { AdminisMenuComponent } from './administrator/adminis-menu/adminis-menu.
 import { SidebarMenuComponent } from './administrator/sidebar-menu/sidebar-menu.component';
 import { LayoutComponent } from './administrator/layout/layout.component';
 import { AccountComponent } from './administrator/account/account.component';
-import { CarouselComponent, CarouselModule } from 'ngx-owl-carousel-o';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +79,6 @@ import { CarouselComponent, CarouselModule } from 'ngx-owl-carousel-o';
     SidebarMenuComponent,
     LayoutComponent,
     AccountComponent,
-    CarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +101,6 @@ import { CarouselComponent, CarouselModule } from 'ngx-owl-carousel-o';
     MatSlideToggleModule,
     NgxPaginationModule,
     MatTabsModule,
-    CarouselModule
   ],
   providers: [ModalDirective],
   bootstrap: [AppComponent],

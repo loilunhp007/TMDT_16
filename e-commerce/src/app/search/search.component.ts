@@ -59,9 +59,10 @@ export class SearchComponent implements OnInit {
       let s= this.userId+''
      this.cartService.addToCart(s,product.masp).subscribe(
        Response=>{
+          console.log(Response)
        },
        (error)=>{
-
+         console.log(s+"sp:"+product.masp)
          alert("Add to cart Sucess")
        }
      )

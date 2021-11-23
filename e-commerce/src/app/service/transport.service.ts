@@ -10,9 +10,9 @@ export class TransportService {
 
   constructor(private httpClient:HttpClient) { }
   getShipping():Observable<any>{
-    return this.httpClient.get<Transport[]>('https://be-ecommerce1.herokuapp.com/transport/get')
+    return this.httpClient.get<Transport[]>('http://localhost:8080/transport/get')
   }
   getShippingById(tid:String):Observable<any>{
-    return this.httpClient.get<Transport>('https://be-ecommerce1.herokuapp.com/transport/get/'+tid)
+    return this.httpClient.get<Transport>('http://localhost:8080/transport/get/'+tid)
   }
 }

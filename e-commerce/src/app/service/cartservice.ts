@@ -8,25 +8,25 @@ import { Product } from '../model/product';
   providedIn: 'root'
 })
 export class CartService {
-  constructor(private httpClient:HttpClient) {
+  constructor(private httpClient:HttpClient) { 
   }
   getCartItems(matv:String):Observable<any>{
-    return this.httpClient.get<Cart[]>('https://be-ecommerce1.herokuapp.com/cart/get/'+matv)
+    return this.httpClient.get<Cart[]>('http://localhost:8080/cart/get/'+matv)
   }
   addToCart(matv:string,masp:String):Observable<any>{
-    return this.httpClient.post<Cart>('https://be-ecommerce1.herokuapp.com/cart/add/'+masp+'/'+matv,null)
+    return this.httpClient.post<Cart>('http://localhost:8080/cart/add/'+masp+'/'+matv,null)  
   }
   plusCart(matv:string,masp:String):Observable<any>{
-    return this.httpClient.put<Cart>('https://be-ecommerce1.herokuapp.com/cart/put/plus/'+masp+"/"+matv,null);
+    return this.httpClient.put<Cart>('http://localhost:8080/cart/put/plus/'+masp+"/"+matv,null);
   }
   minusCart(matv:string,masp:String):Observable<any>{
-    return this.httpClient.put<Cart>('https://be-ecommerce1.herokuapp.com/cart/put/minus/'+masp+"/"+matv,null);
+    return this.httpClient.put<Cart>('http://localhost:8080/cart/put/minus/'+masp+"/"+matv,null);
   }
   deleteCartItem(matv:string,masp:String):Observable<any>{
-    return this.httpClient.delete<Cart>('https://be-ecommerce1.herokuapp.com/cart/delete/'+masp+'/'+matv);
+    return this.httpClient.delete<Cart>('http://localhost:8080/cart/delete/'+masp+'/'+matv);
   }
   deleteCart(matv:string):Observable<any>{
-    return this.httpClient.delete<Cart>('https://be-ecommerce1.herokuapp.com/cart/delete/cart/'+matv);
+    return this.httpClient.delete<Cart>('http://localhost:8080/cart/delete/cart/'+matv);
   }
 
  /*addItem(product:Product){
@@ -39,5 +39,5 @@ export class CartService {
       this.cartItems.push(product)
       console.log(this.cartItems)
   }*/
-
+  
 }

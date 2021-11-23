@@ -107,8 +107,12 @@ export class ProductComponent implements OnInit {
             const uploadData = new FormData();
             let img=product2.hinhanh+''
             if(srcImg!= this.imgURL){
-              product2.hinhanh= this.ProductFormModalImage.value;
+              product2.hinhanh= img
               uploadData.append('imageFile', this.selectedFile,img);
+              console.log(product2)
+              this.httpClient.post('http://localhost:8080/products/upload',uploadData,{ observe : "response"}).subscribe(
+                (Response)=>{
+                  if(Response.status === 200){
                     this.productService.updateProduct(product2).subscribe(
                       (response)=>{
                         
@@ -124,8 +128,8 @@ export class ProductComponent implements OnInit {
                 
                     )
     
-                  
-              
+                  }
+              })
             }else{
               this.productService.updateProduct(product2).subscribe(
                 Response=>{

@@ -25,7 +25,6 @@ export class AddproductComponent implements OnInit {
   Categorys : Category[]
   category1: Category
   category2:Category
-
   private userDetailId:String;
   constructor(private ProductService: ProductService,
     private route:Router,
@@ -62,18 +61,20 @@ export class AddproductComponent implements OnInit {
         this.product.gia = this.ProductFormModalPrice.value;
         this.product.soluong = this.ProductFormModalQuantity.value;
         this.product.trangthai=1;
+        this.product.hinhanh= imageName
         this.userService.getUserDetailByID(this.userDetailId).subscribe(
           data=>{
             this.product.userDetail = data;
-            uploadData.append("sanpham",JSON.stringify(this.product));
-          this.ProductService.addProduct(uploadData).subscribe(
+            
+            this.httpClient.post('http://localhost:8080/products/upload',uploadData,{ observe : "response"}).subscribe(
+      (Response)=>{
+        if(Response.status === 200){
+          this.ProductService.addProduct(this.product).subscribe(
             (response)=>{
-              console.log(response)
               this.route.navigate(['admin','product']);
             },
             (error)=>{ 
-              console.log(error)
-              
+              console.log(this.product)
               alert(this.product)
             }
       
@@ -83,12 +84,13 @@ export class AddproductComponent implements OnInit {
               alert(this.product)
           }
         console.log('Image upload Sucess');
-        
+        }
     },
   
+    
+)
 
-
-          
+          }
         ),
         (error)=>{
             console.log(error);
