@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cart } from '../model/cart';
 import { Order } from '../model/order';
 import { OrderDetail } from '../model/order-detail';
 import { Product } from '../model/product';
+import { Transport } from '../model/transport';
 import { UserDetail } from '../model/user-detail';
 import { CartService } from '../service/cartservice';
 import { OrderDetailService } from '../service/order-detail.service';
@@ -156,94 +157,175 @@ export class CheckoutComponent implements OnInit {
     
     }
     createOrder(){
-     if(confirm("Bạn chắc chắn muốn đặt hàng ?")){
-      const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      
-      this.userSerVice.getUserDetailByID(this.userId).subscribe(
-        Response=>{
-
-          this.info = Response;
-          let tvmua=this.info;
-          this.cartService.getCartItems(this.userId).subscribe(
-            Response2=>{
-              
-              this.carts=Response2;
-              this.carts.forEach(data=>{
-                let order = new Order()
-                let orderDetail = new OrderDetail()
-                let product2 =new Product();
-                const random = Math.floor(Math.random() * (99-10)+1)+''+randomChars.charAt(Math.floor(Math.random() * randomChars.length))+''+ Math.floor(Math.random() * (9-1))
-                  order.madh = random
-                order.tvmua  = tvmua
-                const day=this.date.getDate();
-                const month = this.date.getMonth()+1;
-                const year = this.date.getFullYear();
-                order.ngaytao = year+'-'+month+'-'+day
-                order.tongtien =this.cartTotal2
-                 order.tongtien = Number(data.soluong*data.product.gia)+Number(this.Shipping)
-                order.trangthai= 1
-                orderDetail.soluong=data.soluong
-                this.productService.getProductByID(data.product.masp).subscribe(
-                  Response3=>{
-                    product2 = Response3
-                    orderDetail.madh= order.madh+''                     
-                    orderDetail.gia = product2.gia
-                    orderDetail.masp = product2.masp
-                    orderDetail.thanhtoan=0
-                    orderDetail.tid= this.shippingFee.value
-                    orderDetail.tongtien = Number(product2.gia*data.soluong)+Number(this.Shipping)
-                    orderDetail.diachigiao = product2.userDetail.diachi
-                    orderDetail.diachinhan = this.address.value;
-                    console.log(orderDetail);
-                    if((product2.soluong-orderDetail.soluong)>0){
-                      product2.soluong -=orderDetail.soluong;
-                      order.tvban = product2.userDetail
-                    console.log(order)
-                    this.orderService.addOrder(order).subscribe(
-                      (Response4)=>{
-                            console.log(orderDetail)
-                            this.oderDetailService.addOrderDetail(orderDetail).subscribe(
-                                Response5=>{
-                                  this.productService.updateProduct(product2).subscribe(
-                                    Response6=>{
-                                      let itemId= this.userId+'' 
-                                      this.cartService.deleteCart(itemId).subscribe(
-                                        Response7=>{
-                                              this.exit();
-                                        },(error)=>{
-                                          this.exit();
-                                        }
-                                      );
-                                    }
-                                  )
+      if(confirm("Bạn chắc chắn muốn đặt hàng ?")){
+       const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+       
+       this.userSerVice.getUserDetailByID(this.userId).subscribe(
+         Response=>{
+ 
+           this.info = Response;
+           let tvmua=this.info;
+           this.cartService.getCartItems(this.userId).subscribe(
+             Response2=>{
+               
+               this.carts=Response2;
+               let s=this.carts[0].product.userDetail.matv;
+               let ngban=this.carts[0].product.userDetail
+               let s2=null;
+               this.carts.forEach(check=>{
+                   s2=check.product.userDetail.matv;
+               })
+               if(s==s2){
+                 let order = new Order()
+                 const random = Math.floor(Math.random() * (99-10)+1)+''+randomChars.charAt(Math.floor(Math.random() * randomChars.length))+''+ Math.floor(Math.random() * (9-1))
+                 order.madh = random
+                 order.tvmua  = tvmua
+               const day=this.date.getDate();
+                 const month = this.date.getMonth()+1;
+                 const year = this.date.getFullYear();
+                 order.ngaytao = year+'-'+month+'-'+day
+                 order.tongtien =Number(this.cartTotal2)
+                 order.trangthai= 1
+                 order.tvban=ngban;
+                 this.orderService.addOrder(order).subscribe(Response22=>{
+ 
+                 })
+                   this.carts.forEach(data=>{
+                     let orderDetail = new OrderDetail()
+                     let product2 =new Product();
+                     orderDetail.soluong=data.soluong
+                     this.productService.getProductByID(data.product.masp).subscribe(
+                       Response3=>{
+                         product2 = Response3
+                         orderDetail.madh= order.madh+''                     
+                         orderDetail.gia = product2.gia
+                         orderDetail.masp = product2.masp
+                         orderDetail.thanhtoan=0
+                         orderDetail.tid= this.shippingFee.value
+                         orderDetail.tongtien = Number(product2.gia*data.soluong)+Number(this.Shipping)
+                         orderDetail.diachigiao = product2.userDetail.diachi
+                         orderDetail.diachinhan = this.address.value;
+                         console.log(orderDetail);
+                         if((product2.soluong-orderDetail.soluong)>0){
+                           product2.soluong -=orderDetail.soluong;
+                           order.tvban = product2.userDetail
+                         
+                          this.oderDetailService.addOrderDetail(orderDetail).subscribe(
+                                     Response5=>{
+                                       this.productService.updateProduct(product2).subscribe(
+                                         Response6=>{
+                                           let itemId= this.userId+'' 
+                                           this.cartService.deleteCart(itemId).subscribe(
+                                             Response7=>{
+                                                   this.exit();
+                                             },(error)=>{
+                                               this.exit();
+                                             }
+                                           );
+                                         }
+                                       )
+                                        
                                    
-                              
-                                },(error)=>{
-                                        
-                                      }
-
-                            ),(error)=>{
-                                        
-                            }
-                        }
-
-                        
-                    );
-                    }else{
-                      alert('Het hang')
-                    }
-                    
-
-                  }
-                )      
-              })
-            }
-          )
-     })
-          
+                                     },(error)=>{
+                                             
+                                           }
+     
+                                 ),(error)=>{
+                                             
+                                 }
+                             
+     
+                             
+                         
+                         }else{
+                           alert('Het hang')
+                         }
+                         
+     
+                       }
+                     )
+                   })
+                     
+                   
+               }else{
+ 
+               
+               this.carts.forEach(data=>{
+                 let order = new Order()
+                 let orderDetail = new OrderDetail()
+                 let product2 =new Product();
+                 const random = Math.floor(Math.random() * (99-10)+1)+''+randomChars.charAt(Math.floor(Math.random() * randomChars.length))+''+ Math.floor(Math.random() * (9-1))
+                   order.madh = random
+                 order.tvmua  = tvmua
+                 const day=this.date.getDate();
+                 const month = this.date.getMonth()+1;
+                 const year = this.date.getFullYear();
+                 order.ngaytao = year+'-'+month+'-'+day
+                 order.tongtien =this.cartTotal2
+                  order.tongtien = Number(data.soluong*data.product.gia)+Number(this.Shipping)
+                 order.trangthai= 1
+                 orderDetail.soluong=data.soluong
+                 this.productService.getProductByID(data.product.masp).subscribe(
+                   Response3=>{
+                     product2 = Response3
+                     orderDetail.madh= order.madh+''                     
+                     orderDetail.gia = product2.gia
+                     orderDetail.masp = product2.masp
+                     orderDetail.thanhtoan=0
+                     orderDetail.tid= this.shippingFee.value
+                     orderDetail.tongtien = Number(product2.gia*data.soluong)+Number(this.Shipping)
+                     orderDetail.diachigiao = product2.userDetail.diachi
+                     orderDetail.diachinhan = this.address.value;
+                     console.log(orderDetail);
+                     if((product2.soluong-orderDetail.soluong)>0){
+                       product2.soluong -=orderDetail.soluong;
+                       order.tvban = product2.userDetail
+                     console.log(order)
+                     this.orderService.addOrder(order).subscribe(
+                       (Response4)=>{
+                             console.log(orderDetail)
+                             this.oderDetailService.addOrderDetail(orderDetail).subscribe(
+                                 Response5=>{
+                                   this.productService.updateProduct(product2).subscribe(
+                                     Response6=>{
+                                       let itemId= this.userId+'' 
+                                       this.cartService.deleteCart(itemId).subscribe(
+                                         Response7=>{
+                                               this.exit();
+                                         },(error)=>{
+                                           this.exit();
+                                         }
+                                       );
+                                     }
+                                   )
+                                    
+                               
+                                 },(error)=>{
+                                         
+                                       }
+ 
+                             ),(error)=>{
+                                         
+                             }
+                         }
+ 
+                         
+                     );
+                     }else{
+                       alert('Het hang')
+                     }
+                     
+ 
+                   }
+                 )      
+               })}
+             }
+           )
+      })
+           
+      }
+ 
      }
-
-    }
     getInfoForm(){
       return this.infoForm.controls;
     }
