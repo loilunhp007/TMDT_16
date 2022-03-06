@@ -11,7 +11,7 @@ export class ProductService {
   constructor(private httpClient : HttpClient) {
 
   }
-  getProduct(matv:String):Observable<Product[]>{
+  getProduct(matv:String):Observable<Product[]>{ 
     return this.httpClient.get<Product[]>("https://be-ecommerce1.herokuapp.com/products/get/matv/"+matv);
   }
   addProduct(formData:FormData):Observable<any>{
