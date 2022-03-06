@@ -159,11 +159,11 @@
 					</div>
 					<div style="clear: both;"></div>
 					<br> -->
-					<div class="col-sm-4" *ngFor="let product of products | filter : searchText | paginate:{itemsPerPage:8,currentPage:p,totalItems:products.length > 0} ">
+					<div class="col-sm-4" *ngFor="let product of products | filter : searchText | paginate:{itemsPerPage:8,currentPage:p,totalItems:products.length} ">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
-									<img src="data:image/png;base64,{{product.hinhanh}}" alt="" />
+									<img src="../../../../assets/images/{{product.hinhanh}}" alt="" />
 									<span style="display:'none'">{{product.masp}}</span>
 									<h2>{{product.gia|currency:'VND':'symbol':'3.0'}} VNĐ</h2>
 									<p>{{product.tensp}}</p>

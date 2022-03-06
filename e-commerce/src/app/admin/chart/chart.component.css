@@ -1,7 +1,7 @@
 .chart{
     display: block;
-    float: right;
-    width: 86%!important;
-    position: relative;
-    margin-top: -6%;
+    float: left;
+    width: 75%;
+    margin-left: 50px;
+    margin-top: 50px;
 }

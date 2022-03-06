@@ -155,11 +155,11 @@
 				</div>
 				<div style="clear: both;"></div>
 				<br> -->
-				<div class="col-sm-4 xs-6" *ngFor="let product of products | filter : searchText | paginate:{itemsPerPage:6,currentPage:p} ">
+				<div class="col-sm-4" *ngFor="let product of products | filter : searchText | paginate:{itemsPerPage:6,currentPage:p} ">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
-								<img src="data:image/png;base64,{{product.hinhanh}}" alt="" />
+								<img src="../../../../assets/images/{{product.hinhanh}}" alt="" />
 								<span style="display:'none'">{{product.masp}}</span>
 								<h2>{{product.gia|currency:'VND':'symbol':'3.0'}} </h2>
 								<p>{{product.tensp}}</p>
@@ -180,9 +180,8 @@
 								</ul>
 							</div>
 					</div>
-					
 				</div><!--features_items-->
-					<pagination-controls (pageChange)="p = $event" *ngIf="products != null" ></pagination-controls>
+					<pagination-controls (pageChange)="p = $event"></pagination-controls>
 			</div>
 			
 		</div>
