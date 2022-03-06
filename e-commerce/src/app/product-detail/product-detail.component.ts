@@ -87,7 +87,6 @@ export class ProductDetailComponent implements OnInit {
       let s1= this.userId+''
      this.cartService.addToCart(s1,product.masp).subscribe(
        Response=>{
-          console.log(Response)
           alert("Add to cart Sucess")
        },
        (error)=>{
@@ -165,7 +164,6 @@ export class ProductDetailComponent implements OnInit {
     this.commentService.getCommentById(madh,masp).subscribe(
       Response=>{
         if(Response!=null || madh==null){
-          console.log(Response)
           return this.flag=false;
         
       } else{

@@ -22,7 +22,7 @@
 					<tbody>
 						<tr *ngFor="let cart of carts">
 							<td class="cart_product" >
-								<a href=""><img src="../../../../assets/images/{{cart.product.hinhanh}}" width="200" height="200" alt=""></a>
+								<a href=""><img src="data:image/png;base64,{{cart.product.hinhanh}}" width="200" height="200" alt=""></a>
 							</td>
 							<td class="cart_description">
 								<h4><a (click)="goDetail(cart.product)">{{cart.product.tensp}}</a></h4>
